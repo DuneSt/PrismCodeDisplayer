@@ -1,14 +1,11 @@
 {
-	"category" : "PrismCodeDisplayer-Library",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
-	"commentStamp" : "<historical>",
-	"instvars" : [
-		 ],
-	"name" : "PrismLibrary",
-	"pools" : [
-		 ],
+	"commentStamp" : "",
 	"super" : "WAFileLibrary",
-	"type" : "normal" }
+	"category" : "PrismCodeDisplayer-Library",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PrismLibrary",
+	"type" : "normal"
+}

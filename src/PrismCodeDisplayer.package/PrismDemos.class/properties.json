@@ -1,17 +1,11 @@
 {
-	"category" : "PrismCodeDisplayer-Demo",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
-	"commentStamp" : "<historical>",
-	"instvars" : [
-		"selectedMessage",
-		"method",
-		"message",
-		"selection" ],
-	"name" : "PrismDemos",
-	"pools" : [
-		 ],
+	"commentStamp" : "",
 	"super" : "WAComponent",
-	"type" : "normal" }
+	"category" : "PrismCodeDisplayer-Demo",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PrismDemos",
+	"type" : "normal"
+}

@@ -1,22 +1,18 @@
 {
+	"commentStamp" : "",
+	"super" : "WAComponent",
 	"category" : "PrismCodeDisplayer-Component",
-	"classinstvars" : [
-		 ],
-	"classvars" : [
-		 ],
-	"commentStamp" : "<historical>",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
 	"instvars" : [
 		"sourceCode",
 		"linkObjects",
 		"linkPositionFunction",
 		"callBack",
 		"linkStyle",
-		"language",
-		"menusWithAction",
-		"jsOnLoadHook",
-		"startCountNumber" ],
+		"language"
+	],
 	"name" : "PrismComponent",
-	"pools" : [
-		 ],
-	"super" : "WAComponent",
-	"type" : "normal" }
+	"type" : "normal"
+}
