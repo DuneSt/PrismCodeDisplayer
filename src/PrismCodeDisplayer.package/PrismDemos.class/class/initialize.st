@@ -4,4 +4,5 @@ initialize
 	app := WAAdmin register: self asApplicationAt: 'PrismDemo'.
 	
 	app
-		addLibrary: PrismLibrary
+		addLibrary: PrismLibrary;
+		addLibrary: JQDeploymentLibrary.
