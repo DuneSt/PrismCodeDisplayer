@@ -9,6 +9,6 @@ renderContentOn: html
 						id: codeId;
 						class: (self codeClassFor: self language);
 						with: 'Waiting' ].
-	ajax := (html jQuery ajax text: [ :t | (Delay forSeconds: 1) wait. self displayComputedSourceCodeOn: t ]).
+	ajax := (html jQuery ajax text: [ :t | self displayComputedSourceCodeOn: t ]).
 	html script: '$.ajax({
   url:''' , ajax fullUrl asString, ''', context:document.getElementById("' , codeId , '")}).done(function(sourceCode){ this.innerHTML = sourceCode; Prism.highlightElement(this);  });'
