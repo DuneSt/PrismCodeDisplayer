@@ -7,7 +7,7 @@ renderContentOn: html
 			(PrismComponent
 				sourceCode: method sourceCode
 				linkObjects: method messages
-				linkPositionFunction: [ :message | (method indexOfLiteral: message) to: (method indexOfLiteral: message) + message size ]
+				linkPositionFunction: [ :message | (method sourceCode allRangesOfSubstring: message)]
 				callBack: [ :message | selectedMessage := message ]
 				linkStyle: [ :o |  ]
-				language: #smalltalk)
+				language: #fourD)

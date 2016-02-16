@@ -1,3 +1,3 @@
 uploaded
 selectorsToInclude
-	^ #(prismCss prismJs fdLanguageJs)
+	^ #(prismCss prismJs fdLanguageJs autoLinkerJs)
