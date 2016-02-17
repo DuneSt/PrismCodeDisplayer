@@ -1,5 +1,5 @@
 rendering
-displayComputedSourceCodeOn: t callBack: aCallBack
+displayComputedSourceCodeOn: t url: url callBack: aCallBack
 	| source |
 	source := self sourceCode value readStream.
 	aCallBack
@@ -14,5 +14,5 @@ displayComputedSourceCodeOn: t callBack: aCallBack
 						ifTrue: [ t nextPutAll: (source next: interval first - source position - 1) ].
 					t nextPutAll: '['.
 					t nextPutAll: (source next: interval last - source position).
-					t nextPutAll: '](','aCallBack url',')' ] ].
+					t nextPutAll: '](',url,'#',aCallBack,'#',(self linkObjects indexOf: asso key) asString,')' ] ].
 	t nextPutAll: source upToEnd

@@ -6,7 +6,8 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"selectedMessage"
+		"selectedMessage",
+		"method"
 	],
 	"name" : "PrismDemos",
 	"type" : "normal"
