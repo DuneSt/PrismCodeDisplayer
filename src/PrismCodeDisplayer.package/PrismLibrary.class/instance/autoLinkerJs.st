@@ -35,7 +35,7 @@ var linkMd = /\[([^(\]|\[)]+)]\(([(\/\S*)+]+)\)/i;
 
 	Prism.hooks.add(''before-highlight'', function(env) {
 		Prism.languages.insertBefore(env.language, Object.keys(env.grammar)[0], {
-			''linkMd'': {
+			''prismLink'': {
 				pattern:linkMd,
 				inside: {
 					url:url,
@@ -46,7 +46,7 @@ var linkMd = /\[([^(\]|\[)]+)]\(([(\/\S*)+]+)\)/i;
 	});
 
 	Prism.hooks.add(''after-highlight'', function(env) {
-		linkMdSpan = env.element.getElementsByClassName("linkMd");
+		linkMdSpan = env.element.getElementsByClassName("prismLink");
 		for(i=0; i< linkMdSpan.length;i++ ){
 		
 			console.log(linkMdSpan[i]);
