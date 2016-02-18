@@ -25,14 +25,14 @@ autoLinkerJs
 	(function(){
 
 var url = /(\/\S*)+/i;
-var linkMd = /\[\[\[(((?!]]]).|[\n\r])+)]]]\(([(\/\S*)+]+)\)/i;
+var linkMd = /ế(((?!ề).|[\n\r])+)ề\(((\/[\w\d=?&#_]*)+)\)/i;
 
 	Prism.hooks.add(''before-highlight'', function(env) {
 		Prism.languages.insertBefore(env.language, Object.keys(env.grammar)[0], {
 			''prismLink'': {
 				pattern:linkMd,
 				inside: {
-					text: /\[\[\[(((?!]]]).|[\n\r])+)]]]/ig,
+					text: /ế(((?!ề).|[\n\r])+)ề/i,
 					url:url					
 				}
 		}
@@ -43,7 +43,7 @@ var linkMd = /\[\[\[(((?!]]]).|[\n\r])+)]]]\(([(\/\S*)+]+)\)/i;
 		linkMdSpan = env.element.getElementsByClassName("prismLink");
 		for(i=0; i< linkMdSpan.length;i++ ){
 			var link = linkMdSpan[i].getElementsByClassName("url")[0].innerHTML.split("#");
-			var text = linkMdSpan[i].getElementsByClassName("text")[0].innerHTML.slice(3, -3);
+			var text = linkMdSpan[i].getElementsByClassName("text")[0].innerHTML.slice(1, -1);
 			param = "{"+link[1]+":"+link[2].slice(0,-1)+"}";
 			linkMdSpan[i].innerHTML = "<a href=''javascript:void(0)'' onclick=''post("+''"''+link[0]+''"''+","+param+");''>"+text+"</a>";
 		}		
