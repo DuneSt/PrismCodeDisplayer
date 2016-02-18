@@ -27,18 +27,13 @@ autoLinkerJs
 var url = /(\/\S*)+/i;
 var linkMd = /\[\[\[(((?!]]]).|[\n\r])+)]]]\(([(\/\S*)+]+)\)/i;
 
-	console.log(''[[[Explo_Launch ("]]](/inventiveToolkit?_s=UJcBE7l9_5DAJm7-&_k=ucgWXLbBHvEjKONx#8620#2)4DBB_De[[[finition")]]](/inventiveToolkit?_s=UJcBE7l9_5DAJm7-&_k=ucgWXLbBHvEjKONx#8620#1)''.match(linkMd));
-
-	// Tokens that may contain URLs and emails
-    candidates = [''comment'', ''url'', ''attr-value'', ''string''];
-
 	Prism.hooks.add(''before-highlight'', function(env) {
 		Prism.languages.insertBefore(env.language, Object.keys(env.grammar)[0], {
 			''prismLink'': {
 				pattern:linkMd,
 				inside: {
-					url:url,
-					text: /\[\[\[(((?!]]]).|[\n\r])+)]]]/
+					text: /\[\[\[(((?!]]]).|[\n\r])+)]]]/,
+					url:url					
 				}
 		}
 		});
@@ -51,8 +46,6 @@ var linkMd = /\[\[\[(((?!]]]).|[\n\r])+)]]]\(([(\/\S*)+]+)\)/i;
 			var link = linkMdSpan[i].getElementsByClassName("url")[0].innerText.split("#");
 			var text = linkMdSpan[i].getElementsByClassName("text")[0].innerHTML.slice(3, -3);
 			param = "{"+link[1]+":"+link[2].slice(0,-1)+"}";
-			function2 = ''post("''+link[0]+''",''+param+'');return false;'';
-			functionTest = ''post("www.google.fr",{});'';
 			linkMdSpan[i].innerHTML = "<a href=''javascript:void(0)'' onclick=''post("+''"''+link[0]+''"''+","+param+");''>"+text+"</a>";
 		}		
 	});
