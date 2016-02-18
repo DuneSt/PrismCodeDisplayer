@@ -32,7 +32,7 @@ var linkMd = /\[\[\[(((?!]]]).|[\n\r])+)]]]\(([(\/\S*)+]+)\)/i;
 			''prismLink'': {
 				pattern:linkMd,
 				inside: {
-					text: /\[\[\[(((?!]]]).|[\n\r])+)]]]/,
+					text: /\[\[\[(((?!]]]).|[\n\r])+)]]]/ig,
 					url:url					
 				}
 		}
@@ -42,8 +42,7 @@ var linkMd = /\[\[\[(((?!]]]).|[\n\r])+)]]]\(([(\/\S*)+]+)\)/i;
 	Prism.hooks.add(''after-highlight'', function(env) {
 		linkMdSpan = env.element.getElementsByClassName("prismLink");
 		for(i=0; i< linkMdSpan.length;i++ ){
-		
-			var link = linkMdSpan[i].getElementsByClassName("url")[0].innerText.split("#");
+			var link = linkMdSpan[i].getElementsByClassName("url")[0].innerHTML.split("#");
 			var text = linkMdSpan[i].getElementsByClassName("text")[0].innerHTML.slice(3, -3);
 			param = "{"+link[1]+":"+link[2].slice(0,-1)+"}";
 			linkMdSpan[i].innerHTML = "<a href=''javascript:void(0)'' onclick=''post("+''"''+link[0]+''"''+","+param+");''>"+text+"</a>";
