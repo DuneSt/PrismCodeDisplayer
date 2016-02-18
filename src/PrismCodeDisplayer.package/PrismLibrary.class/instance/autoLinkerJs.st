@@ -1,8 +1,7 @@
 uploaded
 autoLinkerJs
 	^ 'function post(path, parameters) {
-	console.log(path);
-    var form = $(''<form></form>'');
+	 var form = $(''<form></form>'');
 
     form.attr("method", "post");
     form.attr("action", path);
@@ -25,11 +24,9 @@ autoLinkerJs
 	
 	(function(){
 
-var urlOld = /\b([a-z]{3,7}:\/\/|tel:)[\w\-+%~/.:#=?&amp;]+/;
-
 var url = /(\/\S*)+/i;
-var linkMd = /\[([^(\]|\[)]+)]\(([(\/\S*)+]+)\)/i;
-    
+var linkMd = /\[\[\[(((?!]]]).)+)]]]\(([(\/\S*)+]+)\)/i;
+
 	// Tokens that may contain URLs and emails
     candidates = [''comment'', ''url'', ''attr-value'', ''string''];
 
@@ -39,7 +36,7 @@ var linkMd = /\[([^(\]|\[)]+)]\(([(\/\S*)+]+)\)/i;
 				pattern:linkMd,
 				inside: {
 					url:url,
-					text: /\[([^\]]+)]/
+					text: /\[\[\[(((?!]]]).)+)]]]/
 				}
 		}
 		});
@@ -49,9 +46,8 @@ var linkMd = /\[([^(\]|\[)]+)]\(([(\/\S*)+]+)\)/i;
 		linkMdSpan = env.element.getElementsByClassName("prismLink");
 		for(i=0; i< linkMdSpan.length;i++ ){
 		
-			console.log(linkMdSpan[i]);
 			var link = linkMdSpan[i].getElementsByClassName("url")[0].innerText.split("#");
-			var text = linkMdSpan[i].getElementsByClassName("text")[0].innerHTML.slice(1, -1);
+			var text = linkMdSpan[i].getElementsByClassName("text")[0].innerHTML.slice(3, -3);
 			param = "{"+link[1]+":"+link[2].slice(0,-1)+"}";
 			function2 = ''post("''+link[0]+''",''+param+'');return false;'';
 			functionTest = ''post("www.google.fr",{});'';

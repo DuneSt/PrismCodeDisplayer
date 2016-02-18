@@ -10,7 +10,7 @@ displayComputedSourceCodeOn: t url: url callBack: aCallBack
 					interval := asso value.
 					interval first - source position - 1 > 0
 						ifTrue: [ t nextPutAll: (source next: interval first - source position - 1) ].
-					t nextPutAll: '['.
+					t nextPutAll: '[[['.
 					t nextPutAll: (source next: interval last - source position).
-					t nextPutAll: '](' , url , '#' , aCallBack , '#' , (self linkObjects indexOf: asso key) asString , ')' ] ].
+					t nextPutAll: ']]](' , url , '#' , aCallBack , '#' , (self linkObjects indexOf: asso key) asString , ')' ] ].
 	t nextPutAll: source upToEnd
