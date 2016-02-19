@@ -1,8 +1,9 @@
 rendering
 renderContentOn: html
-	| codeId ajax component cb |
+	| cb ajax component codeId |
 	codeId := html nextId.
 	component := html preformatted
+		class: 'prismComponent';
 		class: #'line-numbers';
 		with: [ 
 					html code
