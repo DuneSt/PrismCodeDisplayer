@@ -25,7 +25,7 @@ autoLinkerJs
 	(function(){
 
 var url = /(\/\S*)+/i;
-var linkMd = /ế(((?!ề).|[\n\r])+)ề\(((\/[\w\d=?&#_]*)+)\)/i;
+var linkMd = /ế(((?!ề).|[\n\r])+)ề\(((\/[\w\d\|=\-?&#_]*)+)\)/i;
 
 	Prism.hooks.add(''before-highlight'', function(env) {
 		Prism.languages.insertBefore(env.language, Object.keys(env.grammar)[0], {
