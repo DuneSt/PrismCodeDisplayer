@@ -6,15 +6,14 @@ addSelectionListener: component in: s
 		<<
 				'").addEventListener("mouseup", function(e) {
         var selectedText = window.getSelection();
-			console.log("Event");
-        if(selectedText != '''' && document.getElementById("';
+		if(selectedText != '''' && document.getElementById("';
 		<< component id asString;
 		<<
 				'").contains(selectedText.anchorNode)){
 				$(''#menu';
 		<< component id asString;
 		<<
-				''').fadeIn(200).css({''left'': e.pageX,''top'' : e.pageY});
+				''').fadeIn(500).css({''left'': e.pageX,''top'' : e.pageY});
             previousSelection = selectedText.getRangeAt(0).toString();
 				
         } 
@@ -22,4 +21,4 @@ addSelectionListener: component in: s
 	s
 		<< 'document.addEventListener("selectionchange", function() { if(window.getSelection() == '''') $(''#menu';
 		<< component id asString;
-		<< ''').fadeOut(200);} );'
+		<< ''').fadeOut(500);} );'
