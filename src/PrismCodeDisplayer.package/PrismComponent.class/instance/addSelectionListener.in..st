@@ -14,7 +14,7 @@ addSelectionListener: component in: s
 		<< component id asString;
 		<<
 				''').fadeIn(500).css({''left'': e.pageX,''top'' : e.pageY});
-            previousSelection = selectedText.getRangeAt(0).toString();
+            previousSelection = selectedText.getRangeAt(0);
 				
         } 
     });'.

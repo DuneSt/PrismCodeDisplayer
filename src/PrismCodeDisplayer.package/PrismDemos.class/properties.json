@@ -8,7 +8,8 @@
 	"instvars" : [
 		"selectedMessage",
 		"method",
-		"message"
+		"message",
+		"selection"
 	],
 	"name" : "PrismDemos",
 	"type" : "normal"

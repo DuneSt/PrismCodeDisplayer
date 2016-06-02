@@ -21,6 +21,33 @@ autoLinkerJs
     $(document.body).append(form);
     form.submit();
 }
+
+//i am a function that return the number of characters before my node in the <code>
+function textSizeBefore(aNode){
+
+	var size = 0;
+	
+	if(aNode.parentNode.nodeName != "CODE"){
+		size += textSizeBefore(aNode.parentNode);
+	}
+	
+	var nodes = aNode.parentNode.childNodes;
+	
+	for(var i=0;i<nodes.length ; i++)
+		{ 
+			var node = nodes[i];
+			if(node === aNode){
+				return size;
+			}
+			else{
+				if(node.innerText == null)
+					size += node.length;
+				else size += node.innerText.length;
+			}
+		}
+	console.log("Error, the function is supposed to find a matching child and to quit");
+	return size;
+}
 	
 	(function(){
 
