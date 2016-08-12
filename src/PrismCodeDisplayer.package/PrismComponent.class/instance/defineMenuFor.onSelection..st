@@ -11,7 +11,7 @@ defineMenuFor: component onSelection: html
 							stream := ReadStream on: object.
 							(self menusWithAction at: (stream upTo: $;) asInteger) value
 								value: (stream upTo: $;) asInteger + 1
-								value: (stream upTo: $;) asInteger 
+								value: (stream upTo: $;) asInteger
 								value: stream upToEnd ]).
 			html div
 				id: 'menu' , component id asString;
@@ -23,7 +23,15 @@ defineMenuFor: component onSelection: html
 										with: [ 
 											html anchor
 												onClick:
-														'post(''' , html actionUrl asString , ''', {' , cb , ':' , index asString
-																,
-																	'+ ";" + (textSizeBefore(previousSelection.startContainer)+previousSelection.startOffset) + ";" + (textSizeBefore(previousSelection.endContainer)+previousSelection.endOffset) + ";" + previousSelection.toString()})';
+														(String
+																streamContents: [ :s | 
+																	s
+																		<< 'post(''';
+																		<< html actionUrl asString;
+																		<< ''', {';
+																		<< cb;
+																		<< $:;
+																		<< index;
+																		<<
+																				'+ ";" + (textSizeBefore(previousSelection.startContainer)+previousSelection.startOffset) + ";" + (textSizeBefore(previousSelection.endContainer)+previousSelection.endOffset) + ";" + previousSelection.toString()})' ]);
 												with: aMenuWithAction key ] ] ] ]
