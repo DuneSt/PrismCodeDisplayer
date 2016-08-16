@@ -12,7 +12,8 @@
 		"callBack",
 		"linkStyle",
 		"language",
-		"menusWithAction"
+		"menusWithAction",
+		"jsOnLoadHook"
 	],
 	"name" : "PrismComponent",
 	"type" : "normal"

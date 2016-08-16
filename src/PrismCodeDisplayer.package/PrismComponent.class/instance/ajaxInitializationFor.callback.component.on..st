@@ -11,4 +11,6 @@ ajaxInitializationFor: codeId callback: cb component: component on: html
 										(String
 												streamContents: [ :sc | 
 													sc << 'Prism.highlightElement(this);'.
+													self jsOnLoadHook isEmptyOrNil
+														ifFalse: [ sc << self jsOnLoadHook ].
 													self addSelectionListener: component in: sc ])) ]
