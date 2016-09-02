@@ -13,7 +13,8 @@
 		"linkStyle",
 		"language",
 		"menusWithAction",
-		"jsOnLoadHook"
+		"jsOnLoadHook",
+		"startCountNumber"
 	],
 	"name" : "PrismComponent",
 	"type" : "normal"

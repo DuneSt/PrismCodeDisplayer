@@ -5,6 +5,8 @@ renderContentOn: html
 	component := html preformatted
 		class: 'prismComponent';
 		class: #'line-numbers';
+		"We substract one to convert to CSS convention (counting from 0)"
+		style: 'counter-reset: linenumber ', (self startCountNumber - 1) asString,';';
 		id: html nextId;
 		with: [ 
 					html code
