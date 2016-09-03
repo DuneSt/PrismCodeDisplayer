@@ -11,7 +11,8 @@
 		"linkPositionFunction",
 		"callBack",
 		"linkStyle",
-		"language" ],
+		"language",
+		"menusWithAction" ],
 	"name" : "PrismComponent",
 	"pools" : [
 		 ],

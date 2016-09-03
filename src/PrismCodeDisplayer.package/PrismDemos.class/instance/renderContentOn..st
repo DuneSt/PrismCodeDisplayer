@@ -1,12 +1,16 @@
 rendering
 renderContentOn: html
-	method ifNil: [method := PrismComponent methodNamed: #renderContentOn:].
+	method ifNil: [ method := PrismDemos methodNamed: #renderContentOn: ].
+	message ifNotNil: [ html text: message ].
 	html
 		render:
-			(PrismComponent
-				sourceCode: [method sourceCode]
+			((PrismComponent
+				sourceCode: [ method sourceCode ]
 				linkObjects: method messages
-				linkPositionFunction: [ :message | (method sourceCode allRangesOfSubstring: message)]
-				callBack: [ :message | method := message implementors atRandom ]
+				linkPositionFunction: [ :messageSent | method sourceCode allRangesOfSubstring: messageSent ]
+				callBack: [ :messageSent | method := messageSent implementors atRandom ]
 				linkStyle: [ :o |  ]
 				language: #smalltalk)
+				addMenu: 'Display Selection'
+				action: [ :selectedText :startPos :endPos | message := 'Text selected from: ' , startPos asString , ' to: ' , endPos asString , ' selection: ' , selectedText ]).
+	
