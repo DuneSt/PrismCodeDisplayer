@@ -17,8 +17,9 @@ defineMenuFor: component onSelection: html
 				with: [ 
 							self menusWithAction
 								doWithIndex: [ :aMenuWithAction :index | 
-									html anchor
-										onClick:
-												'console.log(previousSelection); post(''' , html actionUrl asString , ''', {' , cb , ':' , index asString
-														, '+ ";" + previousSelection})';
-										with: aMenuWithAction key ] ] ]
+									html div
+										with: [ 
+											html anchor
+												onClick:
+														'post(''' , html actionUrl asString , ''', {' , cb , ':' , index asString , '+ ";" + previousSelection})';
+												with: aMenuWithAction key ] ] ] ]
