@@ -25,7 +25,9 @@ autoLinkerJs
 	(function(){
 
 var url = /(\/\S*)+/i;
-var linkMd = /\[\[\[(((?!]]]).)+)]]]\(([(\/\S*)+]+)\)/i;
+var linkMd = /\[\[\[(((?!]]]).|[\n\r])+)]]]\(([(\/\S*)+]+)\)/i;
+
+	console.log(''[[[Explo_Launch ("]]](/inventiveToolkit?_s=UJcBE7l9_5DAJm7-&_k=ucgWXLbBHvEjKONx#8620#2)4DBB_De[[[finition")]]](/inventiveToolkit?_s=UJcBE7l9_5DAJm7-&_k=ucgWXLbBHvEjKONx#8620#1)''.match(linkMd));
 
 	// Tokens that may contain URLs and emails
     candidates = [''comment'', ''url'', ''attr-value'', ''string''];
@@ -36,7 +38,7 @@ var linkMd = /\[\[\[(((?!]]]).)+)]]]\(([(\/\S*)+]+)\)/i;
 				pattern:linkMd,
 				inside: {
 					url:url,
-					text: /\[\[\[(((?!]]]).)+)]]]/
+					text: /\[\[\[(((?!]]]).|[\n\r])+)]]]/
 				}
 		}
 		});
