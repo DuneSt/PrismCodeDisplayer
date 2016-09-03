@@ -1,0 +1,3 @@
+uploaded
+selectorsToInclude
+	^ #(prismCss prismJs)

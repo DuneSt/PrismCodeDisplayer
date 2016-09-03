@@ -1,0 +1,14 @@
+{
+	"category" : "PrismCodeDisplayer-Demo",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "PrismDemos",
+	"pools" : [
+		 ],
+	"super" : "WAComponent",
+	"type" : "normal" }

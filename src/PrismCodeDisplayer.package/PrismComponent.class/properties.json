@@ -1,0 +1,19 @@
+{
+	"category" : "PrismCodeDisplayer-Component",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		"sourceCode",
+		"linkObjects",
+		"linkPositionFunction",
+		"callBack",
+		"linkStyle",
+		"language" ],
+	"name" : "PrismComponent",
+	"pools" : [
+		 ],
+	"super" : "WAComponent",
+	"type" : "normal" }
