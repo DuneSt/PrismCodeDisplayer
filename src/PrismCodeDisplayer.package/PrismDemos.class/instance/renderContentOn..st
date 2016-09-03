@@ -4,7 +4,7 @@ renderContentOn: html
 	html
 		render:
 			(PrismComponent
-				sourceCode: method sourceCode
+				sourceCode: [method sourceCode]
 				linkObjects: method messages
 				linkPositionFunction: [ :message | (method sourceCode allRangesOfSubstring: message)]
 				callBack: [ :message | method := message implementors atRandom ]
