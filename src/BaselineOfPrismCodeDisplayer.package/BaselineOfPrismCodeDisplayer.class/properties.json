@@ -1,0 +1,14 @@
+{
+	"category" : "BaselineOfPrismCodeDisplayer",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		 ],
+	"commentStamp" : "",
+	"instvars" : [
+		 ],
+	"name" : "BaselineOfPrismCodeDisplayer",
+	"pools" : [
+		 ],
+	"super" : "BaselineOf",
+	"type" : "normal" }
