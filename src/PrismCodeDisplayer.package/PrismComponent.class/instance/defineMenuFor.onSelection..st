@@ -7,13 +7,15 @@ defineMenuFor: component onSelection: html
 				storeCallback:
 					(WAValueCallback
 						on: [ :object | 
-							(self menusWithAction at: (object first: (object indexOf: $;) - 1) asInteger) value
-								value: (object copyFrom: (object indexOf: $;) + 1 to: object size)
-								value: 5
-								value: 10 ]).
+							| stream |
+							stream := ReadStream on: object.
+							(self menusWithAction at: (stream upTo: $;) asInteger) value
+								value: (stream upTo: $;) asInteger + 1
+								value: (stream upTo: $;) asInteger 
+								value: stream upToEnd ]).
 			html div
 				id: 'menu' , component id asString;
-				class: #selectionMenu;
+				class: #prismSelectionMenu;
 				with: [ 
 							self menusWithAction
 								doWithIndex: [ :aMenuWithAction :index | 
@@ -21,5 +23,7 @@ defineMenuFor: component onSelection: html
 										with: [ 
 											html anchor
 												onClick:
-														'post(''' , html actionUrl asString , ''', {' , cb , ':' , index asString , '+ ";" + previousSelection})';
+														'post(''' , html actionUrl asString , ''', {' , cb , ':' , index asString
+																,
+																	'+ ";" + (textSizeBefore(previousSelection.startContainer)+previousSelection.startOffset) + ";" + (textSizeBefore(previousSelection.endContainer)+previousSelection.endOffset) + ";" + previousSelection.toString()})';
 												with: aMenuWithAction key ] ] ] ]

@@ -8,9 +8,11 @@ displayComputedSourceCodeOn: t url: url callBack: aCallBack
 				do: [ :asso | 
 					| interval |
 					interval := asso value.
-					interval first - source position - 1 > 0
-						ifTrue: [ t nextPutAll: (source next: interval first - source position - 1) ].
-					t nextPutAll: 'ế'.
-					t nextPutAll: (source next: interval last - source position).
-					t nextPutAll: 'ề(' , url , '#' , aCallBack , '#' , (self linkObjects indexOf: asso key) asString , ')' ] ].
+					interval last - source position > 0
+						ifTrue: [ 
+							interval first - source position - 1 > 0
+								ifTrue: [ t nextPutAll: (source next: interval first - source position - 1) ].
+							t nextPutAll: 'ế'.
+							t nextPutAll: (source next: interval last - source position).
+							t nextPutAll: 'ề(' , url , '#' , aCallBack , '#' , (self linkObjects indexOf: asso key) asString , ')' ] ] ].
 	t nextPutAll: source upToEnd

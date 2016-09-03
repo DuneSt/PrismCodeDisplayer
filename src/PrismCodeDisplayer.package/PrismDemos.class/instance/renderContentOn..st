@@ -2,8 +2,16 @@ rendering
 renderContentOn: html
 	| action |
 	method ifNil: [ method := PrismDemos methodNamed: #renderContentOn: ].
-	message ifNotNil: [ html preformatted: message ].
-	action := [ :selectedText :startPos :endPos | message := 'Text selected from: ' , startPos asString , ' to: ' , endPos asString , ' selection: ' , selectedText ].
+	message
+		ifNotNil: [ 
+			html text: 'Selection: ' , selection asString.
+			html break.
+			html preformatted: message.
+			html break.
+			html preformatted: (method sourceCode copyFrom: selection first to: selection last) ].
+	action := [ :startPos :endPos :selectedText | 
+	selection := startPos to: endPos.
+	message := selectedText ].
 	html
 		render:
 			((PrismComponent
