@@ -11,8 +11,8 @@ renderContentOn: html
 						with: 'Waiting' ];
 		yourself.
 	self hasCallBack
-		ifTrue: [ cb := component storeCallback: (WAValuesCallback on: [ :object | self callBack value: object ] values: self linkObjects) ].
-	ajax := html jQuery ajax text: [ :t | self displayComputedSourceCodeOn: t callBack: cb ].
+		ifTrue: [ cb := component storeCallback: (WAValuesCallback on: [ :object | self callBack value: object ] values: self) ].
+	ajax := html jQuery ajax text: [ :t | self displayComputedSourceCodeOn: t url: html actionUrl asString callBack: cb ].
 	html
 		script:
 			'$.ajax({

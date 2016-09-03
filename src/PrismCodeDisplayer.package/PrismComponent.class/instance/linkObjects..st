@@ -1,3 +1,3 @@
 accessing
 linkObjects: anObject
-	linkObjects := anObject
+	linkObjects := anObject asOrderedCollection
