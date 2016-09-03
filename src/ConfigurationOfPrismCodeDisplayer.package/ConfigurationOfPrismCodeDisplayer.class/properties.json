@@ -1,0 +1,14 @@
+{
+	"category" : "ConfigurationOfPrismCodeDisplayer",
+	"classinstvars" : [
+		 ],
+	"classvars" : [
+		"LastVersionLoad" ],
+	"commentStamp" : "",
+	"instvars" : [
+		"project" ],
+	"name" : "ConfigurationOfPrismCodeDisplayer",
+	"pools" : [
+		 ],
+	"super" : "Object",
+	"type" : "normal" }
