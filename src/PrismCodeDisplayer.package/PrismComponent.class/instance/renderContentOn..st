@@ -1,6 +1,6 @@
 rendering
 renderContentOn: html
-	| cb ajax component codeId |
+	| cb component codeId |
 	codeId := html nextId.
 	component := html preformatted
 		class: 'prismComponent';
@@ -14,20 +14,11 @@ renderContentOn: html
 		yourself.
 	self hasCallBack
 		ifTrue: [ cb := component storeCallback: (WAValuesCallback on: [ :object | self callBack value: object ] values: self) ].
-	ajax := html jQuery ajax text: [ :t | self displayComputedSourceCodeOn: t url: html actionUrl asString callBack: cb ].
-	html script
-		defer;
-		with:
-				(String
-						streamContents: [ :s | 
-							s
-								<<
-										'$.ajax({
-  url:''';
-								<< ajax fullUrl asString;
-								<< ''', context:document.getElementById("';
-								<< codeId;
-								<< '")}).done(function(sourceCode){ this.innerHTML = sourceCode; Prism.highlightElement(this);'.
-							self addSelectionListener: component in: s.
-							s << ' });' ]).
+	html document
+		addLoadScript:
+			(self
+				ajaxInitializationFor: codeId
+				callback: cb
+				component: component
+				on: html).
 	self defineMenuFor: component onSelection: html
