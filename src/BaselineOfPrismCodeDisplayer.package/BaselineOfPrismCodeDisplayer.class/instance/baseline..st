@@ -4,4 +4,4 @@ baseline: spec
 	spec
 		for: #common
 		do: [ self seaside30: spec.
-			spec package: #PrismCodeDisplayer with: [ spec requires: #('Seaside3') ] ]
+			spec package: #PrismCodeDisplayer with: [ spec requires: #('Seaside30') ] ]
