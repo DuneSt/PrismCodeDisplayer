@@ -15,7 +15,7 @@ renderContentOn: html
 		ifTrue: [ cb := component storeCallback: (WAValuesCallback on: [ :object | self callBack value: object ] values: self) ].
 	ajax := html jQuery ajax text: [ :t | self displayComputedSourceCodeOn: t url: html actionUrl asString callBack: cb ].
 	html
-		script:
+		script defer; with:
 			'$.ajax({
   url:''' , ajax fullUrl asString , ''', context:document.getElementById("' , codeId
 				, '")}).done(function(sourceCode){ this.innerHTML = sourceCode; Prism.highlightElement(this);  });'
