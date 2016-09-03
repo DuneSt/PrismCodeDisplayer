@@ -2,7 +2,7 @@
 
 - Linux/Mac:
 
-Master:[![Build Status](https://travis-ci.org/jecisc/PrismCodeDisplayer.svg?branch=master)](https://travis-ci.org/jecisc/PrismCodeDisplayer) | Development: [![Build Status](https://travis-ci.org/jecisc/PrismCodeDisplayer.svg?branch=development)](https://travis-ci.org/jecisc/PrismCodeDisplayer)
+Master:[![Build Status](https://travis-ci.org/DuneSt/PrismCodeDisplayer.svg?branch=master)](https://travis-ci.org/DuneSt/PrismCodeDisplayer) | Development: [![Build Status](https://travis-ci.org/DuneSt/PrismCodeDisplayer.svg?branch=development)](https://travis-ci.org/DuneSt/PrismCodeDisplayer)
 
 - Windows:
 
