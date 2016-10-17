@@ -11,10 +11,10 @@ displayComputedSourceCodeOn: t url: url callBack: aCallBack
 					interval last - source position > 0
 						ifTrue: [ 
 							interval first - source position - 1 > 0
-								ifTrue: [ t nextPutAll: (source next: interval first - source position - 1) ].
+								ifTrue: [ t nextPutAll: (self protectCode: (source next: interval first - source position - 1)) ].
 							t
 								nextPutAll: 'ế';
-								nextPutAll: (source next: interval last - source position);
+								nextPutAll: (self protectCode: (source next: interval last - source position));
 								nextPutAll: 'ề(';
 								nextPutAll: url;
 								nextPut: $#;
@@ -22,4 +22,4 @@ displayComputedSourceCodeOn: t url: url callBack: aCallBack
 								nextPut: $#;
 								nextPutAll: (self linkObjects indexOf: asso key) asString;
 								nextPut: $) ] ] ].
-	t nextPutAll: source upToEnd
+	t nextPutAll: (self protectCode: source upToEnd)
