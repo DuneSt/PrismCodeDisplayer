@@ -7,10 +7,8 @@
 	"classvars" : [ ],
 	"instvars" : [
 		"sourceCode",
-		"linkObjects",
-		"linkPositionFunction",
-		"callBack",
-		"linkStyle",
+		"strategies",
+		"intervals",
 		"language",
 		"menusWithAction",
 		"jsOnLoadHook",

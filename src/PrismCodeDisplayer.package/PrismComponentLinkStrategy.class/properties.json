@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PrismComponentStrategy",
+	"category" : "PrismCodeDisplayer-Component",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"callback"
+	],
+	"name" : "PrismComponentLinkStrategy",
+	"type" : "normal"
+}

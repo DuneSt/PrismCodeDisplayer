@@ -1,0 +1,15 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "PrismCodeDisplayer-Component",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"strategy",
+		"object",
+		"interval"
+	],
+	"name" : "PrismTextInterval",
+	"type" : "normal"
+}

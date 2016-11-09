@@ -1,3 +1,3 @@
 callback
 at: anInteger ifPresent: aBlockClosure 
-	aBlockClosure value: (self linkObjects at: anInteger)
+	aBlockClosure value: (self intervals at: anInteger)

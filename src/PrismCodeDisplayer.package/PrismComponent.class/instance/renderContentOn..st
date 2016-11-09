@@ -14,8 +14,7 @@ renderContentOn: html
 						class: (self codeClassFor: self language);
 						with: 'Waiting' ];
 		yourself.
-	self hasCallBack
-		ifTrue: [ cb := component storeCallback: (WAValuesCallback on: [ :object | self callBack value: object ] values: self) ].
+	cb := component storeCallback: (WAValuesCallback on: [ :interval | interval executeCallback ] values: self).
 	html document
 		addLoadScript:
 			(self
