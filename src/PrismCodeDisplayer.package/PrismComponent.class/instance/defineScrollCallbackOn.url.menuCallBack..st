@@ -1,6 +1,6 @@
 callback
-defineScrollCallbackOn: aDiv
-	^ aDiv
+defineScrollCallbackOn: aPreTag url: url menuCallBack: menuCb
+	^ aPreTag
 		storeCallback:
 			(WAValueCallback
 				on: [ :intervalRequest | 
@@ -14,7 +14,7 @@ defineScrollCallbackOn: aDiv
 										doNotCache;
 										contentType: WAMimeType textHtml;
 										stream)
-								url: 'fake' asString
-								callBack: 5
+								url: url asString
+								callBack: menuCb
 								startLine: (interval first asNumber max: 1)
 								endLine: (interval last asNumber max: 400) ] ])

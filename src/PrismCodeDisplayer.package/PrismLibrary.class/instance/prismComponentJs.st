@@ -16,6 +16,7 @@ function prismAutoLoad() {
 
             if (0.9 < (e.currentTarget.scrollTop + $(e.currentTarget).height()) / e.currentTarget.scrollHeight) {
                 loadPrism(parseInt(e.currentTarget.dataset.lastindexloaded) + 300, parseInt(e.currentTarget.dataset.lastindexloaded) + 700, e.currentTarget)
+					// here we should check that we are not at the end of the code (will require totalNumberOfLines in dataset)
             }
 			}
     });

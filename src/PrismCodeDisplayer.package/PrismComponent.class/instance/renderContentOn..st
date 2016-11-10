@@ -11,7 +11,7 @@ renderContentOn: html
 	self
 		setDataForCallBack: component
 		html: html
-		scrollCb: (self defineScrollCallbackOn: component)
+		scrollCb: (self defineScrollCallbackOn: component url: html actionUrl menuCallBack: cb)
 		clickCb: cb.
 	component
 		with: [ 
