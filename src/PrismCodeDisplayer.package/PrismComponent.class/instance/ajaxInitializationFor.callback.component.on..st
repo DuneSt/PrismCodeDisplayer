@@ -6,7 +6,7 @@ ajaxInitializationFor: codeId callback: cb component: component on: html
 					s
 						<<
 							((html jQuery id: codeId) load
-								text: [ :t | self displayComputedSourceCodeOn: t url: html actionUrl asString callBack: cb ];
+								text: [ :t | self displayComputedSourceCodeOn: t url: html actionUrl asString callBack: cb  startLine: 1 endLine: 400 ];
 								onComplete:
 										(String
 												streamContents: [ :sc | 

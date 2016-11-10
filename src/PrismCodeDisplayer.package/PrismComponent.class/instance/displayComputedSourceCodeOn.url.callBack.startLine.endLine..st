@@ -1,6 +1,7 @@
 rendering
-displayComputedSourceCodeOn: stream url: url callBack: aCallBack
-	| source |
+displayComputedSourceCodeOn: t url: url callBack: aCallBack startLine: start endLine: end
+	| source string |
+	string := ((String streamContents: [ :stream |
 	source := self sourceCode value readStream.
 	self intervals: self obtainSortedObjectWithIntervals.
 	self intervals
@@ -19,4 +20,5 @@ displayComputedSourceCodeOn: stream url: url callBack: aCallBack
 						nextPut: $#;
 						nextPutAll: index asString;
 						nextPut: $) ] ].
-	stream nextPutAll: (self protectCode: source upToEnd)
+	stream nextPutAll: (self protectCode: source upToEnd)])).
+	t nextPutAll: ([(string copyFrom: (string intervalOfLine: start) first to: (string intervalOfLine: end) last)] on: SubscriptOutOfBounds do: [ string copyFrom: ((string intervalOfLine: start) first max: 1)  to: string size ])
