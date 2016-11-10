@@ -23,8 +23,7 @@ function prismAutoLoad() {
 }
 
 function loadPrism(start, end, codeComponent) {
-	console.log("server requested: " + start + ":" + end);
-    var dataObj = {};
+	var dataObj = {};
 	codeComponent.dataset.lastindexasked = start;
     dataObj[codeComponent.dataset.cbid] = start + ":" + end;
     $.ajax({
@@ -32,14 +31,15 @@ function loadPrism(start, end, codeComponent) {
         type: "POST",
         data: dataObj,
         success: function (html_code) {
-				console.log("server answered: " + start + ":" + end); 
-            codeComponent.childNodes[0].innerHTML = html_code;
+				codeComponent.childNodes[0].innerHTML = html_code;
 				Prism.highlightElement(codeComponent.childNodes[0]);
             
-				codeComponent.scrollTop = codeComponent.scrollTop - ((start - codeComponent.dataset.firstIndex) / (codeComponent.dataset.lastIndex - codeComponent.dataset.firstIndex)) * $(codeComponent.childNodes[0]).height();
+				codeComponent.scrollTop = codeComponent.scrollTop - ((start - codeComponent.dataset.firstindex) / (codeComponent.dataset.lastindex - codeComponent.dataset.firstindex)) * $(codeComponent.childNodes[0]).height();
 				
-				codeComponent.dataset.firstIndex = start;
-				codeComponent.dataset.lastIndex = end;
+				codeComponent.style.counterReset = "linenumber " + (parseInt(codeComponent.dataset.startcountnumber) + start - 1);
+				
+				codeComponent.dataset.firstindex = start;
+				codeComponent.dataset.lastindex = end;
 				codeComponent.dataset.lastindexloaded = start;
         },
         error: function () {
