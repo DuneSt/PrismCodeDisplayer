@@ -8,13 +8,12 @@ defineScrollCallbackOn: aPreTag url: url menuCallBack: menuCb
 					interval := intervalRequest substrings: ':'.
 					self requestContext
 						respond: [ :response | 
-							self
-								displayComputedSourceCodeOn:
-									(response
-										doNotCache;
-										contentType: WAMimeType textHtml;
-										stream)
-								url: url asString
+							response nextPutAll:(
+							NeoJSONWriter toString: { 
+							#html -> (self
+								displayComputedSourceCodeOnUrl: url asString
 								callBack: menuCb
 								startLine: (interval first asNumber max: 1)
-								endLine: (interval last asNumber max: 400) ] ])
+								endLine: (interval last asNumber max: 400) ) 
+							. #intervals  -> (self obtainSortedJsInfoWithIntervalsForUrl: url) } asDictionary)
+								] ])

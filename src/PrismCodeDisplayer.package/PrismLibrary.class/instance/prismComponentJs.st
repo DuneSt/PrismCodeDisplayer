@@ -31,8 +31,10 @@ function loadPrism(start, end, codeComponent) {
         url: codeComponent.dataset.url,
         type: "POST",
         data: dataObj,
-        success: function (html_code) {
-				codeComponent.childNodes[0].innerHTML = html_code;
+        success: function (res) {
+             res = JSON.parse(res);
+				codeComponent.childNodes[0].innerHTML = res.html;
+				Prism.metaMark.componants[codeComponent.childNodes[0].id] = res.intervals;
 				Prism.highlightElement(codeComponent.childNodes[0]);
             
 				codeComponent.scrollTop = codeComponent.scrollTop - ((start - codeComponent.dataset.firstindex) / (codeComponent.dataset.lastindex - codeComponent.dataset.firstindex)) * $(codeComponent.childNodes[0]).height();
@@ -52,4 +54,5 @@ function loadPrism(start, end, codeComponent) {
 
 window.addEventListener("load", function () {
     prismAutoLoad();
+    $(".prismComponent").each(function(index, codeComponent){loadPrism(0, 400, codeComponent)});
 });'

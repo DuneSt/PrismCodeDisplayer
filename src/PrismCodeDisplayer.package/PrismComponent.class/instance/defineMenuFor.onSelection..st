@@ -20,7 +20,7 @@ defineMenuFor: component onSelection: html
 							self menusWithAction
 								doWithIndex: [ :aMenuWithAction :index | 
 									html div
-										with: [ 
+										with: [ self flag: 'todo: refactor'.
 											html anchor
 												onClick:
 														(String
