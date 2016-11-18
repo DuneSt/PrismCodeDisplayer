@@ -60,7 +60,6 @@ metaMarkPrismJs
 					if(callbacks["beginTag"])
 						callbacks["beginTag"](env);
 				} else {
-				  console.log(env.string[env.pos] === "&")
 				  if (env.string[env.pos] === "&") {
 					  //escape HTML code
 					  tmpPos=env.pos;

@@ -1,3 +1,3 @@
 display
 tagName
-  ^ #a
+  ^ #span

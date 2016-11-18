@@ -21,6 +21,11 @@ renderContentOn: html
 				callBack: [ :messageSent | method := messageSent implementors atRandom ]
 				linkStyle: [ :o |  ]
 				language: #smalltalk)
+				addStrategy:
+				(PrismComponentStyleStrategy new
+						objects: {'anObjectForPoositionFunction'};
+						positionFunction: [:messageSent | { 20 to: 59}];
+						style: [:o| 'style="background: #e9d3fe"']);
 				addMenu: 'Select' action: action;
 				addMenu: [ :htm | 
 							htm image
