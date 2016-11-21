@@ -1,0 +1,1 @@
+I can decorate a PrismComponent to attach a vertical bar with markers.

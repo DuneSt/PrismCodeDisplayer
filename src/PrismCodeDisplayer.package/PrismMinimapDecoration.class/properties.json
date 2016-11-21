@@ -1,0 +1,14 @@
+{
+	"commentStamp" : "MartinDias 11/19/2016 17:08",
+	"super" : "WADecoration",
+	"category" : "PrismCodeDisplayer-Minimap",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"interval",
+		"markers"
+	],
+	"name" : "PrismMinimapDecoration",
+	"type" : "normal"
+}

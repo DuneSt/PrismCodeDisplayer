@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "MartinDias 11/21/2016 21:40",
+	"super" : "Object",
+	"category" : "PrismCodeDisplayer-Minimap",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PrismMinimapDemos",
+	"type" : "normal"
+}
