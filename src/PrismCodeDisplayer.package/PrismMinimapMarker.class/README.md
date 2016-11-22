@@ -1,1 +1,0 @@
-I help to model markers in a SYNMinimapDecoration.
