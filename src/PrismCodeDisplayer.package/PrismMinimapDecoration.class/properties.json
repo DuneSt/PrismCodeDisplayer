@@ -6,8 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"interval",
-		"markers"
+		"interval"
 	],
 	"name" : "PrismMinimapDecoration",
 	"type" : "normal"

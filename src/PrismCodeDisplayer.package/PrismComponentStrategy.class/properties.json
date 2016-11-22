@@ -8,7 +8,8 @@
 	"instvars" : [
 		"objects",
 		"positionFunction",
-		"style"
+		"style",
+		"miniMapColor"
 	],
 	"name" : "PrismComponentStrategy",
 	"type" : "normal"

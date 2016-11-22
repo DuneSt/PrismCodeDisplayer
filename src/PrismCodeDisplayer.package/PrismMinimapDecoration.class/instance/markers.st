@@ -1,3 +1,3 @@
 accessing
 markers
-	^ markers
+	^ self next intervals
