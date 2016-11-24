@@ -1,0 +1,3 @@
+minimap
+shouldBeDisplayedInMinimap
+	^ self strategy shouldBeDisplayedInMinimap
