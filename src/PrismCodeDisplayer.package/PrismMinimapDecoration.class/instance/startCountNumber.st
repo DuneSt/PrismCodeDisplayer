@@ -1,3 +1,3 @@
 accessing
-startLine
+startCountNumber
 	^ self next startCountNumber

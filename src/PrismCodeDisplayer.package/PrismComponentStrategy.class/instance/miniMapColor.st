@@ -1,3 +1,3 @@
 accessing
 miniMapColor
-	^ miniMapColor ifNil: [ Color blue ]
+	^ miniMapColor

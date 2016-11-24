@@ -1,8 +1,13 @@
 rendering
 renderContentOn: html
 
-	html div
+	| container |
+	container := html div.
+	container
+		attributeAt: 'data-url' put: html actionUrl asString;
+		attributeAt: 'data-cbid' put: (self loadCallbackOn: container) asString.
+	container
 		class: 'minimap-container';
 		with: [ 
 			self renderCodeOn: html.
-			self renderBarOn: html ].
+			self renderEmptyBarOn: html "Initially empty; loaded lazy" ].

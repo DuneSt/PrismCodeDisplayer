@@ -1,8 +1,6 @@
 rendering
 renderBarOn: html
 			
-	html div
-		class: 'minimap-bar';
-		with: [ 
-			self intervals do: [:each | self renderMarker: each on: html ].
-			self renderScrollMarkerOn: html ]
+	(self renderEmptyBarOn: html) with: [ 
+		self minimapTextIntervals do: [:each | self renderMarker: each on: html ].
+		self renderScrollMarkerOn: html ].
