@@ -32,4 +32,20 @@ minimapCss
 	cursor: pointer;
 }
 
+
+@-webkit-keyframes blinker {
+  from {opacity: 1.0;}
+  to {opacity: 0.0;}
+}
+.minimap-loading { 
+	-webkit-animation-name: blinker;
+	-webkit-animation-duration: 0.6s;
+	-webkit-animation-iteration-count:infinite;
+	-webkit-animation-timing-function:ease-in-out;
+	-webkit-animation-direction: alternate;
+	height: 100%;
+	width: 100%;
+	background-color: #eeeeee;
+}
+
 '

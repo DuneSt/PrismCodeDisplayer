@@ -6,6 +6,7 @@ window.addEventListener("load", function () {
 	$(".minimap-container").each(function(index, container) { 
 		loadMinimap(container);
 	});
+
 });
 
 function loadMinimap(codeComponent) {

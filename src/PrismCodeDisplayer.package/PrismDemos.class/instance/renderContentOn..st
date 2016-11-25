@@ -14,25 +14,21 @@ renderContentOn: html
 	message := selectedText ].
 	html
 		render:
-			((PrismComponent new
-				sourceCode: [ method sourceCode ];
-				addStrategy:
-						(PrismComponentLinkStrategy new
-								objects: method messages;
-								positionFunction: [ :messageSent | method sourceCode allRangesOfSubstring: messageSent ];
-								callback: [ :messageSent | method := messageSent implementors atRandom ];
-								style: [ :o |  ];
-								miniMapColor: [:object | Color random]);
+			((PrismComponent
+				sourceCode: [ method sourceCode ]
+				linkObjects: method messages
+				linkPositionFunction: [ :messageSent | method sourceCode allRangesOfSubstring: messageSent ]
+				callBack: [ :messageSent | method := messageSent implementors atRandom ]
+				linkStyle: [ :o |  ]
 				language: #smalltalk)
 				addStrategy:
-						(PrismComponentStyleStrategy new
-								objects: {'anObjectForPoositionFunction'};
-								positionFunction: [ :messageSent | {(20 to: 59)} ];
-								style: [ :o | 'style="background: #e9d3fe"' ]);
+				(PrismComponentStyleStrategy new
+						objects: {'anObjectForPoositionFunction'};
+						positionFunction: [:messageSent | { 20 to: 59}];
+						style: [:o| 'style="background: #e9d3fe"']);
 				addMenu: 'Select' action: action;
 				addMenu: [ :htm | 
 							htm image
 								style: 'background-color: black;';
 								url: 'http://prismjs.com/logo.svg' ]
-					action: action;
-				withMinimap)
+					action: action)

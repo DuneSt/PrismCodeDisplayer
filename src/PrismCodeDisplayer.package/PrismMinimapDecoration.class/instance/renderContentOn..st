@@ -10,4 +10,4 @@ renderContentOn: html
 		class: 'minimap-container';
 		with: [ 
 			self renderCodeOn: html.
-			self renderEmptyBarOn: html "Initially empty; loaded lazy" ].
+			self renderBarWithLoaderOn: html ].
