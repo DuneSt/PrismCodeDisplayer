@@ -4,17 +4,16 @@ minimapCss
 .minimap-container {
 	height: 100%;
 	width: 100%;
+	display: flex;
 }
 
 .minimap-code {
 	float: left;
-	height: 100%;
 	width: calc(100% - ', self minimapBarWidth, ');
 }
 
 .minimap-bar { 
 	float: right;
-	height: 100%;
 	width: ', self minimapBarWidth, ';
 	position: relative !important;
 }
@@ -22,10 +21,12 @@ minimapCss
 .minimap-bar-element { 
 	position: absolute !important;
 	width: 100%;
+	min-height: 1px;
 }
 
 .minimap-scroll-marker { 
 	background-color: rgba(0,0,0,0.1);
+   pointer-events: none;	
 }
 
 .minimap-marker { 
