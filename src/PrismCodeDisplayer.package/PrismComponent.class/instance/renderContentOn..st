@@ -20,11 +20,4 @@ renderContentOn: html
 						class: (self codeClassFor: self language);
 						with: 'Waiting' ];
 		yourself.
-	"html document
-		addLoadScript:
-			(self
-				ajaxInitializationFor: codeId
-				callback: cb
-				component: component
-				on: html)."
-	self defineMenuFor: component onSelection: html
+	self defineAjaxMenuFor: component onSelection: html

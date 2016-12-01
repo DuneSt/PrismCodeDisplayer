@@ -18,7 +18,7 @@ defineMenuFor: component onSelection: html
 				class: #prismSelectionMenu;
 				with: [ 
 							self menusWithAction
-								doWithIndex: [ :aMenuWithAction :index | 
+								doWithIndex: [ :aMenuWithAction :index |  self halt.
 									html div
 										with: [ self flag: 'todo: refactor'.
 											html anchor

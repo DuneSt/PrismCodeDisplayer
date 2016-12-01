@@ -1,3 +1,3 @@
 accessing
 totalLineCount
-	^ self next sourceCode value lineCount
+	^ self next sourceCode lineCount
