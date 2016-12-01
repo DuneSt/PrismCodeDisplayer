@@ -13,10 +13,9 @@ renderMarker: textInterval on: html
 			textInterval miniMapColor asHexString.
 			top printShowingDecimalPlaces: 2.
 			height printShowingDecimalPlaces: 2 }.
-	onClickScript := 'console.log("Go to marker: {1}:{2}"); loadPrism({1},{2},minimapScrollableFor(this).get(0))'
+	onClickScript := 'console.log("Go to line: {1}"); goToLine({1},minimapScrollableFor(this).get(0))'
 		format: {
-			intervalOfCharacters first.
-			intervalOfCharacters last }.
+			firstLine }.
 	html div
 		class: 'minimap-marker minimap-bar-element';
 		style: style;

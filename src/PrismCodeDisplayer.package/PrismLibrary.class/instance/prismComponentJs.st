@@ -27,8 +27,11 @@ function refreshPrism(codeComponent) {
    loadPrism(codeComponent.dataset.lastindexloaded, codeComponent.dataset.lastindexloaded+400, codeComponent);
 }
 
-function loadPrism(start, end, codeComponent) {
-   console.log("loadPrism", start,end, codeComponent);
+function goToLine(line, codeComponent) {
+   loadPrism(line-100, line+300, codeComponent, codeComponent.scrollTop= codeComponent.scrollTopMax*0.25);
+}
+
+function loadPrism(start, end, codeComponent, scrollValue) {
 	var dataObj = {};
 	codeComponent.dataset.lastindexasked = start;
     dataObj[codeComponent.dataset.cbid] = start + ":" + end;
@@ -42,7 +45,7 @@ function loadPrism(start, end, codeComponent) {
 				Prism.metaMark.componants[codeComponent.childNodes[0].id] = {intervals:res.intervals, offset: res.charOffset};
 				Prism.highlightElement(codeComponent.childNodes[0]);
             
-				codeComponent.scrollTop = codeComponent.scrollTop - ((start - codeComponent.dataset.firstindex) / (codeComponent.dataset.lastindex - codeComponent.dataset.firstindex)) * $(codeComponent.childNodes[0]).height();
+				codeComponent.scrollTop = scrollValue || (codeComponent.scrollTop - ((start - codeComponent.dataset.firstindex) / (codeComponent.dataset.lastindex - codeComponent.dataset.firstindex)) * $(codeComponent.childNodes[0]).height());
 				
 				codeComponent.style.counterReset = "linenumber " + (parseInt(codeComponent.dataset.startcountnumber) + start - 1);
 				

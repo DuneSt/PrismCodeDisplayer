@@ -46,6 +46,7 @@ metaMarkPrismJs
 					env.pos = tmpPos;
 					break;
 				} else if (env.string[tmpPos] === " ") {
+		         console.log("escape &", env.pos)
 					break;
 				}
 			}
