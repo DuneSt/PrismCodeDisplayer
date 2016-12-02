@@ -1,6 +1,6 @@
 uploaded
 metaMarkPrismJs
-	^ '(function () {
+	^ '"(function () {"
 
 	var closeTagRegex = /<([^\s]*)[^<]*>/;
 
@@ -12,11 +12,14 @@ metaMarkPrismJs
 		return tagString.replace(closeTagRegex, closeTagFunction);
 	}
 
+   
 	function insertText(env, insert) {
 		env.string = [env.string.slice(0, env.pos), insert, env.string.slice(env.pos)].join("");
 		env.pos = env.pos + insert.length;
 	}
 
+    /* escape a tag closing.
+	 *  */
 	function endTag(env) {
 		while (env.string[env.pos] !== ">") {
 			env.pos++;
@@ -25,7 +28,7 @@ metaMarkPrismJs
 	};
 
   /* escape a tag opening.
-	 * Save the tag escaped to have possibility to cut him without problems
+	 * Save the tag escaped to have possibility to break him without problems
 	 *  */
 	function beginTag(env) {
 		env.deep++;
@@ -37,6 +40,8 @@ metaMarkPrismJs
 		env.lastNode[env.deep] = lastNode + ">";
 	};
 
+   /*count a HTML code like "&amp;" as only one character
+	 * bug when we really want to display the HTML code*/
 	function escapeHTMLCode(env) {
 		if (env.string[env.pos] === "&") {
 			tmpPos = env.pos;
@@ -46,7 +51,6 @@ metaMarkPrismJs
 					env.pos = tmpPos;
 					break;
 				} else if (env.string[tmpPos] === " ") {
-		         console.log("escape &", env.pos)
 					break;
 				}
 			}
@@ -80,6 +84,7 @@ metaMarkPrismJs
 			var key = Object.keys(data.intervals);
 
 			var env = {string: html};
+			window.pureEnv = { string:html }
 
 			for (var i = 0; i < key.length; i++) {
 				var prop = key[i];
@@ -98,7 +103,7 @@ metaMarkPrismJs
 			codeNode.innerHTML = env.string;
 		} catch (e) {
 		}
-	}
+	}(function () {
 	Prism.metaMark = Prism.metaMark || {componants: {}};
 	Prism.hooks.add("complete", function (env) {
 		parseAndReplace(env.element);
