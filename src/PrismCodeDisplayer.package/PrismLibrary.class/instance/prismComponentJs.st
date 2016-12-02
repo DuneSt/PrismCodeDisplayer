@@ -34,6 +34,13 @@ function refreshPrism(codeComponent) {
 }
 
 function goToLine(line, codeComponent) {
+   total=parseInt(codeComponent.dataset.totallines)
+   if(line< (total-400)){
+      loadPrism(line  + 250,line  + 650, codeComponent)} 
+   else if(line < total) { 
+      loadPrism(total-400, total, codeComponent)
+   }
+
    loadPrism(line-100, line+300, codeComponent, codeComponent.scrollTop= codeComponent.scrollTopMax*0.25);
 }
 
