@@ -15,8 +15,14 @@ function prismAutoLoad() {
             }
 
             if (0.9 < (e.currentTarget.scrollTop + $(e.currentTarget).height()) / e.currentTarget.scrollHeight) {
-                loadPrism(parseInt(e.currentTarget.dataset.lastindexloaded) + 250, parseInt(e.currentTarget.dataset.lastindexloaded) + 650, e.currentTarget)
-					// here we should check that we are not at the end of the code (will require totalNumberOfLines in dataset)
+                lastind=parseInt(e.currentTarget.dataset.lastindexloaded);
+                total=parseInt(e.currentTarget.dataset.totallines)
+                if(lastind< (total-400)){
+                    loadPrism(lastind + 250,lastind + 650, e.currentTarget)} 
+                else if(lastind < total) { 
+                    //need to find better solution, too many request to server
+                    loadPrism(total-400, total, e.currentTarget)
+                }
             }
 			}
     });
@@ -41,17 +47,19 @@ function loadPrism(start, end, codeComponent, scrollValue) {
         data: dataObj,
         success: function (res) {
              res = JSON.parse(res);
-				codeComponent.childNodes[0].innerHTML = res.html;
-				Prism.metaMark.componants[codeComponent.childNodes[0].id] = {intervals:res.intervals, offset: res.charOffset};
-				Prism.highlightElement(codeComponent.childNodes[0]);
+             if(res.html != ""){
+     				codeComponent.childNodes[0].innerHTML = res.html;
+				   Prism.metaMark.componants[codeComponent.childNodes[0].id] = {intervals:res.intervals, offset: res.charOffset};
+				   Prism.highlightElement(codeComponent.childNodes[0]);
             
-				codeComponent.scrollTop = scrollValue || (codeComponent.scrollTop - ((start - codeComponent.dataset.firstindex) / (codeComponent.dataset.lastindex - codeComponent.dataset.firstindex)) * $(codeComponent.childNodes[0]).height());
+				   codeComponent.scrollTop = scrollValue || (codeComponent.scrollTop - ((start - codeComponent.dataset.firstindex) / (codeComponent.dataset.lastindex - codeComponent.dataset.firstindex)) * $(codeComponent.childNodes[0]).height());
 				
-				codeComponent.style.counterReset = "linenumber " + (parseInt(codeComponent.dataset.startcountnumber) + start - 1);
+				  codeComponent.style.counterReset = "linenumber " + (parseInt(codeComponent.dataset.startcountnumber) + start - 1);
 				
-				codeComponent.dataset.firstindex = res.start;
-				codeComponent.dataset.lastindex = end;
-				codeComponent.dataset.lastindexloaded = start;
+				  codeComponent.dataset.firstindex = res.start;
+				  codeComponent.dataset.lastindex = end;
+				  codeComponent.dataset.lastindexloaded = start;
+				}
         },
         error: function () {
             location.reload();

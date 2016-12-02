@@ -3,6 +3,7 @@ codeDemoPrism
   ^'
 //this is a element decorated by a PrismComponentStyleStrategy
 
+
 /* **********************************************
      Begin prism-core.js
 ********************************************** */
@@ -35,7 +36,7 @@ var _ = _self.Prism = {
 			} else if (_.util.type(tokens) === "Array") {
 				return tokens.map(_.util.encode);
 			} else {
-				return tokens.replace(/&/g, "amp;").replace(/</g, "lt;").replace(/\u00a0/g, " ");
+				return tokens.replace(/&/g, "& amp;").replace(/</g, "& lt;").replace(/\u00a0/g, " ");
 			}
 		},
 
@@ -545,14 +546,14 @@ Prism.languages.markup = {
 
 		}
 	},
-	"entity": /&#?[\da-z]{1,8};/i
+	"entity": /& #?[\da-z]{1,8};/i
 };
 
 // Plugin to make entity title show the real entity, idea by Roman Komarov
 Prism.hooks.add("wrap", function(env) {
 
 	if (env.type === "entity") {
-		env.attributes["title"] = env.content.replace(/&amp;/, "&");
+		env.attributes["title"] = env.content.replace(/& amp;/, "&" );
 	}
 });
 
@@ -783,4 +784,5 @@ Prism.languages.js = Prism.languages.javascript;
 	document.addEventListener("DOMContentLoaded", self.Prism.fileHighlight);
 
 })();
+
 '
