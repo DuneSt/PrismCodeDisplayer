@@ -1,0 +1,17 @@
+{
+	"commentStamp" : "",
+	"super" : "Object",
+	"category" : "PrismCodeDisplayer-Component",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"drawHTML",
+		"drawCallback",
+		"callback",
+		"json",
+		"target"
+	],
+	"name" : "PrismMenu",
+	"type" : "normal"
+}
