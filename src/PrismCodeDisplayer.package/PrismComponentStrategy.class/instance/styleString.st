@@ -1,3 +1,3 @@
 display
 styleString
- ^(self style value: '') ifNil: [ '' ]
+ ^(self style value: self) ifNil: [ '' ]

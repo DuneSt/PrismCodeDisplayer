@@ -1,6 +1,6 @@
 resolution
 intervals
-	^ self objects
+	^ self objects value
 		flatCollect: [ :anObject | 
 			(self positionFunction value: anObject) asCollection
 				collect: [ :anInterval | 

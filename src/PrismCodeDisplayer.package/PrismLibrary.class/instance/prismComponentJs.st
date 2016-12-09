@@ -45,6 +45,7 @@ function goToLine(line, codeComponent) {
 }
 
 function loadPrism(start, end, codeComponent, scrollValue) {
+   if(start<1){ start=1; }
 	var dataObj = {};
 	codeComponent.dataset.lastindexasked = start;
     dataObj[codeComponent.dataset.cbid] = start + ":" + end;

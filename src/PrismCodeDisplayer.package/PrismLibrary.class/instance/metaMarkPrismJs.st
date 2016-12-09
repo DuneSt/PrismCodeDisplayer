@@ -88,7 +88,7 @@ metaMarkPrismJs
 
 			for (var i = 0; i < key.length; i++) {
 				var prop = key[i];
-				env.pos = 1;
+				env.pos = 0;
 				env.lastNode = [""];
 				env.deep = 0;
 				if (!data.intervals[prop].length)
