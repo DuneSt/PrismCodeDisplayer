@@ -55,10 +55,10 @@ function syncScrollMarker(marker) {
 
 	// now, adapt marker to total lines (loaded lines <= total lines)
 	var data = scrollable.get(0).dataset;
-	var totalLines = data.totallines
+	var totalLines = parseInt(data.totallines);
 	var loadedLines = {
-		first: data.firstindex,
-		last: data.lastindex
+		first: parseInt(data.firstindex),
+		last: Math.min(totalLines, parseInt(data.lastindex)) 		// workaround: sometimes lastindex>totallines
 	};
 	var adaptationMultiplier = (loadedLines.last - loadedLines.first) / totalLines;
 	var adaptationOffset = loadedLines.first / totalLines;	
@@ -66,6 +66,9 @@ function syncScrollMarker(marker) {
 		top: (markerInLoadedLines.top * adaptationMultiplier) + adaptationOffset,
 		height: markerInLoadedLines.height * adaptationMultiplier
 	};
+
+	// -- debugging: log first visible LineNumber
+	//console.log(Math.round(loadedLines.first + (markerInLoadedLines.top * (loadedLines.last - loadedLines.first))));
 
 	// finally, adapt to CSS format (percents)
 	$(marker).css({ 
