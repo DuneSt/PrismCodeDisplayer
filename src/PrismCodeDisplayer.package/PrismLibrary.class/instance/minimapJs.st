@@ -10,21 +10,21 @@ window.addEventListener("load", function () {
 });
 
 
-function loadMinimap(codeComponent) {
+function loadMinimap(minimapContainer) {
 	var dataObj = {};
-	dataObj[codeComponent.dataset.cbid] = "";
+	dataObj[minimapContainer.dataset.cbid] = "";
 	$.ajax({
-		url: codeComponent.dataset.url,
+		url: minimapContainer.dataset.url,
 		type: "POST",
 		data: dataObj,
 		success: function (res) {
 
 			// load markers in DOM
-			$(codeComponent).find(".minimap-bar").replaceWith(res);
+			$(minimapContainer).find(".minimap-bar").replaceWith(res);
 
 			// initialize scroll marker
-			var scrollMarker = $(codeComponent).find(".minimap-scroll-marker").get(0);
-			var scrollable = $(codeComponent).find(".minimap-code > pre");
+			var scrollMarker = $(minimapContainer).find(".minimap-scroll-marker");
+			var scrollable = $(minimapContainer).find(".minimap-code > pre");
 			syncScrollMarker(scrollMarker, scrollable);
 			
 			// move marker when scrolled
@@ -39,8 +39,36 @@ function loadMinimap(codeComponent) {
 	});
 }	
 
+/*
+The scroll marker of a "prismComponent" is rendered with a "top" and "height" percent values.
+Percents allow window resizing. Obtaining the top and height of the scroll marker involves multiple info summarized below:
 
-function freshScrollMarkerPosition(scrollMarker, scrollable) {
+*---
+| Total code
+|
+| -> Used info: 
+|    - attribute "data-totallines" -> total number of lines of code
+|
+| *---
+| | Lazy loaded code
+| | 
+| | -> Used info:
+| |    - attribute "data-firstindex"    -> first line of currently lazy-loaded code
+| |    - attribute "data-lastindex"     -> last line of currently lazy-loaded code
+| |    - JQuery property "scrollHeight" -> the DOM element pixel height (including the NOT visible code)
+| | 
+| | *---
+| | | Visible code
+| | |
+| | | -> Used info:
+| | |    - "scrollTop()" -> the scroll position (pixel offset from the first line of the loaded code)
+| | |    - "height()"    -> the visible height (how many pixels of the loaded code are visible)
+| | *---
+| *---
+*---
+
+*/
+function freshScrollMarkerPosition(scrollable) {
 	// first, calculate marker in the loaded lines
 	var scrollTop = scrollable.scrollTop();
 	var scrollHeight = scrollable.height();
@@ -71,9 +99,9 @@ function freshScrollMarkerPosition(scrollMarker, scrollable) {
 
 
 function syncScrollMarker(scrollMarker, scrollable) {
-	var position = freshScrollMarkerPosition(scrollMarker, scrollable);
+	var position = freshScrollMarkerPosition(scrollable);
 
-	$(scrollMarker).css({
+	scrollMarker.css({
 		top: "" + position.top + "%", 
 		height: "" + position.height + "%"
 	});
