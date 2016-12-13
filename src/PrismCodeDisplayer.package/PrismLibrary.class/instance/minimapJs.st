@@ -9,6 +9,7 @@ window.addEventListener("load", function () {
 
 });
 
+
 function loadMinimap(codeComponent) {
 	var dataObj = {};
 	dataObj[codeComponent.dataset.cbid] = "";
@@ -18,15 +19,17 @@ function loadMinimap(codeComponent) {
 		data: dataObj,
 		success: function (res) {
 
-			//Load in DOM
+			// load markers in DOM
 			$(codeComponent).find(".minimap-bar").replaceWith(res);
 
-			//Initialize scroll marker
+			// initialize scroll marker
 			var scrollMarker = $(codeComponent).find(".minimap-scroll-marker").get(0);
-			syncScrollMarker(scrollMarker);		
+			var scrollable = $(codeComponent).find(".minimap-code > pre");
+			syncScrollMarker(scrollMarker, scrollable);
+			
 			// move marker when scrolled
-			minimapScrollableFor(scrollMarker).scroll(function(e) {
-				syncScrollMarker(scrollMarker);
+			scrollable.scroll(function(e) {
+				syncScrollMarker(scrollMarker, scrollable);
 			});
 
 		},
@@ -36,14 +39,8 @@ function loadMinimap(codeComponent) {
 	});
 }	
 
-	
-function minimapScrollableFor(marker) { 
-	return $(marker).closest(".minimap-container").find(".minimap-code > pre");
-}
 
-function syncScrollMarker(marker) {
-	var scrollable = minimapScrollableFor(marker);
-
+function freshScrollMarkerPosition(scrollMarker, scrollable) {
 	// first, calculate marker in the loaded lines
 	var scrollTop = scrollable.scrollTop();
 	var scrollHeight = scrollable.height();
@@ -62,19 +59,25 @@ function syncScrollMarker(marker) {
 	};
 	var adaptationMultiplier = (loadedLines.last - loadedLines.first) / totalLines;
 	var adaptationOffset = loadedLines.first / totalLines;	
-	var markerAfterAdaptationToTotalLines = { 
-		top: (markerInLoadedLines.top * adaptationMultiplier) + adaptationOffset,
-		height: markerInLoadedLines.height * adaptationMultiplier
-	};
 
 	// -- debugging: log first visible LineNumber
 	//console.log(Math.round(loadedLines.first + (markerInLoadedLines.top * (loadedLines.last - loadedLines.first))));
 
-	// finally, adapt to CSS format (percents)
-	$(marker).css({ 
-		"top": "" + (markerAfterAdaptationToTotalLines.top * 100) + "%", 
-		"height": "" + (markerAfterAdaptationToTotalLines.height * 100) + "%"
+	return {
+		top: ((markerInLoadedLines.top * adaptationMultiplier) + adaptationOffset) * 100,
+		height: markerInLoadedLines.height * adaptationMultiplier * 100
+	};
+}
+
+
+function syncScrollMarker(scrollMarker, scrollable) {
+	var position = freshScrollMarkerPosition(scrollMarker, scrollable);
+
+	$(scrollMarker).css({
+		top: "" + position.top + "%", 
+		height: "" + position.height + "%"
 	});
 }
+
 
 '
