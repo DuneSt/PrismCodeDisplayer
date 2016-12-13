@@ -43,13 +43,35 @@ function minimapScrollableFor(marker) {
 
 function syncScrollMarker(marker) {
 	var scrollable = minimapScrollableFor(marker);
+
+	// first, calculate marker in the loaded lines
 	var scrollTop = scrollable.scrollTop();
 	var scrollHeight = scrollable.height();
 	var totalHeight = scrollable.prop("scrollHeight");
-	var ratio = 100.0 / totalHeight;
-	var top = "" + (scrollTop * ratio) + "%";
-	var height = "" + (scrollHeight * ratio) + "%";
-	$(marker).css({ "top": top, "height": height });
+	var markerInLoadedLines = {
+		top: scrollTop / totalHeight,
+		height: scrollHeight / totalHeight
+	};
+
+	// now, adapt marker to total lines (loaded lines <= total lines)
+	var data = scrollable.get(0).dataset;
+	var totalLines = data.totallines
+	var loadedLines = {
+		first: data.firstindex,
+		last: data.lastindex
+	};
+	var adaptationMultiplier = (loadedLines.last - loadedLines.first) / totalLines;
+	var adaptationOffset = loadedLines.first / totalLines;	
+	var markerAfterAdaptationToTotalLines = { 
+		top: (markerInLoadedLines.top * adaptationMultiplier) + adaptationOffset,
+		height: markerInLoadedLines.height * adaptationMultiplier
+	};
+
+	// finally, adapt to CSS format (percents)
+	$(marker).css({ 
+		"top": "" + (markerAfterAdaptationToTotalLines.top * 100) + "%", 
+		"height": "" + (markerAfterAdaptationToTotalLines.height * 100) + "%"
+	});
 }
 
 '
