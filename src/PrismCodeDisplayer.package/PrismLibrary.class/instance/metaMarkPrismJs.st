@@ -80,7 +80,8 @@ metaMarkPrismJs
 		try {
    	      var html = codeNode.innerHTML;
 		   var data = Prism.metaMark.componants[codeNode.id];
-		   offset = (data.offset -1) || 0;
+		   offset = (data.offset -2) || 0;
+		   codeNode.dataset.offset=data.offset;
 			var key = Object.keys(data.intervals);
 
 			var env = {string: html};
