@@ -35,13 +35,15 @@ function refreshPrism(codeComponent) {
 
 function goToLine(line, codeComponent) {
    total=parseInt(codeComponent.dataset.totallines)
-   if(line< (total-400)){
-      loadPrism(line  + 250,line  + 650, codeComponent)} 
-   else if(line < total) { 
-      loadPrism(total-400, total, codeComponent)
+   if(line< 400){
+      //substract 10 to avoid to have the line in first line in codeComponent
+      loadPrism(0, 400, codeComponent, (line-10)* $(codeComponent.children[0]).height()/400 ) 
+   }else if(line< (total-400)){
+      loadPrism(line - 100,line + 300, codeComponent,codeComponent.scrollTopMax*0.25 ) 
+   }else if(line < total) { 
+      loadPrism(total-400, total, codeComponent, (line-total +390)* $(codeComponent.childNodes[0]).height()/400)
    }
 
-   loadPrism(line-100, line+300, codeComponent, codeComponent.scrollTop= codeComponent.scrollTopMax*0.25);
 }
 
 function loadPrism(start, end, codeComponent, scrollValue) {
@@ -59,7 +61,7 @@ function loadPrism(start, end, codeComponent, scrollValue) {
      				codeComponent.childNodes[0].innerHTML = res.html;
 				   Prism.metaMark.componants[codeComponent.childNodes[0].id] = {intervals:res.intervals, offset: res.charOffset};
 				   Prism.highlightElement(codeComponent.childNodes[0]);
-            
+            console.log(scrollValue,((start - codeComponent.dataset.firstindex) / (codeComponent.dataset.lastindex - codeComponent.dataset.firstindex)), (((start - codeComponent.dataset.firstindex) / (codeComponent.dataset.lastindex - codeComponent.dataset.firstindex)) * $(codeComponent.childNodes[0]).height()) )
 				   codeComponent.scrollTop = scrollValue || (codeComponent.scrollTop - ((start - codeComponent.dataset.firstindex) / (codeComponent.dataset.lastindex - codeComponent.dataset.firstindex)) * $(codeComponent.childNodes[0]).height());
 				
 				  codeComponent.style.counterReset = "linenumber " + (parseInt(codeComponent.dataset.startcountnumber) + start - 1);
