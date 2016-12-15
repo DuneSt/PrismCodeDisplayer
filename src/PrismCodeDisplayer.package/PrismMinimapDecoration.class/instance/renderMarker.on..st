@@ -13,7 +13,7 @@ renderMarker: textInterval on: html
 			textInterval miniMapColor asHexString.
 			top printShowingDecimalPlaces: 2.
 			height printShowingDecimalPlaces: 2 }.
-	onClickScript := 'console.log("Go to line: {1}"); goToLine({1},minimapScrollableFor(this).get(0))'
+	onClickScript := 'goToLine({1},minimapScrollableFor(this).get(0))'
 		format: {
 			firstLine }.
 	html div

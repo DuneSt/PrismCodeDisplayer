@@ -29,6 +29,8 @@ function textSizeBefore(aNode){
 	
 	if(aNode.parentNode.nodeName != "CODE"){
 		size += textSizeBefore(aNode.parentNode);
+	} else { 
+		size += parseInt(aNode.parentNode.dataset.offset);
 	}
 	
 	var nodes = aNode.parentNode.childNodes;

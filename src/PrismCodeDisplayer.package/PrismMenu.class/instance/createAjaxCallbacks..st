@@ -6,8 +6,8 @@ createAjaxCallbacks: html
 			json:
 				(JSStream
 					on:
-						'{ start : (textSizeBefore(previousSelection.startContainer) +previousSelection.startOffset+ parseInt(previousSelection.commonAncestorContainer.dataset.offset)),
-							end: (textSizeBefore(previousSelection.endContainer)+previousSelection.endOffset+1 +parseInt(previousSelection.commonAncestorContainer.dataset.offset)),
+						'{ start : (textSizeBefore(previousSelection.startContainer) +previousSelection.startOffset),
+							end: (textSizeBefore(previousSelection.endContainer)+previousSelection.endOffset),
 							previous: (previousSelection.toString())}');
 		onComplete:
 				((self

@@ -75,7 +75,6 @@ function loadPrism(start, end, codeComponent, scrollValue) {
     });
 }
 
-
 window.addEventListener("load", function () {
     prismAutoLoad();
     $(".prismComponent").each(function(index, codeComponent){loadPrism(0, 400, codeComponent)});

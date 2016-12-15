@@ -97,6 +97,9 @@ function freshScrollMarkerPosition(scrollable) {
 	};
 }
 
+function minimapScrollableFor(marker) { 
+	return $(marker).closest(".minimap-container").find(".minimap-code > pre");
+}
 
 function syncScrollMarker(scrollMarker, scrollable) {
 	var position = freshScrollMarkerPosition(scrollable);
