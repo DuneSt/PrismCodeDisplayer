@@ -9,6 +9,16 @@ window.addEventListener("load", function () {
 
 });
 
+/*
+* need refactor to recude the couple between html and js
+**/
+function refreshMinimap(codeComponent){
+  elem= codeComponent.parentElement.parentElement;
+  if(elem.getAttribute("class")=="minimap-container"){
+     loadMinimap(elem);
+  }
+}
+
 
 function loadMinimap(minimapContainer) {
 	var dataObj = {};

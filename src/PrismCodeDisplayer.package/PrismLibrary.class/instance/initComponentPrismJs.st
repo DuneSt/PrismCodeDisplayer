@@ -3,10 +3,11 @@ initComponentPrismJs
 	^ '(function () {
 
 	Prism.hooks.add("complete", function (env) {
-		document.getElementById(env.element.parentElement.id).addEventListener("mouseup", function(e) {
+		env.element.parentElement.addEventListener("mouseup", function(e) {
         var selectedText = window.getSelection();
-		if(selectedText != "" && document.getElementById(env.element.parentElement.id).contains(selectedText.anchorNode)){
-				$("#menu"+env.element.parentElement.id).fadeIn(500).css({''left'': e.pageX,''top'' : e.pageY});
+
+		if(selectedText != "" && env.element.parentElement.contains(selectedText.anchorNode)){
+		      $("#menu"+env.element.parentElement.id).fadeIn(500).css({''left'': e.pageX,''top'' : e.pageY});
             previousSelection = selectedText.getRangeAt(0);
         } 
     });

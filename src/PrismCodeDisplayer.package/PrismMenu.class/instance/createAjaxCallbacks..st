@@ -12,4 +12,4 @@ createAjaxCallbacks: html
 		onComplete:
 				((self
 						chooseIfCallbackDraw: html)
-						onComplete: self drawCallback , ';refreshPrism($("#"+event.target.parentElement.id.substring(4))[0])')
+						onComplete: self drawCallback , '$(".prismSelectionMenu").hide();refreshPrism($("#"+event.target.parentElement.id.substring(4))[0])')
