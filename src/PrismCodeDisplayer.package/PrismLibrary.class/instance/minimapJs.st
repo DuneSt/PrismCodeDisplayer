@@ -83,28 +83,36 @@ function freshScrollMarkerPosition(scrollable) {
 	var scrollTop = scrollable.scrollTop();
 	var scrollHeight = scrollable.height();
 	var totalHeight = scrollable.prop("scrollHeight");
-	var markerInLoadedLines = {
-		top: scrollTop / totalHeight,
-		height: scrollHeight / totalHeight
-	};
+	
+	if( scrollHeight === totalHeight ){
+	   // if all code is displaying without scroll
+		return {
+			top: 0,
+			height: 100
+		};
+	}else{
+		var markerInLoadedLines = {
+			top: scrollTop / totalHeight,
+			height: scrollHeight / totalHeight
+		};
+		// now, adapt marker to total lines (loaded lines <= total lines)
+		var data = scrollable.get(0).dataset;
+		var totalLines = parseInt(data.totallines);
+		var loadedLines = {
+			first: parseInt(data.firstindex),
+			last: Math.min(totalLines, parseInt(data.lastindex)) 		// workaround: sometimes lastindex>totallines
+		};
+		var adaptationMultiplier = (loadedLines.last - loadedLines.first) / totalLines;
+		var adaptationOffset = loadedLines.first / totalLines;	
 
-	// now, adapt marker to total lines (loaded lines <= total lines)
-	var data = scrollable.get(0).dataset;
-	var totalLines = parseInt(data.totallines);
-	var loadedLines = {
-		first: parseInt(data.firstindex),
-		last: Math.min(totalLines, parseInt(data.lastindex)) 		// workaround: sometimes lastindex>totallines
-	};
-	var adaptationMultiplier = (loadedLines.last - loadedLines.first) / totalLines;
-	var adaptationOffset = loadedLines.first / totalLines;	
+		// -- debugging: log first visible LineNumber
+		//console.log(Math.round(loadedLines.first + (markerInLoadedLines.top * (loadedLines.last - loadedLines.first))));
 
-	// -- debugging: log first visible LineNumber
-	//console.log(Math.round(loadedLines.first + (markerInLoadedLines.top * (loadedLines.last - loadedLines.first))));
-
-	return {
-		top: ((markerInLoadedLines.top * adaptationMultiplier) + adaptationOffset) * 100,
-		height: markerInLoadedLines.height * adaptationMultiplier * 100
-	};
+		return {
+			top: ((markerInLoadedLines.top * adaptationMultiplier) + adaptationOffset) * 100,
+			height: markerInLoadedLines.height * adaptationMultiplier * 100
+		};
+	}
 }
 
 function minimapScrollableFor(marker) { 
