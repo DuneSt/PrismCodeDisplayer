@@ -26,7 +26,8 @@ minimapCss
 
 .minimap-scroll-marker { 
 	background-color: rgba(0,0,0,0.1);
-	border: 1px solid rgb(245, 134, 134);
+	border: 1px solid rgb(245, 134, 134);	
+   box-sizing: border-box;
    pointer-events: none;	
 }
 
