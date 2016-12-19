@@ -7,7 +7,7 @@ createAjaxCallbacks: html
 				(JSStream
 					on:
 						'{ start : (textSizeBefore(previousSelection.startContainer) +previousSelection.startOffset),
-							end: (textSizeBefore(previousSelection.endContainer)+previousSelection.endOffset),
+							end: (textSizeBefore(previousSelection.endContainer)+previousSelection.endOffset-1),
 							previous: (previousSelection.toString())}');
 		onComplete:
 				((self
