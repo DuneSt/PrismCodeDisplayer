@@ -14,10 +14,10 @@ metaMarkPrismJs
 
    
 	function insertText(env, insert) {
-		deep= env.deep;
-		while(deep> 0){
+		deep= 1;
+		while(deep<= env.deep){
 			insert= closeTag(env.lastNode[deep])+insert+env.lastNode[deep];
-			deep--;
+			deep++;
 		}
 		env.string = [env.string.slice(0, env.pos), insert, env.string.slice(env.pos)].join("");
 		env.pos = env.pos + insert.length;
