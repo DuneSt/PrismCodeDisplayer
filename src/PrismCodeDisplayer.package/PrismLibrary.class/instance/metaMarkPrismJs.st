@@ -1,6 +1,6 @@
 uploaded
 metaMarkPrismJs
-	^ '"(function () {"
+	^ '(function () {
 
 	var closeTagRegex = /<([^\s]*)[^<]*>/;
 
@@ -14,6 +14,11 @@ metaMarkPrismJs
 
    
 	function insertText(env, insert) {
+		deep= env.deep;
+		while(deep> 0){
+			insert= closeTag(env.lastNode[deep])+insert+env.lastNode[deep];
+			deep--;
+		}
 		env.string = [env.string.slice(0, env.pos), insert, env.string.slice(env.pos)].join("");
 		env.pos = env.pos + insert.length;
 	}
@@ -24,7 +29,7 @@ metaMarkPrismJs
 		while (env.string[env.pos] !== ">") {
 			env.pos++;
 		}
-		env.deep= Math.max(env.deep-1,0);
+		env.deep= env.deep-1//Math.max(env.deep-1,0);
 	};
 
   /* escape a tag opening.
@@ -71,6 +76,7 @@ metaMarkPrismJs
 			} else {
 				escapeHTMLCode(env);
 				number--;
+				env.number++;
 			}
 			env.pos++;
 		}
@@ -85,26 +91,30 @@ metaMarkPrismJs
 			var key = Object.keys(data.intervals);
 
 			var env = {string: html};
-			window.pureEnv = { string:html }
+			window.envtest =env;
+			env.tab=[];
 
 			for (var i = 0; i < key.length; i++) {
 				var prop = key[i];
 				env.pos = 0;
 				env.lastNode = [""];
+				env.number=0;
 				env.deep = 0;
 				if (!data.intervals[prop].length)
 					data.intervals[prop].length = data.intervals[prop].end - data.intervals[prop].start;
 
 				textCount(env, data.intervals[prop].start-offset);
-				insertText(env, closeTag(env.lastNode[env.deep]) + data.intervals[prop].tag + env.lastNode[env.deep]);
+				insertText(env, data.intervals[prop].tag);
 
-				textCount(env, data.intervals[prop].length);
-				insertText(env, closeTag(env.lastNode[env.deep]) + closeTag(data.intervals[prop].tag) + env.lastNode[env.deep]);
+				textCount(env, data.intervals[prop].length,env.pos);
+				insertText(env, closeTag(data.intervals[prop].tag));
+				env.tab.push(env.string)
 			}
 			codeNode.innerHTML = env.string;
 		} catch (e) {
 		}
-	}(function () {
+	}
+	
 	Prism.metaMark = Prism.metaMark || {componants: {}};
 	Prism.hooks.add("complete", function (env) {
 		parseAndReplace(env.element);
