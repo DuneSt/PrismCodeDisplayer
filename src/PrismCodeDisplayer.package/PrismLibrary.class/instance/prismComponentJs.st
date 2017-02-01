@@ -85,7 +85,11 @@ function loadPrism(start, end, codeComponent, options) {
    }
 }
 
+function initPrimsComponents(){
+	prismAutoLoad();
+   $(".prismComponent").each(function(index, codeComponent){loadPrism(0, 400, codeComponent)});
+}
+
 window.addEventListener("load", function () {
-    prismAutoLoad();
-    $(".prismComponent").each(function(index, codeComponent){loadPrism(0, 400, codeComponent)});
+    initPrismComponents();
 });'
