@@ -1,5 +1,6 @@
 menu
 addSelectionListener: component in: s
+	self flag: #todo.	"Cyril: I think this should be a function in the js file taking the id as parameter."
 	s
 		<< ' document.getElementById("';
 		<< component id;

@@ -1,4 +1,3 @@
 accessing
 menusWithAction
-	menusWithAction ifNil: [ menusWithAction := OrderedCollection new ].
-	^ menusWithAction
+	^ menusWithAction ifNil: [ menusWithAction := OrderedCollection new ]
