@@ -3,11 +3,14 @@ minimapJs
 	^ '
 
 window.addEventListener("load", function () {
+	initMinimaps();
+});
+
+function initMinimaps(){
 	$(".minimap-container").each(function(index, container) { 
 		loadMinimap(container);
 	});
-
-});
+}
 
 /*
 * need refactor to recude the couple between html and js
