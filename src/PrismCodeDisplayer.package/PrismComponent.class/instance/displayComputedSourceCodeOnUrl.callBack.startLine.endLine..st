@@ -1,7 +1,9 @@
 rendering
 displayComputedSourceCodeOnUrl: url callBack: aCallBack startLine: start endLine: end
-	|  string endCopy offset |
+	| string endCopy offset |
 	string := self sourceCode value.
+	string isEmptyOrNil
+		ifTrue: [ ^ Dictionary with: #html -> 'Error: No source to display.' ].
 	self intervals: self obtainSortedObjectWithIntervals.
 	endCopy := (string intervalOfLine: end) last.
 	endCopy = 0
@@ -12,5 +14,5 @@ displayComputedSourceCodeOnUrl: url callBack: aCallBack startLine: start endLine
 	(#charOffset -> offset).
 	(#start -> start).
 	(#intervals -> (self obtainSortedJsInfoWithIntervalsForUrl: url between: offset and: endCopy))} ]
-		on: SubscriptOutOfBounds
-		do: [ {(#html -> '')} ]) asDictionary
+		on: Error
+		do: [ {(#html -> 'Sorry but an error occured')} ]) asDictionary

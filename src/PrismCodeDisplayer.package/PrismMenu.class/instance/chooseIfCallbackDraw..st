@@ -1,18 +1,19 @@
 as yet unclassified
 chooseIfCallbackDraw: html
 	^ self drawHTML
-		ifFalse: [ html jQuery ajax
-		callback: [ 
-			self callback 
-				value: (json at: #start)
-				value: (json at: #end)
-				value: (json at: #previous)
-				value: html ]]
+		ifFalse: [ 
+			html jQuery ajax
+				callback: [ 
+					self callback
+						cull: (json at: #start)
+						cull: (json at: #end)
+						cull: (json at: #previous)
+						cull: html ] ]
 		ifTrue: [ 
 			(html jQuery id: self drawHTMLOn) load
 				html: [ :r | 
-					self callback 
-						value: (json at: #start)
-						value: (json at: #end)
-						value: (json at: #previous)
-						value: r ] ]
+					self callback
+						cull: (json at: #start)
+						cull: (json at: #end)
+						cull: (json at: #previous)
+						cull: r ] ]
