@@ -1,3 +1,3 @@
 accessing
 intervalsToBeDisplayedInMinimap
-	^ self next intervals ifNil: [ {} ] ifNotNil: [ :intervs | intervs select: #shouldBeDisplayedInMinimap ]
+	^ self decoratedComponent intervals ifNil: [ {} ] ifNotNil: [ :intervs | intervs select: #shouldBeDisplayedInMinimap ]

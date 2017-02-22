@@ -1,4 +1,3 @@
 accessing
 sourceCode
-		
-	^ self next sourceCode value
+	^ self decoratedComponent sourceCode value

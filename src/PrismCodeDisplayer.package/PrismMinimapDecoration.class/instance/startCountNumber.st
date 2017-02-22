@@ -1,3 +1,3 @@
 accessing
 startCountNumber
-	^ self next startCountNumber
+	^ self decoratedComponent startCountNumber
