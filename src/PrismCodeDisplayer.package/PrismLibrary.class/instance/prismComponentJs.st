@@ -30,7 +30,7 @@ function prismAutoLoad() {
 }
 
 function refreshPrism(codeComponent) {
-   loadPrism(parseInt(codeComponent.dataset.lastindexloaded), parseInt(codeComponent.dataset.lastindexloaded+400), 
+   loadPrism(parseInt(codeComponent.dataset.lastindexloaded), parseInt(codeComponent.dataset.lastindexloaded)+400, 
            codeComponent, {checkRefresh: true});
    refreshMinimap(codeComponent);
 }
