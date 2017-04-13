@@ -61,9 +61,14 @@ function loadPrism(start, end, codeComponent, options) {
         type: "POST",
         data: dataObj,
         success: function (res) {
+             crlfRegex= /\r\n/g;
              res = JSON.parse(res);
              if(res.html != ""){
      				codeComponent.childNodes[0].innerHTML = res.html;
+				   for(var  i = 0; i< res.intervals.length;i++){
+				     res.intervals[i].start = res.intervals[0].start - (res.html.substring(0,res.intervals[0].start).match(crlfRegex) || []).length;
+				     res.intervals[i].end = res.intervals[0].end - (res.html.substring(0,res.intervals[0].end).match(crlfRegex) || []).length;
+			    	}
 				   Prism.metaMark.componants[codeComponent.childNodes[0].id] = {intervals:res.intervals, offset: res.charOffset};
 				   Prism.highlightElement(codeComponent.childNodes[0]);
 				
