@@ -39,4 +39,5 @@ renderContentOn: html
 						(PrismMenu new
 							callback: action;
 							drawHTMLOn: 'messageContainer');
-				withMinimap)
+				withMinimap;
+				withSearchBar)

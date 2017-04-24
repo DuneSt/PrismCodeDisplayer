@@ -1,0 +1,11 @@
+{
+	"commentStamp" : "",
+	"super" : "WADecoration",
+	"category" : "PrismCodeDisplayer-Component",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [ ],
+	"name" : "PrismAbstractDecoration",
+	"type" : "normal"
+}

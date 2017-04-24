@@ -1,0 +1,13 @@
+{
+	"commentStamp" : "",
+	"super" : "PrismAbstractDecoration",
+	"category" : "PrismCodeDisplayer-Component",
+	"classinstvars" : [ ],
+	"pools" : [ ],
+	"classvars" : [ ],
+	"instvars" : [
+		"stringRegex"
+	],
+	"name" : "PrismSearchDecoration",
+	"type" : "normal"
+}

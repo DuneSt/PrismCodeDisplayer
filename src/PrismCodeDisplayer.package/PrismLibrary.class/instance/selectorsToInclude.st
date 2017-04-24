@@ -1,3 +1,3 @@
 uploaded
 selectorsToInclude
-	^ #(prismCss prismJs fdLanguageJs adaLanguageJs autoLinkerJs selectionMenuCss prismComponentJs metaMarkPrismJs minimapJs minimapCss initComponentPrismJs)
+	^ #(prismCss prismJs fdLanguageJs adaLanguageJs autoLinkerJs selectionMenuCss prismComponentJs metaMarkPrismJs minimapJs minimapCss initComponentPrismJs searchCss searchJs)

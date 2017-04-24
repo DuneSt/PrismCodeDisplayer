@@ -1,6 +1,6 @@
 {
 	"commentStamp" : "MartinDias 11/19/2016 17:08",
-	"super" : "WADecoration",
+	"super" : "PrismAbstractDecoration",
 	"category" : "PrismCodeDisplayer-Minimap",
 	"classinstvars" : [ ],
 	"pools" : [ ],

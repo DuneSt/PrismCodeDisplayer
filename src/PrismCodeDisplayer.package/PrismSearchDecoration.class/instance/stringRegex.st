@@ -1,0 +1,3 @@
+accessing
+stringRegex
+	^ stringRegex
