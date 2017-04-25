@@ -8,7 +8,7 @@ Prism.searchBar.setSearchResults= function(searchElement, linesList){
 		currentElement: 0
 	}
 	Prism.searchBar.refreshCounter(searchElement);
-	goToLine( Prism.searchBar.intervals[searchElement.id].linesList[0].line, searchElement.parentElement.getElementsByTagName("pre")[0] );
+	goToLine( Prism.searchBar.intervals[searchElement.id].linesList[0].line, searchElement.parentElement.getElementsByTagName("pre")[0], true );
 };
 
 Prism.searchBar.changeElement = function(searchElement,offset ){

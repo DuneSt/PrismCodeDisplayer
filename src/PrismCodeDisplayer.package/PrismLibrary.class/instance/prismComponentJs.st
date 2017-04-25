@@ -35,16 +35,16 @@ function refreshPrism(codeComponent) {
    refreshMinimap(codeComponent);
 }
 
-function goToLine(line, codeComponent) {
+function goToLine(line, codeComponent, forceRefresh) {
    total=parseInt(codeComponent.dataset.totallines)
    if(line< 400){
       //substract 10 to avoid to have the line in first line in codeComponent
       loadPrism(0, 400, codeComponent, {scrollValue:(line-10)* $(codeComponent.children[0]).height()/
-                  Math.min(400,total)} )
+                  Math.min(400,total), checkRefresh: forceRefresh})
    }else if(line< (total-400)){
-      loadPrism(line - 100,line + 300, codeComponent,{scrollValue:codeComponent.scrollTopMax*0.25 })
+      loadPrism(line - 100,line + 300, codeComponent,{scrollValue:codeComponent.scrollTopMax*0.25, checkRefresh: forceRefresh})
    }else if(line < total) {
-      loadPrism(total-400, total, codeComponent, {scrollValue:(line-total +390)* $(codeComponent.childNodes[0]).height()/400})
+      loadPrism(total-400, total, codeComponent, {scrollValue:(line-total +390)* $(codeComponent.childNodes[0]).height()/400, checkRefresh: forceRefresh})
    }
 
 }
