@@ -8,12 +8,13 @@ Prism.searchBar.setSearchResults= function(searchElement, linesList){
 		currentElement: 0
 	}
 	Prism.searchBar.refreshCounter(searchElement);
+	goToLine( Prism.searchBar.intervals[searchElement.id].linesList[0].line, searchElement.parentElement.getElementsByTagName("pre")[0] );
 };
 
 Prism.searchBar.changeElement = function(searchElement,offset ){
   interval = Prism.searchBar.intervals[searchElement.id];
   interval.currentElement = interval.currentElement + offset;
-  goToLine( interval.linesList[interval.currentElement], searchElement.parentElement.getElementsByTagName("pre")[0] )
+  goToLine( interval.linesList[interval.currentElement].line, searchElement.parentElement.getElementsByTagName("pre")[0] );
   Prism.searchBar.refreshCounter(searchElement);
 };
 

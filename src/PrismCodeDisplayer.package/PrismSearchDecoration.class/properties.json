@@ -6,7 +6,7 @@
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
-		"stringRegex"
+		"lastSearchResult"
 	],
 	"name" : "PrismSearchDecoration",
 	"type" : "normal"
