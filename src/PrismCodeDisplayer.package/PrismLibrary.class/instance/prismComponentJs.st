@@ -18,8 +18,8 @@ function prismAutoLoad() {
                 lastind=parseInt(e.currentTarget.dataset.lastindexloaded);
                 total=parseInt(e.currentTarget.dataset.totallines)
                 if(lastind< (total-400)){
-                    loadPrism(lastind + 250,lastind + 650, e.currentTarget)} 
-                else if(lastind < total) { 
+                    loadPrism(lastind + 250,lastind + 650, e.currentTarget)}
+                else if(lastind < total) {
                     //need to find better solution, too many request to server
                     loadPrism(total-400, total, e.currentTarget)
                 }
@@ -30,7 +30,7 @@ function prismAutoLoad() {
 }
 
 function refreshPrism(codeComponent) {
-   loadPrism(parseInt(codeComponent.dataset.lastindexloaded), parseInt(codeComponent.dataset.lastindexloaded)+400, 
+   loadPrism(parseInt(codeComponent.dataset.lastindexloaded), parseInt(codeComponent.dataset.lastindexloaded)+400,
            codeComponent, {checkRefresh: true});
    refreshMinimap(codeComponent);
 }
@@ -40,10 +40,10 @@ function goToLine(line, codeComponent) {
    if(line< 400){
       //substract 10 to avoid to have the line in first line in codeComponent
       loadPrism(0, 400, codeComponent, {scrollValue:(line-10)* $(codeComponent.children[0]).height()/
-                  Math.min(400,total)} ) 
+                  Math.min(400,total)} )
    }else if(line< (total-400)){
-      loadPrism(line - 100,line + 300, codeComponent,{scrollValue:codeComponent.scrollTopMax*0.25 }) 
-   }else if(line < total) { 
+      loadPrism(line - 100,line + 300, codeComponent,{scrollValue:codeComponent.scrollTopMax*0.25 })
+   }else if(line < total) {
       loadPrism(total-400, total, codeComponent, {scrollValue:(line-total +390)* $(codeComponent.childNodes[0]).height()/400})
    }
 
@@ -61,21 +61,26 @@ function loadPrism(start, end, codeComponent, options) {
         type: "POST",
         data: dataObj,
         success: function (res) {
-             crlfRegex= /\r\n/g;
+             crlfRegex= /\r/g;
              res = JSON.parse(res);
              if(res.html != ""){
      				codeComponent.childNodes[0].innerHTML = res.html;
 				   for(var  i = 0; i< res.intervals.length;i++){
-				     res.intervals[i].start = res.intervals[0].start - (res.html.substring(0,res.intervals[0].start).match(crlfRegex) || []).length;
-				     res.intervals[i].end = res.intervals[0].end - (res.html.substring(0,res.intervals[0].end).match(crlfRegex) || []).length;
+						 start= res.intervals[i].start; end=res.intervals[i].end;
+						console.log((res.html.substring(0,res.intervals[i].start).match(/\r/g) || []).length);
+						console.log((res.html.substring(0,res.intervals[i].start).match(/\r\n/g) || []).length);
+						console.log((res.html.substring(0,res.intervals[i].start).match(/\n/g) || []).length);
+				     res.intervals[i].start = res.intervals[i].start - (res.html.substring(0,res.intervals[i].start).match(crlfRegex) || []).length;
+				     res.intervals[i].end = res.intervals[i].end - (res.html.substring(0,res.intervals[i].end).match(crlfRegex) || []).length;
+						 console.log(start, ":", end , "to ", res.intervals[i].start,":",res.intervals[i].end)
 			    	}
 				   Prism.metaMark.componants[codeComponent.childNodes[0].id] = {intervals:res.intervals, offset: res.charOffset};
 				   Prism.highlightElement(codeComponent.childNodes[0]);
-				
+
 				   codeComponent.scrollTop = options.scrollValue || (codeComponent.scrollTop - ((start - codeComponent.dataset.firstindex) / (codeComponent.dataset.lastindex - codeComponent.dataset.firstindex)) * $(codeComponent.childNodes[0]).height());
-				
+
 				  codeComponent.style.counterReset = "linenumber " + (parseInt(codeComponent.dataset.startcountnumber) + start - 1);
-				
+
 				  codeComponent.dataset.firstindex = res.start;
 				  codeComponent.dataset.lastindex = end;
 				  codeComponent.dataset.lastindexloaded = start;
@@ -85,7 +90,7 @@ function loadPrism(start, end, codeComponent, options) {
             location.reload();
         }
       });
-   }else if ( options.scrollValue){ 
+   }else if ( options.scrollValue){
       codeComponent.scrollTop = options.scrollValue ;
    }
 }
