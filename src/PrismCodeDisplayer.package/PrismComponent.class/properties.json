@@ -12,7 +12,8 @@
 		"language",
 		"menusWithAction",
 		"jsOnLoadHook",
-		"startCountNumber"
+		"startCountNumber",
+		"protectToCRLF"
 	],
 	"name" : "PrismComponent",
 	"type" : "normal"

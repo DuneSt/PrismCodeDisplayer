@@ -10,5 +10,6 @@ setDataForCallBack: div html: html scrollCb: scrollCb clickCb: clickCb
 		attributeAt: 'data-lastindexloaded' asSymbol put: -1 asString;
 		attributeAt: 'data-firstindex' asSymbol put: -1 asString;
 		attributeAt: 'data-lastindex' asSymbol put: 400 asString;
-		attributeAt: 'data-startcountnumber' asSymbol put: (self startCountNumber - 1) asString
+		attributeAt: 'data-startcountnumber' asSymbol put: (self startCountNumber - 1) asString;
+		attributeAt: 'data-protectcrlf' asSymbol put: self isProtectedToCRLF asString
 		"We substract one to convert to CSS convention (counting from 0)"
