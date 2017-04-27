@@ -1,5 +1,6 @@
 initialization
 initialize
-   super initialize.
+	super initialize.
 	self startCountNumber: 1.
-	self strategies: OrderedCollection new
+	self strategies: OrderedCollection new.
+	protectToCRLF := false
