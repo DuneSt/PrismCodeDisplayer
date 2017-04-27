@@ -67,13 +67,13 @@ function loadPrism(start, end, codeComponent, options) {
      		  codeComponent.childNodes[0].innerHTML = res.html;
 					if(codeComponent.dataset.protectcrlf == "true"){
 				    for(var  i = 0; i< res.intervals.length;i++){
-				console.log("ok ok")
 				      res.intervals[i].start = res.intervals[i].start - (res.html.substring(0,res.intervals[i].start).match(crlfRegex) || []).length;
 				      res.intervals[i].end = res.intervals[i].end - (res.html.substring(0,res.intervals[i].end).match(crlfRegex) || []).length;
 			      }
 					}
 				  Prism.metaMark.componants[codeComponent.childNodes[0].id] = {intervals:res.intervals, offset: res.charOffset};
 				  Prism.highlightElement(codeComponent.childNodes[0]);
+				  eval(codeComponent.dataset.loadhook);
 
 				  codeComponent.scrollTop = options.scrollValue || (codeComponent.scrollTop - ((start - codeComponent.dataset.firstindex) / (codeComponent.dataset.lastindex - codeComponent.dataset.firstindex)) * $(codeComponent.childNodes[0]).height());
 

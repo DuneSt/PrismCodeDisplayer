@@ -1,11 +1,12 @@
 rendering
 renderContentOn: html
 	| cb component |
+	self ensureIdFrom: html.
 	component := html preformatted
 		class: 'prismComponent';
 		class: #'line-numbers';
 		style: 'counter-reset: linenumber ' , (self startCountNumber - 1) asString , ';';
-		id: html nextId.	"We substract one to convert to CSS convention (counting from 0)"
+		id: self id.	"We substract one to convert to CSS convention (counting from 0)"
 	cb := component storeCallback: (WAValuesCallback on: [ :interval | interval executeCallback ] values: self).
 	self
 		setDataForCallBack: component
