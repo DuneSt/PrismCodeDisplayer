@@ -2,5 +2,8 @@ rendering
 renderContentOn: html
 	html div
 		with: [ 
-			self renderSearchBarOn: html.
+			html div
+				id: html nextId;
+				class: 'prism-search-bar';
+				with: [ self renderSearchBarOn: html ].
 			super renderContentOn: html ]
