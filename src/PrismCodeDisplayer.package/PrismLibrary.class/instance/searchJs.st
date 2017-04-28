@@ -1,6 +1,11 @@
 uploaded
 searchJs
-	^ 'Prism.searchBar ={intervals:{}};
+	^ '
+Prism.searchBar ={intervals:{}};
+
+window.addEventListener("load", function () {
+	Prism.searchBar.initSearchBarShortcuts();
+});
 
 Prism.searchBar.getRootElement=function(searchElement){
 	return $(searchElement).closest(".prism-search-container")[0];
@@ -44,4 +49,28 @@ Prism.searchBar.nextElement = function(searchElement ){
 Prism.searchBar.refreshCounter = function(root){
   interval=Prism.searchBar.intervals[root.id];
   root.getElementsByClassName("prism-search-counter")[0].innerHTML = (interval.currentElement + 1) + "/" + interval.linesList.length;
-};'
+};
+
+Prism.searchBar.bindings = {};
+
+Prism.searchBar.bindings[40] = Prism.searchBar.nextElement;
+
+Prism.searchBar.bindings[38] = Prism.searchBar.prevElement;
+
+Prism.searchBar.initSearchBarShortcuts = function(){
+	$(window).keydown(function(event) {
+	  if(event.ctrlKey && event.shiftKey && event.keyCode == 70) { 
+			$(".prism-search-bar").animate({width:"toggle"},350);
+			$(".prism-search-bar input").focus();
+			event.preventDefault(); 
+  		}
+	});
+	
+	$(".prism-search-bar input").keydown(function(event) {
+	  if(Prism.searchBar.bindings[event.keyCode]) { 
+			Prism.searchBar.bindings[event.keyCode](event.target);
+			event.preventDefault(); 
+  		}
+	});
+
+}'

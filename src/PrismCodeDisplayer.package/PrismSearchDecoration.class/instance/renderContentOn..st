@@ -12,8 +12,11 @@ renderContentOn: html
 										class: 'prism-search-bar';
 										style: 'display:none;';
 										with: [ self renderSearchBarOn: html ].
-									html image
-										onClick:
-												(JSStream on: '$(this).closest(".prism-search-container").find(".prism-search-bar").animate({width:''toggle''},350)');
-										url: (PrismLibrary urlOf: 'search.png') ].
+									html div
+										attributeAt: 'tooltip' put: 'Ctrl + Shift + f'; "Let insecable space here."
+										with: [ 
+													html image
+														onClick:
+																(JSStream on: '$(this).closest(".prism-search-container").find(".prism-search-bar").animate({width:''toggle''},350)');
+														url: (PrismLibrary urlOf: 'search.png') ] ].
 					super renderContentOn: html ]
