@@ -4,6 +4,5 @@ onTextChangeOn: html
 		callback: [ :aStringRegex | self linesMatcheTo: aStringRegex ] value: (JSStream on: 'event.target.value');
 		text: [ :stream | stream json: self lastSearchResult ];
 		onSuccess:
-				'console.log(event.target,arguments[0]);
-								Prism.searchBar.setSearchResults(event.target, arguments[0])';
+				'Prism.searchBar.setSearchResults(event.target, arguments[0])';
 		dataType: 'jsonp'
