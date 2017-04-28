@@ -5,6 +5,7 @@ renderContentOn: html
 		with: [ 
 					html div
 						class: 'prism-search-bar-container';
+						class: self hookClass;
 						with: [ 
 									html div
 										id: html nextId;
