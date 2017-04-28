@@ -1,6 +1,7 @@
 rendering
 renderSearchBarOn: html
 	html textInput
+		placeholder: 'Prism\.?languages\.?javascript';
 		onChange: (self onTextChangeOn: html);
 		with: ''.
 	html button
