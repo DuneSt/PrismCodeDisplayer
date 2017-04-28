@@ -2,36 +2,46 @@ uploaded
 searchJs
 	^ 'Prism.searchBar ={intervals:{}};
 
+Prism.searchBar.getRootElement=function(searchElement){
+	return $(searchElement).closest(".prism-search-container")[0];
+}
+
 Prism.searchBar.setSearchResults= function(searchElement, linesList){
- 	Prism.searchBar.intervals[searchElement.id] = {
+   root = Prism.searchBar.getRootElement(searchElement);
+ 	Prism.searchBar.intervals[root.id] = {
 		linesList: linesList,
 		currentElement: 0
 	}
-	Prism.searchBar.refreshCounter(searchElement);
-	goToLine( Prism.searchBar.intervals[searchElement.id].linesList[0].line, searchElement.parentElement.getElementsByTagName("pre")[0], true );
+	if(linesList.length>0){
+		goToLine( Prism.searchBar.intervals[root.id].linesList[0].line, root.parentElement.getElementsByTagName("pre")[0], true );
+	} else { 
+		Prism.searchBar.intervals[root.id].currentElement = -1;
+	}
+	Prism.searchBar.refreshCounter(root);
 };
 
-Prism.searchBar.changeElement = function(searchElement,offset ){
-  interval = Prism.searchBar.intervals[searchElement.id];
+Prism.searchBar.changeElement = function(root,offset ){
+  interval = Prism.searchBar.intervals[root.id];
   interval.currentElement = interval.currentElement + offset;
-  goToLine( interval.linesList[interval.currentElement].line, searchElement.parentElement.getElementsByTagName("pre")[0] );
-  Prism.searchBar.refreshCounter(searchElement);
+  goToLine( interval.linesList[interval.currentElement].line, root.parentElement.getElementsByTagName("pre")[0] );
+  Prism.searchBar.refreshCounter(root);
 };
 
 Prism.searchBar.prevElement = function(searchElement){
-  if(Prism.searchBar.intervals[searchElement.id].currentElement > 0){
-    Prism.searchBar.changeElement(searchElement, -1);
+	root = Prism.searchBar.getRootElement(searchElement);
+  if(Prism.searchBar.intervals[root.id].currentElement > 0){
+    Prism.searchBar.changeElement(root, -1);
   }
 };
 
 Prism.searchBar.nextElement = function(searchElement ){
-  if(Prism.searchBar.intervals[searchElement.id].currentElement < (Prism.searchBar.intervals[searchElement.id].linesList.length - 1)){
-    Prism.searchBar.changeElement(searchElement, 1);
+	root = Prism.searchBar.getRootElement(searchElement);
+  if(Prism.searchBar.intervals[root.id].currentElement < (Prism.searchBar.intervals[root.id].linesList.length - 1)){
+    Prism.searchBar.changeElement(root, 1);
   }
 };
 
-Prism.searchBar.refreshCounter = function(searchElement){
-  interval=Prism.searchBar.intervals[searchElement.id];
-console.log((interval.currentElement + 1) + "/" + interval.linesList.length)
-  searchElement.getElementsByClassName("search-counter")[0].innerHTML = (interval.currentElement + 1) + "/" + interval.linesList.length;
+Prism.searchBar.refreshCounter = function(root){
+  interval=Prism.searchBar.intervals[root.id];
+  root.getElementsByClassName("prism-search-counter")[0].innerHTML = (interval.currentElement + 1) + "/" + interval.linesList.length;
 };'
