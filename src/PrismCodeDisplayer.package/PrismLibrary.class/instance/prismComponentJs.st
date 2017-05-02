@@ -121,8 +121,8 @@ function escapeHTMLCode(str, pos) {
 			while (tmpPos < str.length) {
 				tmpPos++;
 				if (str[tmpPos] === ";") {
-					return escapeHTMLCode(str, tmpPos+1);
-				} else if (env.string[tmpPos] === " ") {
+					return tmpPos;
+				} else if (str[tmpPos] === " ") {
                 return pos;
 				}
 			}
