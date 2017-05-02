@@ -67,13 +67,8 @@ function loadPrism(start, end, codeComponent, options) {
      		  codeComponent.childNodes[0].innerHTML = res.html;
           codeComponent.linesOffset = getPrismLinesOffset(res.html, res.charOffset);
 				  for(var  i = 0; i< res.intervals.length;i++){
-            console.log("start", res.intervals[i].start, getLineOffsetDiff(res.intervals[i].start, codeComponent.linesOffset ))
-            console.log("end", res.intervals[i].end, getLineOffsetDiff(res.intervals[i].end, codeComponent.linesOffset ))
-            console.log("res ajax", res.html.substring(res.intervals[i].start, res.intervals[i].end))
-            console.log("res html", codeComponent.childNodes[0].innerHTML.substring(res.intervals[i].start, res.intervals[i].end))
 				    res.intervals[i].start = res.intervals[i].start - getLineOffsetDiff(res.intervals[i].start, codeComponent.linesOffset );
 				    res.intervals[i].end = res.intervals[i].end - getLineOffsetDiff(res.intervals[i].end, codeComponent.linesOffset );
-            console.log("reshtml decal", codeComponent.childNodes[0].innerHTML.substring(res.intervals[i].start, res.intervals[i].end))
 			    }
 				  Prism.metaMark.componants[codeComponent.childNodes[0].id] = {intervals:res.intervals, offset: res.charOffset};
 				  Prism.highlightElement(codeComponent.childNodes[0]);
@@ -111,7 +106,6 @@ function getPrismLinesOffset(str, PrismCharOffset){
     i++;
     i= escapeHTMLCode(str, i)
   }
-  console.log("line ",charOffset, linesOffset)
   return linesOffset;
 }
 

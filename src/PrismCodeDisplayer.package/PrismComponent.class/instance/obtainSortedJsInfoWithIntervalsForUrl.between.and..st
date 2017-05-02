@@ -4,10 +4,14 @@ obtainSortedJsInfoWithIntervalsForUrl: url between: min and: max
 	res := OrderedCollection new.
 	self obtainSortedObjectWithIntervals
 		doWithIndex: [ :interval :index | 
-			((interval first >= min) & (interval last<= max)) ifTrue:[
+			((interval first < max) or: [(interval last > min)]) ifTrue:[
+				|end start|
+				start :=((interval first ) max: min)- 1.
+				end := ((interval last ) min: max)-1.
+				(end < start) ifTrue:[ end := max -1].
 			res
 				add:
-					{(#start -> (interval first - 2)).
-					(#end -> (interval last - 1)).
+					{(#start -> start).
+					(#end -> end).
 					(#tag -> (interval tagForUrl: url index: index))} asDictionary] ].
 	^ res asArray
