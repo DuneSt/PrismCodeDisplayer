@@ -65,12 +65,16 @@ function loadPrism(start, end, codeComponent, options) {
           res = JSON.parse(res);
           if(res.html != ""){
      		  codeComponent.childNodes[0].innerHTML = res.html;
-					if(codeComponent.dataset.protectcrlf == "true"){
-				    for(var  i = 0; i< res.intervals.length;i++){
-				      res.intervals[i].start = res.intervals[i].start - (res.html.substring(0,res.intervals[i].start).match(crlfRegex) || []).length;
-				      res.intervals[i].end = res.intervals[i].end - (res.html.substring(0,res.intervals[i].end).match(crlfRegex) || []).length;
-			      }
-					}
+          codeComponent.linesOffset = getPrismLinesOffset(res.html, res.charOffset);
+				  for(var  i = 0; i< res.intervals.length;i++){
+            console.log("start", res.intervals[i].start, getLineOffsetDiff(res.intervals[i].start, codeComponent.linesOffset ))
+            console.log("end", res.intervals[i].end, getLineOffsetDiff(res.intervals[i].end, codeComponent.linesOffset ))
+            console.log("res ajax", res.html.substring(res.intervals[i].start, res.intervals[i].end))
+            console.log("res html", codeComponent.childNodes[0].innerHTML.substring(res.intervals[i].start, res.intervals[i].end))
+				    res.intervals[i].start = res.intervals[i].start - getLineOffsetDiff(res.intervals[i].start, codeComponent.linesOffset );
+				    res.intervals[i].end = res.intervals[i].end - getLineOffsetDiff(res.intervals[i].end, codeComponent.linesOffset );
+            console.log("reshtml decal", codeComponent.childNodes[0].innerHTML.substring(res.intervals[i].start, res.intervals[i].end))
+			    }
 				  Prism.metaMark.componants[codeComponent.childNodes[0].id] = {intervals:res.intervals, offset: res.charOffset};
 				  Prism.highlightElement(codeComponent.childNodes[0]);
 				  eval(codeComponent.dataset.loadhook);
@@ -91,6 +95,65 @@ function loadPrism(start, end, codeComponent, options) {
    }else if ( options.scrollValue){
       codeComponent.scrollTop = options.scrollValue ;
    }
+}
+
+function getPrismLinesOffset(str, PrismCharOffset){
+  linesOffset= [PrismCharOffset];
+  charOffset= 0;
+
+  i=0;
+  while(i<str.length){
+    if(str[i]== "\r" && str[i+1]== "\n"){
+      linesOffset.push(charOffset+PrismCharOffset);
+      charOffset++;
+    }
+    charOffset++;
+    i++;
+    i= escapeHTMLCode(str, i)
+  }
+  console.log("line ",charOffset, linesOffset)
+  return linesOffset;
+}
+
+function escapeHTMLCode(str, pos) {
+		if (str[pos] === "&") {
+			tmpPos = pos;
+			while (tmpPos < str.length) {
+				tmpPos++;
+				if (str[tmpPos] === ";") {
+					return escapeHTMLCode(str, tmpPos+1);
+				} else if (env.string[tmpPos] === " ") {
+                return pos;
+				}
+			}
+		}
+    return pos;
+	}
+
+function getLineOffsetDiff(pos, lineOffsetArray){
+  res= dicotomiqueSearchIndex(lineOffsetArray, 0, lineOffsetArray.length, pos)
+  if(res == -1){
+    /*In this case, we have not posed in the table.
+    * As we put the smallest offset in the table, but not
+    * the largest, we have necessarily the biggest offset for pos */
+    res= lineOffsetArray.length - 1;
+  }
+  return res;
+}
+
+function dicotomiqueSearchIndex(arr, start, end, value){
+  if( start > end){
+    return -1;
+  }
+  midle= Math.ceil((start +end) /2);
+  if(value >= arr[midle] && value < arr[midle+1] ){
+    return midle;
+  } else if( value > arr[midle]){
+    return dicotomiqueSearchIndex(arr, midle+1, end, value);
+  } else {
+    return dicotomiqueSearchIndex(arr, start, midle-1 , value);
+  }
+
 }
 
 function initPrismComponents(){
