@@ -57,11 +57,28 @@ Prism.searchBar.bindings[40] = Prism.searchBar.nextElement;
 
 Prism.searchBar.bindings[38] = Prism.searchBar.prevElement;
 
+/*
+*  This method take for exemple the DOM element of the magnifiying glass icon and enable/disable the corresponding search bar.
+*/
+Prism.searchBar.toggleSearchBarFor= function(aClickElement){
+	var searchBar = $(aClickElement).closest(".prism-search-container").find(".prism-search-bar");
+	Prism.searchBar.toggleBar(searchBar);
+}
+
+/*
+*  This method show/hide a search bar and do some actions relative to the toggle of the search bar.
+*/
+Prism.searchBar.toggleBar= function(searchBar){
+	searchBar.animate({width:''toggle''},350);
+	if(searchBar.css("display") != "none"){
+		searchBar.find("input").focus();
+	}
+}
+
 Prism.searchBar.initSearchBarShortcuts = function(){
 	$(window).keydown(function(event) {
 	  if(event.ctrlKey && event.shiftKey && event.keyCode == 70) { 
-			$(".prism-search-bar").animate({width:"toggle"},350);
-			$(".prism-search-bar input").focus();
+			Prism.searchBar.toggleBar($(".prism-search-bar"));
 			event.preventDefault(); 
   		}
 	});

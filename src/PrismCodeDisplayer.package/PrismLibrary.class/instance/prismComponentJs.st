@@ -72,11 +72,7 @@ function loadPrism(start, end, codeComponent, options) {
 			    }
 				  Prism.metaMark.componants[codeComponent.childNodes[0].id] = {intervals:res.intervals, offset: res.charOffset};
 				  Prism.highlightElement(codeComponent.childNodes[0]);
-				  eval(codeComponent.dataset.onchangehook);
-				  if(codeComponent.dataset.onloadhook != ""){
-				    eval(codeComponent.dataset.onloadhook);
-				    codeComponent.dataset.onloadhook = "";
-				  }
+				  eval(codeComponent.dataset.loadhook);
 
 				  codeComponent.scrollTop = options.scrollValue || (codeComponent.scrollTop - ((start - codeComponent.dataset.firstindex) / (codeComponent.dataset.lastindex - codeComponent.dataset.firstindex)) * $(codeComponent.childNodes[0]).height());
 

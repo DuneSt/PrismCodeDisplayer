@@ -5,9 +5,8 @@ renderContentOn: html
 	component := html preformatted
 		class: 'prismComponent';
 		class: #'line-numbers';
-			"We substract one to convert to CSS convention (counting from 0)"
 		style: 'counter-reset: linenumber ' , (self startCountNumber - 1) asString , ';';
-		id: self id.
+		id: self id.	"We substract one to convert to CSS convention (counting from 0)"
 	cb := component storeCallback: (WAValuesCallback on: [ :interval | interval executeCallback ] values: self).
 	self
 		setDataForCallBack: component
@@ -15,7 +14,6 @@ renderContentOn: html
 		scrollCb: (self defineScrollCallbackOn: component url: html actionUrl menuCallBack: cb)
 		clickCb: cb.
 	component
-	   onLoad:self jsOnLoadHook; 
 		with: [ 
 					html code
 						class: (self codeClassFor: self language);

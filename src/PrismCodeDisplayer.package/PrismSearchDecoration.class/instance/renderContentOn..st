@@ -11,12 +11,11 @@ renderContentOn: html
 										id: html nextId;
 										class: 'prism-search-bar';
 										style: 'display:none;';
-										with: [ self renderSearchBarOn: html ].
+										with: [ self renderSearchBarOn: html ].	"Let insecable space in the following shortcut display."
 									html div
-										attributeAt: 'tooltip' put: 'Ctrl + Shift + f'; "Let insecable space here."
+										attributeAt: 'tooltip' put: 'Ctrl + Shift + f';
 										with: [ 
 													html image
-														onClick:
-																(JSStream on: '$(this).closest(".prism-search-container").find(".prism-search-bar").animate({width:''toggle''},350)');
+														onClick: (JSStream on: 'Prism.searchBar.toggleSearchBarFor(this);');
 														url: (PrismLibrary urlOf: 'search.png') ] ].
 					super renderContentOn: html ]
