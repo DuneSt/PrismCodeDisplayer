@@ -5,7 +5,7 @@ linesMatcheTo: regexString
 	self
 		lastSearchResult:
 			((source allRangesOfRegexMatches: regexString)
-				collect: [ :interval | {(#start -> (interval first )).
-					(#end -> (interval last )).
+				collect: [ :interval | {(#start -> (interval first -1)).
+					(#end -> (interval last -1)).
 					(#line -> (source lineNumberCorrespondingToIndex: interval first))} asDictionary ]).
 	^ self lastSearchResult
