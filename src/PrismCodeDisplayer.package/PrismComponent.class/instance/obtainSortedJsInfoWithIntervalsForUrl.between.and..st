@@ -6,7 +6,7 @@ obtainSortedJsInfoWithIntervalsForUrl: url between: min and: max
 		doWithIndex: [ :interval :index | 
 			((interval first < max) or: [(interval last > min)]) ifTrue:[
 				|end start|
-				start :=((interval first ) max: min)- 1.
+				start :=((interval first ) max: min)- 2.
 				end := ((interval last ) min: max)-1.
 				(end < start) ifTrue:[ end := max -1].
 			res

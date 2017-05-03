@@ -10,6 +10,6 @@ setDataForCallBack: div html: html scrollCb: scrollCb clickCb: clickCb
 		attributeAt: #'data-lastindexloaded' put: -1 asString;
 		attributeAt: #'data-firstindex' put: -1 asString;
 		attributeAt: #'data-lastindex' put: 400 asString;
-		attributeAt: #'data-startcountnumber' put: (self startCountNumber - 1) asString;
-		attributeAt: #'data-protectcrlf' put: self isProtectedToCRLF asString;
-		attributeAt: #'data-loadhook' put: (self jsOnLoadHook ifNil: [ '' ])	"We substract one to convert to CSS convention (counting from 0)"
+		attributeAt: #'data-startcountnumber' put: (self startCountNumber - 1) asString;"We substract one to convert to CSS convention (counting from 0)"
+		attributeAt: #'data-onloadhook' put: (self jsOnLoadHook ifNil: [ '' ]);	
+		attributeAt: #'data-onchangehook' put: (self jsOnChangeHook ifNil: [ '' ])	

@@ -6,9 +6,7 @@ createAjaxCallbacks: html
 			json:
 				(JSStream
 					on:
-						'{ start : (textSizeBefore(previousSelection.startContainer) +previousSelection.startOffset),
-							end: (textSizeBefore(previousSelection.endContainer)+previousSelection.endOffset-1),
-							previous: (previousSelection.toString())}');
+						'Prism.pharo.getSpecialTextRange()');
 		onComplete:
 				((self
 						chooseIfCallbackDraw: html)

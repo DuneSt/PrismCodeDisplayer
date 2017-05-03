@@ -1,3 +1,0 @@
-html-specific
-isProtectedToCRLF
-	^ protectToCRLF

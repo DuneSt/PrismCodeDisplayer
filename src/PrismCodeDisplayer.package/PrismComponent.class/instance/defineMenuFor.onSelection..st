@@ -26,12 +26,12 @@ defineMenuFor: component onSelection: html
 														(String
 																streamContents: [ :s | 
 																	s
-																		<< 'post(''';
+																		<< 'o=Prism.pharo.getSpecialTextRange();post(''';
 																		<< html actionUrl asString;
 																		<< ''', {';
 																		<< cb;
 																		<< $:;
 																		<< index;
 																		<<
-																				'+ ";" + (textSizeBefore(previousSelection.startContainer)+previousSelection.startOffset) + ";" + (textSizeBefore(previousSelection.endContainer)+previousSelection.endOffset) + ";" + previousSelection.toString()})' ]);
+																				'+ ";" + o.start + ";" + o.end + ";" + o.previous})' ]);
 												with: aMenuWithAction key ] ] ] ]
