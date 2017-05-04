@@ -7,7 +7,9 @@ initComponentPrismJs
         var selectedText = window.getSelection();
 
 		if(selectedText != "" && env.element.parentElement.contains(selectedText.anchorNode)){
-		      $("#menu"+env.element.parentElement.id).fadeIn(500).css({''left'': e.pageX,''top'' : e.pageY});
+		      menu= $("#menu"+env.element.parentElement.id);
+		      domRect= env.element.getBoundingClientRect();
+		      $("#menu"+env.element.parentElement.id).fadeIn(500).css({''left'': e.pageX- domRect.left ,''top'' : e.pageY-domRect.top });
             previousSelection = selectedText.getRangeAt(0);
             previousSelection.codeComponentOffset =$(e.target).closest("pre")[0].linesOffset;
         } 
