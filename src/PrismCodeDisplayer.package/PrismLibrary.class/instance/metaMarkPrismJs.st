@@ -12,7 +12,7 @@ metaMarkPrismJs
 		return tagString.replace(closeTagRegex, closeTagFunction);
 	}
 
-   
+
 	function insertText(env, insert) {
 		deep= 1;
 		while(deep<= env.deep){
@@ -62,7 +62,7 @@ metaMarkPrismJs
 		}
 	}
 
-  /*count in env.string the number of character in text without 
+  /*count in env.string the number of character in text without
 	 * html balises since env.pos*/
 	function textCount(env, number) {
 		while (number > 0) {
@@ -91,8 +91,6 @@ metaMarkPrismJs
 			var key = Object.keys(data.intervals);
 
 			var env = {string: html};
-			window.envtest =env;
-			env.tab=[];
 
 			for (var i = 0; i < key.length; i++) {
 				var prop = key[i];
@@ -108,13 +106,12 @@ metaMarkPrismJs
 
 				textCount(env, data.intervals[prop].length,env.pos);
 				insertText(env, closeTag(data.intervals[prop].tag));
-				env.tab.push(env.string)
 			}
 			codeNode.innerHTML = env.string;
 		} catch (e) {
 		}
 	}
-	
+
 	Prism.metaMark = Prism.metaMark || {componants: {}};
 	Prism.hooks.add("complete", function (env) {
 		parseAndReplace(env.element);

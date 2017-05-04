@@ -66,9 +66,12 @@ function loadPrism(start, end, codeComponent, options) {
           if(res.html != ""){
      		  codeComponent.childNodes[0].innerHTML = res.html;
           codeComponent.linesOffset = getPrismLinesOffset(res.html, res.charOffset);
+
+                
 				  for(var  i = 0; i< res.intervals.length;i++){
-				    res.intervals[i].start = res.intervals[i].start - getLineOffsetDiff(res.intervals[i].start, codeComponent.linesOffset );
+				    res.intervals[i].length = res.intervals[i].end - res.intervals[i].start;
 				    res.intervals[i].end = res.intervals[i].end - getLineOffsetDiff(res.intervals[i].end, codeComponent.linesOffset );
+				    res.intervals[i].start = res.intervals[i].end - (res.intervals[i].length - getLineOffsetDiffBetween(res.intervals[i].start, res.intervals[i].end, codeComponent.linesOffset));
 			    }
 				  Prism.metaMark.componants[codeComponent.childNodes[0].id] = {intervals:res.intervals, offset: res.charOffset};
 				  Prism.highlightElement(codeComponent.childNodes[0]);
@@ -137,6 +140,10 @@ function getLineOffsetDiff(pos, lineOffsetArray){
     res= lineOffsetArray.length - 1;
   }
   return res;
+}
+
+function  getLineOffsetDiffBetween(start, end, lineOffsetArray){
+  return getLineOffsetDiff(end, lineOffsetArray)-getLineOffsetDiff(start, lineOffsetArray)
 }
 
 function dicotomiqueSearchIndex(arr, start, end, value){
