@@ -61,34 +61,26 @@ function loadPrism(start, end, codeComponent, options) {
         type: "POST",
         data: dataObj,
         success: function (res) {
-          crlfRegex= /\r\n/g;
           res = JSON.parse(res);
           if(res.html != ""){
-     		  codeComponent.childNodes[0].innerHTML = res.html;
-          codeComponent.linesOffset = getPrismLinesOffset(res.html, res.charOffset);
+     		    codeComponent.childNodes[0].innerHTML = res.html;
+            protectCRLF(res, codeComponent);
 
-                
-				  for(var  i = 0; i< res.intervals.length;i++){
-				    res.intervals[i].length = res.intervals[i].end - res.intervals[i].start;
-				    res.intervals[i].end = res.intervals[i].end - getLineOffsetDiff(res.intervals[i].end, codeComponent.linesOffset );
-				    res.intervals[i].start = res.intervals[i].end - (res.intervals[i].length - getLineOffsetDiffBetween(res.intervals[i].start, res.intervals[i].end, codeComponent.linesOffset));
-			    }
-				  Prism.metaMark.componants[codeComponent.childNodes[0].id] = {intervals:res.intervals, offset: res.charOffset};
-				  Prism.highlightElement(codeComponent.childNodes[0]);
-				  eval(codeComponent.dataset.onchangehook);
-				  if(codeComponent.dataset.onloadhook != ""){
-				    eval(codeComponent.dataset.onloadhook);
-				    codeComponent.dataset.onloadhook = "";
+				    Prism.metaMark.componants[codeComponent.childNodes[0].id] = {intervals:res.intervals, offset: res.charOffset};
+				    Prism.highlightElement(codeComponent.childNodes[0]);
+				    eval(codeComponent.dataset.onchangehook);
+				    if(codeComponent.dataset.onloadhook != ""){
+				      eval(codeComponent.dataset.onloadhook);
+				      codeComponent.dataset.onloadhook = "";
+				    }
+
+				    codeComponent.scrollTop = options.scrollValue || (codeComponent.scrollTop - ((start - codeComponent.dataset.firstindex) / (codeComponent.dataset.lastindex - codeComponent.dataset.firstindex)) * $(codeComponent.childNodes[0]).height());
+
+  				  codeComponent.style.counterReset = "linenumber " + (parseInt(codeComponent.dataset.startcountnumber) + start - 1);
+				    codeComponent.dataset.firstindex = res.start;
+				    codeComponent.dataset.lastindex = end;
+				    codeComponent.dataset.lastindexloaded = start;
 				  }
-
-				  codeComponent.scrollTop = options.scrollValue || (codeComponent.scrollTop - ((start - codeComponent.dataset.firstindex) / (codeComponent.dataset.lastindex - codeComponent.dataset.firstindex)) * $(codeComponent.childNodes[0]).height());
-
-				  codeComponent.style.counterReset = "linenumber " + (parseInt(codeComponent.dataset.startcountnumber) + start - 1);
-
-				  codeComponent.dataset.firstindex = res.start;
-				  codeComponent.dataset.lastindex = end;
-				  codeComponent.dataset.lastindexloaded = start;
-				}
         },
         error: function () {
             location.reload();
@@ -99,6 +91,16 @@ function loadPrism(start, end, codeComponent, options) {
    }
 }
 
+function protectCRLF(res, codeComponent){
+  codeComponent.linesOffset = getPrismLinesOffset(res.html, res.charOffset);
+  intervals = res.intervals;
+  for(var  i = 0; i< intervals.length;i++){
+		intervals[i].length = intervals[i].end - intervals[i].start;
+		intervals[i].start = intervals[i].start - getLineOffsetDiff(intervals[i].start, codeComponent.linesOffset );
+	  intervals[i].end = intervals[i].start + (intervals[i].length - getLineOffsetDiffBetween(intervals[i].start, intervals[i].end, codeComponent.linesOffset));
+  }
+}
+
 function getPrismLinesOffset(str, PrismCharOffset){
   linesOffset= [PrismCharOffset];
   charOffset= 0;
@@ -107,6 +109,7 @@ function getPrismLinesOffset(str, PrismCharOffset){
   while(i<str.length){
     if(str[i]== "\r" && str[i+1]== "\n"){
       linesOffset.push(charOffset+PrismCharOffset);
+      i++;
       charOffset++;
     }
     charOffset++;
