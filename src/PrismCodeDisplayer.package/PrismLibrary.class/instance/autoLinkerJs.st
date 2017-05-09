@@ -22,6 +22,19 @@ autoLinkerJs
     form.submit();
 }
 
+function prismNodeHasContent(aNode){
+	return aNode.innerText != null || aNode.textContent != null;
+}
+
+function contentOfNode(aNode){
+	var text = aNode.innerText;
+	if(text != null){
+		return text;
+	} else { 
+		return aNode.textContent;
+	} 
+}
+
 //i am a function that return the number of characters before my node in the <code>
 function textSizeBefore(aNode){
 
@@ -34,7 +47,6 @@ function textSizeBefore(aNode){
 	}
 	
 	var nodes = aNode.parentNode.childNodes;
-	
 	for(var i=0;i<nodes.length ; i++)
 		{ 
 			var node = nodes[i];
@@ -42,9 +54,12 @@ function textSizeBefore(aNode){
 				return size;
 			}
 			else{
-				if(node.innerText == null)
+				if(prismNodeHasContent(node)){
+				  size += contentOfNode(node).length;
+				}
+				else{
 					size += node.length;
-				else size += node.innerText.length;
+				}
 			}
 		}
 	console.log("Error, the function is supposed to find a matching child and to quit");
