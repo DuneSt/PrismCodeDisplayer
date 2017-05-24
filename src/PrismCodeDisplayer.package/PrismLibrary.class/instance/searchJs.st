@@ -79,14 +79,14 @@ Prism.searchBar.initSearchBarShortcuts = function(){
 	$(window).keydown(function(event) {
 	  if(event.ctrlKey && event.shiftKey && event.keyCode == 70) { 
 			Prism.searchBar.toggleBar($(".prism-search-bar"));
-			event.preventDefault(); 
+			event.stopPropagation();
   		}
 	});
 	
 	$(".prism-search-bar input").keydown(function(event) {
 	  if(Prism.searchBar.bindings[event.keyCode]) { 
 			Prism.searchBar.bindings[event.keyCode](event.target);
-			event.preventDefault(); 
+			event.stopPropagation(); 
   		}
 	});
 
