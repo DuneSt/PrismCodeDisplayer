@@ -1,6 +1,6 @@
 rendering
 renderMarker: textInterval on: html
-	| intervalOfCharacters firstLine endLine ratio style top height onClickScript |
+	| intervalOfCharacters firstLine endLine ratio style top height |
 	intervalOfCharacters := textInterval interval.
 	firstLine := self sourceCode lineNumberCorrespondingToIndex: intervalOfCharacters first.
 	endLine := self sourceCode lineNumberCorrespondingToIndex: intervalOfCharacters last.
@@ -12,8 +12,6 @@ renderMarker: textInterval on: html
 			{(textInterval miniMapColor asRGBA: 0.33).
 			(top printShowingDecimalPlaces: 2).
 			(height printShowingDecimalPlaces: 2)}.
-	onClickScript := 'goToLine({1},minimapScrollableFor(this).get(0))' format: {firstLine}.
 	html div
 		class: 'minimap-marker minimap-bar-element';
-		style: style;
-		onClick: onClickScript
+		style: style
