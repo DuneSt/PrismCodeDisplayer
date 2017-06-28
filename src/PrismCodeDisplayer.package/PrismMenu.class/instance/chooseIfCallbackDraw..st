@@ -7,7 +7,6 @@ chooseIfCallbackDraw: html
 					self callback
 						cull: (json at: #start)
 						cull: (json at: #end)
-						cull: (json at: #previous)
 						cull: html ] ]
 		ifTrue: [ 
 			(html jQuery id: self drawHTMLOn) load
@@ -15,5 +14,4 @@ chooseIfCallbackDraw: html
 					self callback
 						cull: (json at: #start)
 						cull: (json at: #end)
-						cull: (json at: #previous)
 						cull: r ] ]

@@ -167,9 +167,10 @@ function dicotomiqueSearchIndex(arr, start, end, value){
 Prism.pharo ={};
 
 Prism.pharo.getSpecialTextRange= function(){
-	return { start : previousSelection.start,
-		end: previousSelection.end-1,
-		previous: "textdeprecated"}
+	return { 
+	   start : previousSelection.start,
+		end: previousSelection.end-1
+	}
 }
 
 function initPrismComponents(){
