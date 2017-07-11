@@ -14,7 +14,8 @@
 		"menusWithAction",
 		"jsOnLoadHook",
 		"jsOnChangeHook",
-		"startCountNumber"
+		"startCountNumber",
+		"lastIndexLoad"
 	],
 	"name" : "PrismComponent",
 	"type" : "normal"

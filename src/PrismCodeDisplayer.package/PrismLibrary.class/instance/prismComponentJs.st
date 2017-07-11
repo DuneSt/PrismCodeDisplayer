@@ -175,7 +175,9 @@ Prism.pharo.getSpecialTextRange= function(){
 
 function initPrismComponents(){
 	prismAutoLoad();
-   $(".prismComponent").each(function(index, codeComponent){loadPrism(0, 400, codeComponent)});
+   $(".prismComponent").each(function(index, codeComponent){
+	lastindex= parseInt(codeComponent.dataset.lastindexloaded);
+	loadPrism(lastindex-400, lastindex, codeComponent)});
 }
 
 window.addEventListener("load", function () {
