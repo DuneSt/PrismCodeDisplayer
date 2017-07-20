@@ -68,11 +68,19 @@ Prism.searchBar.toggleSearchBarFor= function(aClickElement){
 /*
 *  This method show/hide a search bar and do some actions relative to the toggle of the search bar.
 */
-Prism.searchBar.toggleBar= function(searchBar){
-	searchBar.animate({width:''toggle''},350);
-	if(searchBar.css("display") != "none"){
-		searchBar.find("input").focus();
-	}
+Prism.searchBar.toggleBar = function(searchBar){
+	searchBar.animate({width:''toggle''},350, function(){
+		if(searchBar.css("display") != "none"){
+			Prism.searchBar.setIconTo(searchBar, "cross");
+			searchBar.find("input").focus();
+		} else { 
+			Prism.searchBar.setIconTo(searchBar, "search");
+		}
+	});
+}
+
+Prism.searchBar.setIconTo = function(searchBar, aString){
+	searchBar.closest(".prism-search-bar-container").find(".prism-search-bar__toogle-icon").find("img").attr("src", "/files/PrismLibrary/" + aString + ".png");
 }
 
 Prism.searchBar.initSearchBarShortcuts = function(){

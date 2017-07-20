@@ -5,6 +5,7 @@ renderSearchBarOn: html
 		attributeAt: 'autocomplete' put: #off;
 		onChange: (self onTextChangeOn: html);
 		with: ''.
+	html image url: (PrismLibrary urlOf: 'search.png').
 	html button
 		onClick: self onClickPreviousElement;
 		with: 'prev'.

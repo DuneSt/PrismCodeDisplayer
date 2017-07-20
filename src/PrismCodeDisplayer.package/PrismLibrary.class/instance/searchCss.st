@@ -27,6 +27,7 @@ searchCss
 	width: 15px;
 	cursor: pointer;
 	padding: 8px;
+	opacity: 0.7;
 }
 	
 .prism-search-bar > * {

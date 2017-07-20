@@ -14,6 +14,7 @@ renderContentOn: html
 										with: [ self renderSearchBarOn: html ].	"Let insecable space in the following shortcut display."
 									html div
 										attributeAt: 'tooltip' put: 'Ctrl + Shift + f';
+										class: 'prism-search-bar__toogle-icon';
 										with: [ 
 													html image
 														onClick: (JSStream on: 'Prism.searchBar.toggleSearchBarFor(this);');
