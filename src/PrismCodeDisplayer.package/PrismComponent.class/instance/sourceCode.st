@@ -1,3 +1,3 @@
 accessing
 sourceCode
-	^ sourceCode
+	^ sourceCodeCache ifNil: [ sourceCodeCache := sourceCode value ]

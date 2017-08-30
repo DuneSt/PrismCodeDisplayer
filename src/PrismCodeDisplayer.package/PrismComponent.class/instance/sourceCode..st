@@ -1,3 +1,4 @@
 accessing
 sourceCode: anObject
-	sourceCode := anObject
+	sourceCode := anObject.
+	self resetCache

@@ -15,7 +15,9 @@
 		"jsOnLoadHook",
 		"jsOnChangeHook",
 		"startCountNumber",
-		"lastIndexLoad"
+		"lastIndexLoad",
+		"sourceCodeCache",
+		"lineCountCache"
 	],
 	"name" : "PrismComponent",
 	"type" : "normal"

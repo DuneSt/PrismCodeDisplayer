@@ -1,6 +1,7 @@
 rendering
 renderContentOn: html
 	| cb component |
+	self resetCache.
 	self ensureIdFrom: html.
 	component := html preformatted
 		class: 'prismComponent';

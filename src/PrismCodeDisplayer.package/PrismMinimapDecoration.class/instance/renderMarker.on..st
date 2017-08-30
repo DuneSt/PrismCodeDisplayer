@@ -4,7 +4,7 @@ renderMarker: textInterval on: html
 	intervalOfCharacters := textInterval interval.
 	firstLine := self sourceCode lineNumberCorrespondingToIndex: intervalOfCharacters first.
 	endLine := self sourceCode lineNumberCorrespondingToIndex: intervalOfCharacters last.
-	ratio := 100.0 / self totalLineCount.
+	ratio := 100.0 / self lineCount.
 	top := (firstLine - 1) * ratio.	"e.g. line 1 corresponds to 0%"
 	height := (endLine - firstLine + 1) * ratio.	"e.g. 1-line interval corresponds to <ratio>%"
 	style := 'background-color:{1};top:{2}%;height:{3}%;'

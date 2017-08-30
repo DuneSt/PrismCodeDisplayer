@@ -2,7 +2,7 @@ callback
 setDataForCallBack: div html: html scrollCb: scrollCb clickCb: clickCb
 	self flag: #TODO.	"Remove hard coded values"
 	div
-		attributeAt: #'data-totallines' put: self sourceCode value lineCount asString;
+		attributeAt: #'data-totallines' put: self lineCount asString;
 		attributeAt: #'data-url' put: html actionUrl asString;
 		attributeAt: #'data-cbId' put: scrollCb asString;
 		attributeAt: #'data-lclickCb' put: clickCb;
