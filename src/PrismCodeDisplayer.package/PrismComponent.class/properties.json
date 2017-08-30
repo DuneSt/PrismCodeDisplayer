@@ -2,7 +2,10 @@
 	"commentStamp" : "<historical>",
 	"super" : "WAComponent",
 	"category" : "PrismCodeDisplayer-Component",
-	"classinstvars" : [ ],
+	"classinstvars" : [
+		"developpement",
+		"development"
+	],
 	"pools" : [ ],
 	"classvars" : [ ],
 	"instvars" : [
