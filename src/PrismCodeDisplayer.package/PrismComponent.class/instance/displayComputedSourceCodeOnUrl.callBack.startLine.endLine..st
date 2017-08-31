@@ -15,4 +15,4 @@ displayComputedSourceCodeOnUrl: url callBack: aCallBack startLine: start endLine
 	(#start -> start).
 	(#intervals -> (self obtainSortedJsInfoWithIntervalsForUrl: url between: offset and: endCopy))} ]
 		on: Error
-		do: [:error | self isDevelopment ifTrue:[error pass] ifFalse: [{(#html -> 'Sorry but an error occured')} ]]) asDictionary
+		do: [:error | self isDevelopment ifTrue:[ error pass] ifFalse: [{(#html -> 'Sorry but an error occured')} ]]) asDictionary
