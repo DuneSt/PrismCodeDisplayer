@@ -1,3 +1,3 @@
 javascript
-onClickPreviousElement
+jsOnClickPreviousElement
 	^ 'Prism.searchBar.prevElement( event.target)'

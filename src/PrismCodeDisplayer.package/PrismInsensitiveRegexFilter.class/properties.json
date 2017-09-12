@@ -1,14 +1,11 @@
 {
 	"commentStamp" : "",
-	"super" : "PrismAbstractDecoration",
+	"super" : "PrismAbstractFilter",
 	"category" : "PrismCodeDisplayer-Component",
 	"classinstvars" : [ ],
 	"pools" : [ ],
 	"classvars" : [ ],
-	"instvars" : [
-		"lastSearchResult",
-		"searchStrategy"
-	],
-	"name" : "PrismSearchDecoration",
+	"instvars" : [ ],
+	"name" : "PrismInsensitiveRegexFilter",
 	"type" : "normal"
 }

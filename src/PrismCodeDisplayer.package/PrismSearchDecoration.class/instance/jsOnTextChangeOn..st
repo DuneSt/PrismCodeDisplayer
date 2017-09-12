@@ -1,5 +1,5 @@
 javascript
-onTextChangeOn: html
+jsOnTextChangeOn: html
 	^ html jQuery getJson
 		callback: [ :aStringRegex | self linesMatcheTo: aStringRegex ] value: (JSStream on: 'event.target.value');
 		text: [ :stream | stream json: self lastSearchResult ];
