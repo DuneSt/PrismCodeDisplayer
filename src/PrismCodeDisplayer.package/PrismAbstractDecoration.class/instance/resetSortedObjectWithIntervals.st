@@ -1,0 +1,3 @@
+action
+resetSortedObjectWithIntervals
+	self decoratedComponent computeSortedObjectWithIntervals

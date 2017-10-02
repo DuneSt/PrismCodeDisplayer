@@ -20,7 +20,8 @@
 		"startCountNumber",
 		"lastIndexLoad",
 		"sourceCodeCache",
-		"lineCountCache"
+		"lineCountCache",
+		"cacheSortedObjectWithIntervals"
 	],
 	"name" : "PrismComponent",
 	"type" : "normal"
