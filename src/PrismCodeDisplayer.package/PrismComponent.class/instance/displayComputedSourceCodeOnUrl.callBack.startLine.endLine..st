@@ -7,7 +7,7 @@ displayComputedSourceCodeOnUrl: url callBack: aCallBack startLine: start endLine
 	self intervals: self obtainSortedObjectWithIntervals.
 	endCopy := (string intervalOfLine: end) last.
 	endCopy = 0
-		ifTrue: [ endCopy := string size -1 ].
+		ifTrue: [ endCopy := string size ].
 	offset := (string intervalOfLine: start) first.
 	^ ([ 
 	{(#html -> (self protectCode: (string copyFrom: offset to: endCopy))).
@@ -15,4 +15,7 @@ displayComputedSourceCodeOnUrl: url callBack: aCallBack startLine: start endLine
 	(#start -> start).
 	(#intervals -> (self obtainSortedJsInfoWithIntervalsForUrl: url between: offset and: endCopy))} ]
 		on: Error
-		do: [:error | self isDevelopment ifTrue:[ error pass] ifFalse: [{(#html -> 'Sorry but an error occured')} ]]) asDictionary
+		do: [ :error | 
+			self isDevelopment
+				ifTrue: [ error pass ]
+				ifFalse: [ {(#html -> 'Sorry but an error occured')} ] ]) asDictionary
