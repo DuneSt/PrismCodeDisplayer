@@ -1,4 +1,4 @@
-uploaded
+search
 searchCss
 	^ '
 .prism-search-container{

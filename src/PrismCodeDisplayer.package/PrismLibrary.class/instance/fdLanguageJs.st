@@ -1,4 +1,4 @@
-uploaded
+languages highlights
 fdLanguageJs
 	^ 'Prism.languages.fourD = {comment:[{pattern:/(^|[^\\])\/\*[\w\W]*?\*\//,lookbehind:!0},{pattern:/(^|[^\\:])\/\/.*/,lookbehind:!0}],
 string:/(["''])(\\(?:\r\n|[\s\S])|(?!\1)[^\\\r\n])*\1/,

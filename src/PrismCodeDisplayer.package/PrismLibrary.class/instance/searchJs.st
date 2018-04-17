@@ -1,4 +1,4 @@
-uploaded
+search
 searchJs
 	^ '
 Prism.searchBar ={intervals:{}};

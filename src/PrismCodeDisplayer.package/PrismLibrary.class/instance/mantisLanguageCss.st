@@ -1,4 +1,4 @@
-uploaded
+languages highlights
 mantisLanguageCss
 	^ '.comment.mantiscomment{
 	color: blue	

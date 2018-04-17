@@ -3,7 +3,7 @@ displayComputedSourceCodeOnUrl: url callBack: aCallBack startLine: start endLine
 	| string endCopy offset |
 	string := self sourceCode.
 	string isEmptyOrNil
-		ifTrue: [ ^ Dictionary with: #html -> 'Error: No source to display.' ].
+		ifTrue: [ ^ Dictionary with: #html -> 'Error: No source to display.' with: #intervals -> {} ].
 	self intervals: self obtainSortedObjectWithIntervals.
 	endCopy := (string intervalOfLine: end) last.
 	endCopy = 0

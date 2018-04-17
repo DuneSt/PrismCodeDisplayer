@@ -31,19 +31,25 @@ function loadMinimap(minimapContainer) {
 		type: "POST",
 		data: dataObj,
 		success: function (res) {
-
+		
 			// load markers in DOM
 			$(minimapContainer).find(".minimap-bar").replaceWith(res);
 
-			// initialize scroll marker
-			var scrollMarker = $(minimapContainer).find(".minimap-scroll-marker");
-			var scrollable = $(minimapContainer).find(".minimap-code > pre");
-			syncScrollMarker(scrollMarker, scrollable);
 			
-			// move marker when scrolled
-			scrollable.scroll(function(e) {
+			var scrollable = $(minimapContainer).find(".minimap-code > pre");
+			
+			//If there was an error while getting the source code, there is no scrollable. Thus, no need to do anything more.
+			if(!scrollable==null){
+			
+				// initialize scroll marker
+				var scrollMarker = $(minimapContainer).find(".minimap-scroll-marker");
 				syncScrollMarker(scrollMarker, scrollable);
-			});
+			
+				// move marker when scrolled
+				scrollable.scroll(function(e) {
+					syncScrollMarker(scrollMarker, scrollable);
+				});
+			}
 
 		},
 		error: function () {
