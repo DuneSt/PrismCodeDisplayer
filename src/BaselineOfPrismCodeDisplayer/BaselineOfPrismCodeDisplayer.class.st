@@ -16,11 +16,12 @@ BaselineOfPrismCodeDisplayer >> baseline: spec [
 			
 			"Dependencies"
 			self
-				seaside3: spec.
+				seaside3: spec;
+				neoJSON: spec.
 
 			"Packages"
 			spec
-				package: #'PrismCodeDisplayer-Core' with: [ spec requires: #('PrismCodeDisplayer-Library') ];
+				package: #'PrismCodeDisplayer-Core' with: [ spec requires: #('NeoJSON' 'PrismCodeDisplayer-Library') ];
 				package: #'PrismCodeDisplayer-Library' with: [ spec requires: #('Seaside3') ];
 				package: #'PrismCodeDisplayer-Demo' with: [ spec requires: #('PrismCodeDisplayer-Core') ];
 				package: #'PrismCodeDisplayer-Core-Tests' with: [ spec requires: #('PrismCodeDisplayer-Core') ].
@@ -32,6 +33,16 @@ BaselineOfPrismCodeDisplayer >> baseline: spec [
 				group: 'default' with: #('core' 'demo' 'tests');
 				group: 'demo' with: #('PrismCodeDisplayer-Demo');
 				group: 'tests' with: #('PrismCodeDisplayer-Core-Tests') ]
+]
+
+{ #category : #dependencies }
+BaselineOfPrismCodeDisplayer >> neoJSON: spec [
+	spec
+		configuration: 'NeoJSON'
+		with: [ spec
+				className: 'ConfigurationOfNeoJSON';
+				version: #stable;
+				repository: 'http://smalltalkhub.com/mc/SvenVanCaekenberghe/Neo/main' ]
 ]
 
 { #category : #accessing }
