@@ -51,6 +51,17 @@ testing'.
 ]
 
 { #category : #tests }
+PrismComponentUnitTest >> testPrismIntervalOfLine [
+	| string |
+	string := '123
+56
+89'.
+	self assert: (string prismIntervalOfLine: 1) equals: (1 to: 4).
+	self assert: (string prismIntervalOfLine: 2) equals: (5 to: 7).
+	self assert: (string prismIntervalOfLine: 3) equals: (8 to: 9)
+]
+
+{ #category : #tests }
 PrismComponentUnitTest >> testProtectCode [
 	"test to try to solve testHtmlResponseWithProtectedCode fail"
 

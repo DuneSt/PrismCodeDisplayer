@@ -81,8 +81,8 @@ PrismComponent >> addMinimapDemoMarkersFrom: startLine to: endLine [
 		(PrismComponentLinkStrategy new
 			objects: lineIntervals;
 			positionFunction: [:interval | { 
-				(self sourceCode intervalOfLine: interval first - startLine) first to: 
-				(self sourceCode intervalOfLine: interval last - startLine) last } ];
+				(self sourceCode prismIntervalOfLine: interval first - startLine) first to: 
+				(self sourceCode prismIntervalOfLine: interval last - startLine) last } ];
 			callback: [:interval | ];
 			style: [:interval | ];
 			miniMapColor: [:interval | Color random ])
@@ -195,10 +195,10 @@ PrismComponent >> displayComputedSourceCodeOnUrl: url callBack: aCallBack startL
 	string isEmptyOrNil
 		ifTrue: [ ^ Dictionary with: #html -> 'Error: No source to display.' with: #intervals -> {} ].
 	self intervals: self obtainSortedObjectWithIntervals.
-	endCopy := (string intervalOfLine: end) last.
+	endCopy := (string prismIntervalOfLine: end) last.
 	endCopy = 0
 		ifTrue: [ endCopy := string size ].
-	offset := (string intervalOfLine: start) first.
+	offset := (string prismIntervalOfLine: start) first.
 	^ ([ 
 	{(#html -> (self protectCode: (string copyFrom: offset to: endCopy))).
 	(#charOffset -> offset).
