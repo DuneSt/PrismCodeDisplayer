@@ -20,16 +20,15 @@ BaselineOfPrismCodeDisplayer >> baseline: spec [
 
 			"Packages"
 			spec
-				package: #'PrismCodeDisplayer-Core' with: [ spec requires: #('Seaside3') ];
+				package: #'PrismCodeDisplayer-Core' with: [ spec requires: #('PrismCodeDisplayer-Library') ];
 				package: #'PrismCodeDisplayer-Library' with: [ spec requires: #('Seaside3') ];
-				package: #'PrismCodeDisplayer-Demo' with: [ spec requires: #('PrismCodeDisplayer-Core' 'PrismCodeDisplayer-Library') ];
+				package: #'PrismCodeDisplayer-Demo' with: [ spec requires: #('PrismCodeDisplayer-Core') ];
 				package: #'PrismCodeDisplayer-Core-Tests' with: [ spec requires: #('PrismCodeDisplayer-Core') ].
 
 			"Groups"
 			spec
 				group: 'all' with: #('default');
-				group: 'core' with: #('PrismCodeDisplayer-Core' 'PrismCodeDisplayer-Library');
-				group: 'core-without-library' with: #('PrismCodeDisplayer-Core');
+				group: 'core' with: #('PrismCodeDisplayer-Core');
 				group: 'default' with: #('core' 'demo' 'tests');
 				group: 'demo' with: #('PrismCodeDisplayer-Demo');
 				group: 'tests' with: #('PrismCodeDisplayer-Core-Tests') ]
