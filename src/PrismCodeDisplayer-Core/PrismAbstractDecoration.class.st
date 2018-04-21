@@ -1,7 +1,7 @@
 Class {
 	#name : #PrismAbstractDecoration,
 	#superclass : #WADecoration,
-	#category : 'PrismCodeDisplayer-Component'
+	#category : #'PrismCodeDisplayer-Core-Component'
 }
 
 { #category : #accessing }

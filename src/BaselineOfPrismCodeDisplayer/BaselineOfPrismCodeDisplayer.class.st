@@ -1,3 +1,6 @@
+"
+I am a baseline of ChartJs for Seaside. Read more at: https://github.com/DuneSt/PrismCodeDisplayer
+"
 Class {
 	#name : #BaselineOfPrismCodeDisplayer,
 	#superclass : #BaselineOf,
@@ -9,33 +12,37 @@ BaselineOfPrismCodeDisplayer >> baseline: spec [
 	<baseline>
 	spec
 		for: #common
-		do: [ self seaside30: spec.
-			spec package: #PrismCodeDisplayer with: [ spec requires: #('Seaside30') ] ]
+		do: [ 
+			
+			"Dependencies"
+			self
+				seaside3: spec.
+
+			"Packages"
+			spec
+				package: #'PrismCodeDisplayer-Core' with: [ spec requires: #('Seaside3') ];
+				package: #'PrismCodeDisplayer-Library' with: [ spec requires: #('Seaside3') ];
+				package: #'PrismCodeDisplayer-Demo' with: [ spec requires: #('PrismCodeDisplayer-Core' 'PrismCodeDisplayer-Library') ];
+				package: #'PrismCodeDisplayer-Core-Tests' with: [ spec requires: #('PrismCodeDisplayer-Core') ].
+
+			"Groups"
+			spec
+				group: 'all' with: #('default');
+				group: 'core' with: #('PrismCodeDisplayer-Core' 'PrismCodeDisplayer-Library');
+				group: 'core-without-library' with: #('PrismCodeDisplayer-Core');
+				group: 'default' with: #('core' 'demo' 'tests');
+				group: 'demo' with: #('PrismCodeDisplayer-Demo');
+				group: 'tests' with: #('PrismCodeDisplayer-Core-Tests') ]
 ]
 
 { #category : #accessing }
 BaselineOfPrismCodeDisplayer >> projectClass [
-	self flag: #clean.	"This is a hack that need to be remove after the default version of Metacello includes Cypress suport."
-	^ [ #MetacelloCypressBaselineProject asClass ]
+	^ [ self class environment at: #MetacelloCypressBaselineProject ]
 		on: NotFound
-		do: [ Metacello new
-				baseline: 'Metacello';
-				repository: 'github://dalehenrich/metacello-work:master/repository';
-				get.
-			Metacello new
-				baseline: 'Metacello';
-				repository: 'github://dalehenrich/metacello-work:master/repository';
-				onConflict: [ :ex | ex allow ];
-				load.
-			self projectClass ]
+		do: [ super projectClass ]
 ]
 
 { #category : #dependencies }
-BaselineOfPrismCodeDisplayer >> seaside30: spec [
-	spec
-		configuration: 'Seaside30'
-		with: [ spec
-				className: 'ConfigurationOfSeaside3';
-				version: #'release3.2';
-				repository: 'http://smalltalkhub.com/mc/Seaside/MetacelloConfigurations/main' ]
+BaselineOfPrismCodeDisplayer >> seaside3: spec [
+	spec baseline: 'Seaside3' with: [ spec repository: 'github://SeasideSt/Seaside/repository' ]
 ]

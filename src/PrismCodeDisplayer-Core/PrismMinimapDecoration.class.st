@@ -4,7 +4,7 @@ I can decorate a PrismComponent to attach a vertical bar with markers.
 Class {
 	#name : #PrismMinimapDecoration,
 	#superclass : #PrismAbstractDecoration,
-	#category : 'PrismCodeDisplayer-Minimap'
+	#category : #'PrismCodeDisplayer-Core-Minimap'
 }
 
 { #category : #accessing }

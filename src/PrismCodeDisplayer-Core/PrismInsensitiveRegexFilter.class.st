@@ -1,7 +1,7 @@
 Class {
 	#name : #PrismInsensitiveRegexFilter,
 	#superclass : #PrismAbstractFilter,
-	#category : 'PrismCodeDisplayer-Component'
+	#category : #'PrismCodeDisplayer-Core-Component'
 }
 
 { #category : #accessing }

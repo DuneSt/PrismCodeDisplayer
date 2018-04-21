@@ -5,7 +5,7 @@ Class {
 		'lastSearchResult',
 		'searchStrategy'
 	],
-	#category : 'PrismCodeDisplayer-Component'
+	#category : #'PrismCodeDisplayer-Core-Component'
 }
 
 { #category : #hook }

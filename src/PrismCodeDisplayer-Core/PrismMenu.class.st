@@ -8,7 +8,7 @@ Class {
 		'json',
 		'target'
 	],
-	#category : 'PrismCodeDisplayer-Component'
+	#category : #'PrismCodeDisplayer-Core-Component'
 }
 
 { #category : #accessing }

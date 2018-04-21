@@ -1,7 +1,7 @@
 Class {
 	#name : #PrismComponentUnitTest,
 	#superclass : #TestCase,
-	#category : 'PrismCodeDisplayer-Test'
+	#category : #'PrismCodeDisplayer-Core-Tests'
 }
 
 { #category : #tests }

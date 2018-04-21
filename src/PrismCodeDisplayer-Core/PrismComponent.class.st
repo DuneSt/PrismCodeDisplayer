@@ -25,7 +25,7 @@ Class {
 		'developpement',
 		'development'
 	],
-	#category : 'PrismCodeDisplayer-Component'
+	#category : #'PrismCodeDisplayer-Core-Component'
 }
 
 { #category : #'as yet unclassified' }

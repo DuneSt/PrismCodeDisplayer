@@ -1,6 +1,6 @@
 Extension { #name : #Color }
 
-{ #category : #'*PrismCodeDisplayer' }
+{ #category : #'*PrismCodeDisplayer-Core' }
 Color >> asRGBA: anAlpha [
 	^ String
 		streamContents: [ :s | 

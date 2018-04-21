@@ -8,7 +8,7 @@ Class {
 		'miniMapColor',
 		'condition'
 	],
-	#category : 'PrismCodeDisplayer-Component'
+	#category : #'PrismCodeDisplayer-Core-Component'
 }
 
 { #category : #display }

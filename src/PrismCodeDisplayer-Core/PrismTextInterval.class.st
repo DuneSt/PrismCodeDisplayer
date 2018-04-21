@@ -6,7 +6,7 @@ Class {
 		'object',
 		'interval'
 	],
-	#category : 'PrismCodeDisplayer-Component'
+	#category : #'PrismCodeDisplayer-Core-Component'
 }
 
 { #category : #callback }

@@ -1,7 +1,7 @@
 Class {
 	#name : #PrismAbstractFilter,
 	#superclass : #Object,
-	#category : 'PrismCodeDisplayer-Component'
+	#category : #'PrismCodeDisplayer-Core-Component'
 }
 
 { #category : #accessing }

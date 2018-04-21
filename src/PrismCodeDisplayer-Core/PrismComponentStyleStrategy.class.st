@@ -1,7 +1,7 @@
 Class {
 	#name : #PrismComponentStyleStrategy,
 	#superclass : #PrismComponentStrategy,
-	#category : 'PrismCodeDisplayer-Component'
+	#category : #'PrismCodeDisplayer-Core-Component'
 }
 
 { #category : #display }
