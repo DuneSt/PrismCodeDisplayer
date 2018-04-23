@@ -92,7 +92,7 @@ PrismComponentUnitTest >> testSearchCode [
 	component := PrismSearchDecoration new
 		setNext:
 				(PrismComponent new
-						sourceCode: PrismDemos new codeDemoPrism;
+						sourceCode: PrismDemoRoot new codeDemoPrism;
 						language: #javascript;
 						yourself);
 		yourself.

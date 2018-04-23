@@ -2,7 +2,7 @@
 I am a litte demo for PrismComponent
 "
 Class {
-	#name : #PrismDemos,
+	#name : #PrismDemoRoot,
 	#superclass : #WAComponent,
 	#instVars : [
 		'selectedMessage',
@@ -10,21 +10,19 @@ Class {
 		'message',
 		'selection'
 	],
-	#category : 'PrismCodeDisplayer-Demo'
+	#category : #'PrismCodeDisplayer-Demo'
 }
 
 { #category : #initialization }
-PrismDemos class >> initialize [
-	| app |
-	app := WAAdmin register: self asApplicationAt: 'PrismDemo'.
-	
-	app
+PrismDemoRoot class >> initialize [
+	WAAdmin applicationDefaults removeParent: WADevelopmentConfiguration instance.
+	(WAAdmin register: self asApplicationAt: 'PrismDemo')
 		addLibrary: PrismLibrary;
-		addLibrary: JQDeploymentLibrary.
+		addLibrary: JQDeploymentLibrary
 ]
 
 { #category : #rendering }
-PrismDemos >> codeDemoPrism [
+PrismDemoRoot >> codeDemoPrism [
   ^'
 //this is a element decorated by a PrismComponentStyleStrategy
 
@@ -814,11 +812,19 @@ Prism.languages.js = Prism.languages.javascript;
 ]
 
 { #category : #rendering }
-PrismDemos >> renderContentOn: html [
+PrismDemoRoot >> renderContentOn: html [
+	html div
+		class: 'prism-demo';
+		with: [ self renderDemoListOn: html.
+			self renderCurrentDemoOn: html ]
+]
+
+{ #category : #rendering }
+PrismDemoRoot >> renderCurrentDemoOn: html [
 	| action |
 	html div id: 'messageContainer'.
 	selection := 22 to: 81.
-	method ifNil: [ method := PrismDemos methodNamed: #codeDemoPrism ].
+	method ifNil: [ method := PrismDemoRoot methodNamed: #codeDemoPrism ].
 	self renderMessage: html.
 	action := [ :startPos :endPos :selectedText :htm | 
 	selection := startPos to: endPos.
@@ -829,12 +835,13 @@ PrismDemos >> renderContentOn: html [
 			((PrismComponent new
 				sourceCode: [ method sourceCode ];
 				addStrategy:
-						(PrismComponentLinkStrategy new
-								objects: ('function ?[^ (]*\([^)]*\)' asRegex matchesIn: method sourceCode);
-								positionFunction: [ :messageSent | method sourceCode allRangesOfSubstring: messageSent ];
-								callback: [ :messageSent | method := messageSent implementors atRandom ];
-								style: [ :o |  ];
-								miniMapColor: [ :object | Color random ]);
+					(PrismComponentLinkStrategy new
+						objects: ('function ?[^ (]*\([^)]*\)' asRegex matchesIn: method sourceCode);
+						positionFunction: [ :messageSent | method sourceCode allRangesOfSubstring: messageSent ];
+						callback:
+								[ :messageSent | method := messageSent asSymbol implementors atRandom ];
+						style: [ :o |  ];
+						miniMapColor: [ :object | Color random ]);
 				language: #javascript)
 				addStrategy:
 						(PrismComponentStyleStrategy new
@@ -859,7 +866,14 @@ PrismDemos >> renderContentOn: html [
 ]
 
 { #category : #rendering }
-PrismDemos >> renderMessage: html [
+PrismDemoRoot >> renderDemoListOn: html [
+	html div
+		class: 'prism-demo-list';
+		with: [ html unorderedList: [ PrismAbstractDemo allSubclasses do: [ :each | html listItem: each title ] ] ]
+]
+
+{ #category : #rendering }
+PrismDemoRoot >> renderMessage: html [
 	message
 		ifNotNil: [ 
 			html text: 'Selection: ' , selection asString.
@@ -867,4 +881,23 @@ PrismDemos >> renderMessage: html [
 			html preformatted: message.
 			html break.
 			html preformatted: (method sourceCode copyFrom: selection first to: selection last) ]
+]
+
+{ #category : #hooks }
+PrismDemoRoot >> style [
+	^ 'body, html{
+	margin: 0;
+	height: 100%;
+	width: 100%;
+}
+	
+.prism-demo{
+	display: flex;
+	height: 100%;
+	width: 100%;
+}
+
+.prism-demo-list{
+	width: 200px;
+}'
 ]
