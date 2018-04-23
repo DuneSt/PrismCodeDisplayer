@@ -30,7 +30,7 @@ PrismComponentStrategy >> condition: anObject [
 PrismComponentStrategy >> intervals [
 	^ self objects value
 		flatCollect: [ :anObject | 
-			(self positionFunction value: anObject) asCollection
+			(self positionFunction value: anObject) asOrderedCollection
 				collect: [ :anInterval | 
 					PrismTextInterval new
 						strategy: self;

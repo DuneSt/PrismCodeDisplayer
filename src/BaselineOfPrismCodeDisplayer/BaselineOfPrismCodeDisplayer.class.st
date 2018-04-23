@@ -17,14 +17,15 @@ BaselineOfPrismCodeDisplayer >> baseline: spec [
 			"Dependencies"
 			self
 				seaside3: spec;
-				neoJSON: spec.
+				neoJSON: spec;
+				mocketry: spec.
 
 			"Packages"
 			spec
 				package: #'PrismCodeDisplayer-Core' with: [ spec requires: #('NeoJSON' 'PrismCodeDisplayer-Library') ];
 				package: #'PrismCodeDisplayer-Library' with: [ spec requires: #('Seaside3') ];
 				package: #'PrismCodeDisplayer-Demo' with: [ spec requires: #('PrismCodeDisplayer-Core') ];
-				package: #'PrismCodeDisplayer-Core-Tests' with: [ spec requires: #('PrismCodeDisplayer-Core') ].
+				package: #'PrismCodeDisplayer-Core-Tests' with: [ spec requires: #('PrismCodeDisplayer-Core' 'Mocketry') ].
 
 			"Groups"
 			spec
@@ -33,6 +34,11 @@ BaselineOfPrismCodeDisplayer >> baseline: spec [
 				group: 'default' with: #('core' 'demo' 'tests');
 				group: 'demo' with: #('PrismCodeDisplayer-Demo');
 				group: 'tests' with: #('PrismCodeDisplayer-Core-Tests') ]
+]
+
+{ #category : #dependencies }
+BaselineOfPrismCodeDisplayer >> mocketry: spec [
+	spec baseline: 'Mocketry' with: [ spec repository: 'github://dionisiydk/Mocketry:v4.0.x' ]
 ]
 
 { #category : #dependencies }
