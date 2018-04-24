@@ -2,29 +2,24 @@
 I am a litte demo for PrismComponent
 "
 Class {
-	#name : #PrismDemos,
+	#name : #PrismDemoRoot,
 	#superclass : #WAComponent,
 	#instVars : [
-		'selectedMessage',
-		'method',
-		'message',
-		'selection'
+		'currentDemo'
 	],
-	#category : 'PrismCodeDisplayer-Demo'
+	#category : #'PrismCodeDisplayer-Demo'
 }
 
 { #category : #initialization }
-PrismDemos class >> initialize [
-	| app |
-	app := WAAdmin register: self asApplicationAt: 'PrismDemo'.
-	
-	app
+PrismDemoRoot class >> initialize [
+	WAAdmin applicationDefaults removeParent: WADevelopmentConfiguration instance.
+	(WAAdmin register: self asApplicationAt: 'PrismDemo')
 		addLibrary: PrismLibrary;
-		addLibrary: JQDeploymentLibrary.
+		addLibrary: JQDeploymentLibrary
 ]
 
-{ #category : #rendering }
-PrismDemos >> codeDemoPrism [
+{ #category : #resources }
+PrismDemoRoot class >> longJsDemoCode [
   ^'
 //this is a element decorated by a PrismComponentStyleStrategy
 
@@ -813,58 +808,192 @@ Prism.languages.js = Prism.languages.javascript;
 '
 ]
 
-{ #category : #rendering }
-PrismDemos >> renderContentOn: html [
-	| action |
-	html div id: 'messageContainer'.
-	selection := 22 to: 81.
-	method ifNil: [ method := PrismDemos methodNamed: #codeDemoPrism ].
-	self renderMessage: html.
-	action := [ :startPos :endPos :selectedText :htm | 
-	selection := startPos to: endPos.
-	message := selectedText.
-	self renderMessage: htm ].
-	html
-		render:
-			((PrismComponent new
-				sourceCode: [ method sourceCode ];
-				addStrategy:
-						(PrismComponentLinkStrategy new
-								objects: ('function ?[^ (]*\([^)]*\)' asRegex matchesIn: method sourceCode);
-								positionFunction: [ :messageSent | method sourceCode allRangesOfSubstring: messageSent ];
-								callback: [ :messageSent | method := messageSent implementors atRandom ];
-								style: [ :o |  ];
-								miniMapColor: [ :object | Color random ]);
-				language: #javascript)
-				addStrategy:
-						(PrismComponentStyleStrategy new
-								objects: {'anObjectForPositionFunction'};
-								positionFunction: [ :messageSent | {selection} ];
-								style: [ :o | 'style="background: #e9d3fe"' ]);
-				addMenu: 'Select'
-					action:
-						(PrismMenu new
-								callback: action;
-								drawHTMLOn: 'messageContainer');
-				addMenu: [ :htm | 
-							htm image
-								style: 'background-color: black;';
-								url: 'http://prismjs.com/logo.svg' ]
-					action:
-						(PrismMenu new
-							callback: action;
-							drawHTMLOn: 'messageContainer');
-				withMinimap;
-				withSearchBar)
+{ #category : #accessing }
+PrismDemoRoot >> currentDemo [
+	^ currentDemo
+]
+
+{ #category : #accessing }
+PrismDemoRoot >> currentDemo: anObject [
+	currentDemo := anObject
+]
+
+{ #category : #initialization }
+PrismDemoRoot >> initialize [
+	super initialize.
+	self currentDemo: PrismSimpleDemo new
 ]
 
 { #category : #rendering }
-PrismDemos >> renderMessage: html [
-	message
-		ifNotNil: [ 
-			html text: 'Selection: ' , selection asString.
-			html break.
-			html preformatted: message.
-			html break.
-			html preformatted: (method sourceCode copyFrom: selection first to: selection last) ]
+PrismDemoRoot >> renderContentOn: html [
+	html div
+		class: 'prism-demo';
+		with: [ self renderDemoListOn: html.
+			(html tag: 'main')
+				with: [ html div
+						class: 'prism-demo-page';
+						with: [ html render: self currentDemo ] ] ]
+]
+
+{ #category : #rendering }
+PrismDemoRoot >> renderDemoListOn: html [
+	html div
+		class: 'prism-demo-list';
+		with: [ html unorderedList: [ PrismAbstractDemo allSubclasses do: [ :aDemoClass | self renderDemosListItemFor: aDemoClass on: html ] ] ]
+]
+
+{ #category : #rendering }
+PrismDemoRoot >> renderDemosListItemFor: aDemoClass on: html [
+	html listItem
+		class: 'prism-demo-list-item_active' if: aDemoClass = self currentDemo class;
+		with: [ html anchor
+				callback: [ self currentDemo: aDemoClass new ];
+				with: [ html span: aDemoClass title ] ]
+]
+
+{ #category : #hooks }
+PrismDemoRoot >> style [
+	^ 'body, html{
+	margin: 0;
+	height: 100%;
+	width: 100%;
+	font-size: 14px;
+	font-weight: 400;
+	line-height: 20px;
+	color: #757575;
+	font-family: ''Roboto'',''Helvetica'',''Arial'', sans-serif;
+}
+	
+.prism-demo{
+	display: flex;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	background: #fafafa;
+	height: 100%;
+	width: 100%;
+}
+
+.prism-demo-list{
+	width: 300px;
+	height: 100%;
+	background-color: #FFF;
+	box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+}
+
+.prism-demo-list ul{
+	padding-left: 0;
+	font-size: 14px;
+	line-height: 24px;
+	font-weight: 400;
+	letter-spacing: 0;
+}
+
+.prism-demo-list li{
+	-webkit-transition: all 450ms cubic-bezier(.23, 1, .32, 1) 0ms;
+	transition: all 450ms cubic-bezier(.23, 1, .32, 1) 0ms;
+	width: 100%;
+	line-height: 0;
+}
+
+.prism-demo-list li a{
+	padding-left: 15px;
+	font-size: 16px;
+	font-weight: inherit;
+	display: -webkit-flex;
+	color: rgba(0,0,0,0.87);
+	text-decoration: none;
+	white-space: nowrap;
+	cursor: pointer;
+}
+
+.prism-demo-list li a:hover{
+	background-color: #eee;
+}
+
+.prism-demo-list li a span{
+	line-height: 60px;
+}
+
+.prism-demo-list-item_active{
+	background-color: rgba(206,147,216 ,1);
+}
+
+.prism-demo-list li.prism-demo-list-item_active a:hover{
+	background-color: rgba(186,104,200 ,1);
+}
+
+.prism-demo-list li.prism-demo-list-item_active a{
+	color: #FFF;
+}
+
+.prism-demo main{
+	display: inline-block;
+	-webkit-flex-grow: 1;
+	-ms-flex-positive: 1;
+	flex-grow: 1;
+	overflow: auto;
+}
+
+.prism-demo-page{
+	padding: 16px;
+}
+
+.prism-demo-page-title{
+	margin-bottom: 60px;
+	margin-left: 32px;
+	text-align: justify;
+}
+
+.prism-demo-page-title h3{
+	font-size: 16px;
+	font-weight: 600;
+	margin-top: 80px;
+	text-transform: uppercase;
+	color: rgba(0,0,0,.54);
+	line-height: 40px;
+}
+
+.prism-demo-page-title p{	
+	margin-top: 16px;
+	margin-bottom: 16px;
+	font-size: 13px;
+	max-width: 640px;
+}
+
+.prism-demo-snippet-group{
+	width: 100%;
+	overflow: hidden;
+	display: flex;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	flex-direction: column;
+}
+
+.prism-demo-snippet-demo pre, .prism-demo .minimap-container{
+	height: 400px;
+	box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
+	margin-bottom: 50px;
+}
+
+.prism-demo pre{
+	margin-top: 0;
+	margin-bottom: 0;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+
+.prism-demo .minimap-container pre{
+	width: initial;
+}
+'
+
+
+]
+
+{ #category : #updating }
+PrismDemoRoot >> updateRoot: anHtmlRoot [
+	super updateRoot: anHtmlRoot.
+	anHtmlRoot link
+		beStylesheet;
+		url: 'https://fonts.googleapis.com/css?family=Roboto'
 ]

@@ -43,7 +43,7 @@ PrismTextInterval >> last [
 PrismTextInterval >> miniMapColor [
 	^ self strategy miniMapColor 
 		ifNil: [ nil ]
-		ifNotNil: [ :block | block cull: self ]
+		ifNotNil: [ :block | block cull: self cull: self object ]
 ]
 
 { #category : #accessing }

@@ -100,6 +100,7 @@ PrismComponent >> at: anInteger ifPresent: aBlockClosure [
 
 { #category : #accessing }
 PrismComponent >> codeClassFor: aLanguage [
+	aLanguage ifNil: [ ^ '' ].
 	self flag: 'See if language entities should store that'.
 	^ 'language-' , aLanguage
 ]
