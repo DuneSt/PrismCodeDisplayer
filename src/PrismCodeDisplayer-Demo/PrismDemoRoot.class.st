@@ -1812,7 +1812,6 @@ PrismDemoRoot >> style [
 }
 
 .prism-demo-snippet-group{
-	height: 700px;
 	width: 100%;
 	overflow: hidden;
 	display: flex;
@@ -1821,23 +1820,21 @@ PrismDemoRoot >> style [
 	flex-direction: column;
 }
 
-.prism-demo-snippet-demo{
+.prism-demo-snippet-demo pre, .prism-demo .minimap-container{
 	height: 400px;
-	width: 100%;
 	box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
-}
-
-.prism-demo-snippet-code{
-	flex-grow: 1;
-	height: 1px;
+	margin-bottom: 50px;
 }
 
 .prism-demo pre{
-	height: 100%;
 	margin-top: 0;
 	margin-bottom: 0;
 	padding-top: 0;
 	padding-bottom: 0;
+}
+
+.prism-demo .minimap-container pre{
+	width: initial;
 }
 '
 
