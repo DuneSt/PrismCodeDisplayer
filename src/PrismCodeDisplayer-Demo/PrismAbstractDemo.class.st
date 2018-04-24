@@ -26,15 +26,15 @@ PrismAbstractDemo >> description [
 
 { #category : #rendering }
 PrismAbstractDemo >> renderCodeOfDemoOn: html [
+	html heading
+		level3;
+		with: 'Code:'.
 	html div
 		class: 'prism-demo-snippet-code';
-		with: [ html heading
-				level3;
-				with: 'Code:'.
-			html
+		with: [ html
 				render:
 					(PrismComponent new
-						sourceCode: [ (self class >> #renderPrismComponentOn:) sourceCode  ];
+						sourceCode: [ (self class >> #renderPrismComponentOn:) sourceCode ];
 						language: #smalltalk;
 						yourself) ]
 ]

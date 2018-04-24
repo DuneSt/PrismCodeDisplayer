@@ -90,8 +90,8 @@ PrismComponentStrategy >> styleString [
 ]
 
 { #category : #display }
-PrismComponentStrategy >> styleStringOn:interval [
- ^(self style value: interval) ifNil: [ '' ]
+PrismComponentStrategy >> styleStringOn: interval [
+	^ (self style cull: interval cull: interval object) ifNil: [ '' ]
 ]
 
 { #category : #display }

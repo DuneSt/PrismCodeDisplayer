@@ -1815,6 +1815,10 @@ PrismDemoRoot >> style [
 	height: 700px;
 	width: 100%;
 	overflow: hidden;
+	display: flex;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	flex-direction: column;
 }
 
 .prism-demo-snippet-demo{
@@ -1823,7 +1827,12 @@ PrismDemoRoot >> style [
 	box-shadow: 0 4px 5px 0 rgba(0,0,0,.14),0 1px 10px 0 rgba(0,0,0,.12),0 2px 4px -1px rgba(0,0,0,.2);
 }
 
-.prism-demo-snippet-demo pre{
+.prism-demo-snippet-code{
+	flex-grow: 1;
+	height: 1px;
+}
+
+.prism-demo pre{
 	height: 100%;
 	margin-top: 0;
 	margin-bottom: 0;
