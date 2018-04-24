@@ -36,6 +36,7 @@ PrismAbstractDemo >> renderCodeOfDemoOn: html [
 					(PrismComponent new
 						sourceCode: [ (self class >> #renderPrismComponentOn:) sourceCode ];
 						language: #smalltalk;
+						enableCopyOnClick;
 						yourself) ]
 ]
 

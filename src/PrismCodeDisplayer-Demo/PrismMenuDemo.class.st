@@ -32,7 +32,7 @@ PrismMenuDemo >> renderPrismComponentOn: html [
 		render:
 			((PrismComponent new
 				sourceCode: [ self sourceToDisplay ];
-				language: #javascript)
+				language: #smalltalk)
 				addMenu: 'Show current selection'
 					action:
 						(PrismMenu new

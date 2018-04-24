@@ -12,6 +12,7 @@ Class {
 		'strategies',
 		'intervals',
 		'language',
+		'copyOnClick',
 		'menusWithAction',
 		'jsOnLoadHook',
 		'jsOnChangeHook',
@@ -20,10 +21,6 @@ Class {
 		'sourceCodeCache',
 		'lineCountCache',
 		'cacheSortedObjectWithIntervals'
-	],
-	#classInstVars : [
-		'developpement',
-		'development'
 	],
 	#category : #'PrismCodeDisplayer-Core-Component'
 }
@@ -108,6 +105,16 @@ PrismComponent >> codeClassFor: aLanguage [
 { #category : #rendering }
 PrismComponent >> computeSortedObjectWithIntervals [
 	^ cacheSortedObjectWithIntervals := ((self strategies select: [ :strat | strat condition value ]) flatCollect: #intervals) sorted: [ :a :b | a first < b first ]
+]
+
+{ #category : #accessing }
+PrismComponent >> copyOnClick [
+	^ copyOnClick
+]
+
+{ #category : #accessing }
+PrismComponent >> copyOnClick: anObject [
+	copyOnClick := anObject
 ]
 
 { #category : #menu }
@@ -213,6 +220,11 @@ PrismComponent >> displayComputedSourceCodeOnUrl: url callBack: aCallBack startL
 ]
 
 { #category : #accessing }
+PrismComponent >> enableCopyOnClick [
+	self copyOnClick: true
+]
+
+{ #category : #accessing }
 PrismComponent >> ensureIdFrom: html [
 	self id ifNil: [ self id: html nextId ]
 ]
@@ -231,7 +243,8 @@ PrismComponent >> id: anObject [
 PrismComponent >> initialize [
 	super initialize.
 	self startCountNumber: 1.
-	self strategies: OrderedCollection new
+	self strategies: OrderedCollection new.
+	self copyOnClick: false
 ]
 
 { #category : #accessing }
@@ -346,8 +359,9 @@ PrismComponent >> renderContentOn: html [
 	self resetCache.
 	self ensureIdFrom: html.
 	component := html preformatted
-		class: 'prismComponent';
+		class: #'prismComponent';
 		class: #'line-numbers';
+		class: #'prism-copy' if: self copyOnClick;
 			"We substract one to convert to CSS convention (counting from 0)"
 		style: 'counter-reset: linenumber ' , (self startCountNumber - 1) asString , ';';
 		id: self id.
