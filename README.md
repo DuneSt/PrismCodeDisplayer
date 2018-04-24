@@ -61,7 +61,11 @@ To use Prism for Seaside you will need to add JQuery and Prism libraries to your
 
 ## Examples
 
-TODO - Cyril: I'll probably try to deploy a demo but I need timo to improve the current demo and deploy it...
+You can find multiple examples when the application will be installed at the url: [http://localhost:8080/PrismDemo](http://localhost:8080/PrismDemo)
+
+When you install in a plain Pharo image you need to start the seaside server first by opening `World menu > Tools > Seaside Control Panel` and adding and starting an appropropriate `ZnZincServerAdaptor`. If you do not use port 8080, change the port in the URL.
+
+You can find a demo at: [https://demos.ferlicot.fr/PrismDemo](https://demos.ferlicot.fr/PrismDemo)
 
 ## Latest supported Dependency
 
