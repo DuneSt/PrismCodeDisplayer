@@ -41,7 +41,7 @@ To add Prism Seaside to your baseline just add this:
 
 ```Smalltalk
     spec
-        baseline: 'Prism'
+        baseline: 'PrismCodeDisplayer'
         with: [ spec repository: 'github://DuneSt/PrismCodeDisplayer:v1.x.x/src' ]
 ```
 
