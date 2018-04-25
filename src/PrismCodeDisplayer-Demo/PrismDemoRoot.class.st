@@ -808,6 +808,11 @@ Prism.languages.js = Prism.languages.javascript;
 '
 ]
 
+{ #category : #versions }
+PrismDemoRoot class >> version [
+	^ 'v1.0.0'
+]
+
 { #category : #accessing }
 PrismDemoRoot >> currentDemo [
 	^ currentDemo
@@ -995,5 +1000,6 @@ PrismDemoRoot >> updateRoot: anHtmlRoot [
 	super updateRoot: anHtmlRoot.
 	anHtmlRoot link
 		beStylesheet;
-		url: 'https://fonts.googleapis.com/css?family=Roboto'
+		url: 'https://fonts.googleapis.com/css?family=Roboto'.
+	anHtmlRoot title: 'Prism Demo - ' , self class version
 ]
