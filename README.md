@@ -69,7 +69,7 @@ You can find a demo at: [https://demos.ferlicot.fr/PrismDemo](https://demos.ferl
 
 ## Latest supported Dependency
 
-- [Prism v1.3.0](https://github.com/PrismJS/prism/releases/tag/v1.3.0)
+- [Prism v1.14.0](https://github.com/PrismJS/prism/releases/tag/v1.14.0)
 
 ## Smalltalk versions compatibility
 
