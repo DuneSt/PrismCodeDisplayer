@@ -8,7 +8,7 @@ Master:[![Build Status](https://travis-ci.org/DuneSt/PrismCodeDisplayer.svg?bran
 
 Master: [![Build status](https://ci.appveyor.com/api/projects/status/hobn9e8elv13g0if/branch/master?svg=true)](https://ci.appveyor.com/project/jecisc/prismcodedisplayer/branch/master) | Last Commit: [![Build status](https://ci.appveyor.com/api/projects/status/hobn9e8elv13g0if?svg=true)](https://ci.appveyor.com/project/jecisc/prismcodedisplayer)
 
-This project is an implementation of Prism.js in Seaside with a model associated to charts.
+This project is an implementation of Prism.js in Seaside with a model associated.
 
 # Documentation
 
