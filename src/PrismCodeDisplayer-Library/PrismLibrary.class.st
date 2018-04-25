@@ -532,11 +532,10 @@ function loadMinimap(minimapContainer) {
 			// load markers in DOM
 			$(minimapContainer).find(".minimap-bar").replaceWith(res);
 
-			
 			var scrollable = $(minimapContainer).find(".minimap-code > pre");
 			
 			//If there was an error while getting the source code, there is no scrollable. Thus, no need to do anything more.
-			if(!scrollable==null){
+			if(!(scrollable==null)){
 			
 				// initialize scroll marker
 				var scrollMarker = $(minimapContainer).find(".minimap-scroll-marker");
