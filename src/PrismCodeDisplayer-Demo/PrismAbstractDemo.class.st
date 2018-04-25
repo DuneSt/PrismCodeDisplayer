@@ -68,10 +68,18 @@ PrismAbstractDemo >> renderTitleOn: html [
 		with: [ html heading
 				level3;
 				with: self title.
-			html paragraph: self description ]
+			html paragraph: self description.
+			self warningDescription ifNotNil: [ :desc | html strong: desc ] ]
 ]
 
 { #category : #accessing }
 PrismAbstractDemo >> title [
 	^ self class title
+]
+
+{ #category : #accessing }
+PrismAbstractDemo >> warningDescription [
+	"If a demo needs a warning, override this method."
+
+	^ nil
 ]

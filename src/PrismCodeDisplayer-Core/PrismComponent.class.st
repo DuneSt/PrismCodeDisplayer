@@ -67,24 +67,6 @@ PrismComponent >> addMenu: aString action: aBlockClosure if: aBlockOrBool [
 		ifTrue: [ self addMenu: aString action: aBlockClosure ]
 ]
 
-{ #category : #minimap }
-PrismComponent >> addMinimapDemoMarkersFrom: startLine to: endLine [
-
-	| lineIntervals step |
-	step := 5.
-	lineIntervals := (startLine to: endLine by: step) collect: [:each | each to: each + step].
-	
-	self addStrategy: 
-		(PrismComponentLinkStrategy new
-			objects: lineIntervals;
-			positionFunction: [:interval | { 
-				(self sourceCode prismIntervalOfLine: interval first - startLine) first to: 
-				(self sourceCode prismIntervalOfLine: interval last - startLine) last } ];
-			callback: [:interval | ];
-			style: [:interval | ];
-			miniMapColor: [:interval | Color random ])
-]
-
 { #category : #strategies }
 PrismComponent >> addStrategy: aPrismComponentStrategy [ 
 	self strategies addLast: aPrismComponentStrategy 
@@ -359,10 +341,10 @@ PrismComponent >> renderContentOn: html [
 	self resetCache.
 	self ensureIdFrom: html.
 	component := html preformatted
-		class: #'prismComponent';
+		class: #prismComponent;
 		class: #'line-numbers';
 		class: #'prism-copy' if: self copyOnClick;
-			"We substract one to convert to CSS convention (counting from 0)"
+		"We substract one to convert to CSS convention (counting from 0)"
 		style: 'counter-reset: linenumber ' , (self startCountNumber - 1) asString , ';';
 		id: self id.
 	cb := component storeCallback: (WAValuesCallback on: [ :interval | interval executeCallback ] values: self).
@@ -372,11 +354,10 @@ PrismComponent >> renderContentOn: html [
 		scrollCb: (self defineScrollCallbackOn: component url: html actionUrl menuCallBack: cb)
 		clickCb: cb.
 	component
-	   onLoad:self jsOnLoadHook; 
-		with: [ 
-					html code
-						class: (self codeClassFor: self language);
-						with: 'Waiting' ];
+		onLoad: self jsOnLoadHook;
+		with: [ html code
+				class: (self codeClassFor: self language);
+				with: 'Waiting' ];
 		yourself.
 	self defineAjaxMenuFor: component onSelection: html
 ]

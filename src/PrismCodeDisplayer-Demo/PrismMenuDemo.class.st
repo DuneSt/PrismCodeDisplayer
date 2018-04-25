@@ -28,8 +28,9 @@ PrismMenuDemo >> renderPrismComponentOn: html [
 	action := [ :startPos :endPos :htm | 
 	selection := startPos to: endPos.
 	self renderMessageForInterval: selection on: htm ].
-	html
-		render:
+	html div
+		style: 'position: relative'; "<== THIS IS NEEDED FOR THE MENU POSITIONNING."
+		with:
 			((PrismComponent new
 				sourceCode: [ self sourceToDisplay ];
 				language: #smalltalk)
@@ -52,4 +53,9 @@ PrismMenuDemo >> renderPrismComponentOn: html [
 { #category : #accessing }
 PrismMenuDemo >> sourceToDisplay [
 	^ (PrismComponent >> #renderContentOn:) sourceCode
+]
+
+{ #category : #accessing }
+PrismMenuDemo >> warningDescription [
+	^ 'NOTE: In order to position the menu close to the mouse, the prism component needs to be contained in a div with a `position: relative` style. Else the menu might appear far from the mouse.'
 ]
