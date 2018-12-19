@@ -22,10 +22,10 @@ BaselineOfPrismCodeDisplayer >> baseline: spec [
 
 			"Packages"
 			spec
-				package: #'PrismCodeDisplayer-Core' with: [ spec requires: #('NeoJSON' 'PrismCodeDisplayer-Library') ];
-				package: #'PrismCodeDisplayer-Library' with: [ spec requires: #('Seaside3') ];
-				package: #'PrismCodeDisplayer-Demo' with: [ spec requires: #('PrismCodeDisplayer-Core') ];
-				package: #'PrismCodeDisplayer-Core-Tests' with: [ spec requires: #('PrismCodeDisplayer-Core' 'Mocketry') ].
+				package: 'PrismCodeDisplayer-Core' with: [ spec requires: #('NeoJSON' 'PrismCodeDisplayer-Library') ];
+				package: 'PrismCodeDisplayer-Library' with: [ spec requires: #('Seaside3') ];
+				package: 'PrismCodeDisplayer-Demo' with: [ spec requires: #('PrismCodeDisplayer-Core') ];
+				package: 'PrismCodeDisplayer-Core-Tests' with: [ spec requires: #('PrismCodeDisplayer-Core' 'Mocketry') ].
 
 			"Groups"
 			spec
@@ -43,12 +43,7 @@ BaselineOfPrismCodeDisplayer >> mocketry: spec [
 
 { #category : #dependencies }
 BaselineOfPrismCodeDisplayer >> neoJSON: spec [
-	spec
-		configuration: 'NeoJSON'
-		with: [ spec
-				className: 'ConfigurationOfNeoJSON';
-				version: #stable;
-				repository: 'http://smalltalkhub.com/mc/SvenVanCaekenberghe/Neo/main' ]
+	spec baseline: 'NeoJSON' with: [ spec repository: 'github://svenvc/NeoJSON:v17/repository' ]
 ]
 
 { #category : #accessing }
