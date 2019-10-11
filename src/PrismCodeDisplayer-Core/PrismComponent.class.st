@@ -22,6 +22,9 @@ Class {
 		'lineCountCache',
 		'cacheSortedObjectWithIntervals'
 	],
+	#classInstVars : [
+		'development'
+	],
 	#category : #'PrismCodeDisplayer-Core-Component'
 }
 
