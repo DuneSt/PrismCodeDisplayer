@@ -38,7 +38,7 @@ BaselineOfPrismCodeDisplayer >> baseline: spec [
 
 { #category : #dependencies }
 BaselineOfPrismCodeDisplayer >> mocketry: spec [
-	spec baseline: 'Mocketry' with: [ spec repository: 'github://dionisiydk/Mocketry:v4.0.x' ]
+	spec baseline: 'Mocketry' with: [ spec repository: 'github://dionisiydk/Mocketry:v6.0.x' ]
 ]
 
 { #category : #dependencies }
@@ -55,5 +55,9 @@ BaselineOfPrismCodeDisplayer >> projectClass [
 
 { #category : #dependencies }
 BaselineOfPrismCodeDisplayer >> seaside3: spec [
-	spec baseline: 'Seaside3' with: [ spec repository: 'github://SeasideSt/Seaside/repository' ]
+	spec
+		baseline: 'Seaside3'
+		with: [ spec
+				loads: #('Core' 'JQuery' 'Zinc');
+				repository: 'github://SeasideSt/Seaside:v3.3.x/repository' ]
 ]
