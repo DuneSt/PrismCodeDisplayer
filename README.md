@@ -4,10 +4,6 @@
 
 Master:[![Build Status](https://travis-ci.org/DuneSt/PrismCodeDisplayer.svg?branch=master)](https://travis-ci.org/DuneSt/PrismCodeDisplayer) | Development: [![Build Status](https://travis-ci.org/DuneSt/PrismCodeDisplayer.svg?branch=development)](https://travis-ci.org/DuneSt/PrismCodeDisplayer)
 
-#### Windows builds
-
-Master: [![Build status](https://ci.appveyor.com/api/projects/status/hobn9e8elv13g0if/branch/master?svg=true)](https://ci.appveyor.com/project/jecisc/prismcodedisplayer/branch/master) | Last Commit: [![Build status](https://ci.appveyor.com/api/projects/status/hobn9e8elv13g0if?svg=true)](https://ci.appveyor.com/project/jecisc/prismcodedisplayer)
-
 This project is an implementation of Prism.js in Seaside with a model associated.
 
 # Documentation
@@ -59,6 +55,10 @@ To use Prism for Seaside you will need to add JQuery and Prism libraries to your
 		addLibrary: JQDeploymentLibrary
 ```
 
+## Material Design Lite integration
+
+An integration package with [Material Design Lite](https://github.com/DuneSt/MaterialDesignLite) is available by loading the `mdl` group from Prism's baseline. 
+
 ## Examples
 
 You can find multiple examples when the application will be installed at the url: [http://localhost:8080/PrismDemo](http://localhost:8080/PrismDemo)
@@ -69,14 +69,14 @@ You can find a demo at: [https://demos.ferlicot.fr/PrismDemo](https://demos.ferl
 
 ## Latest supported Dependency
 
-- [Prism v1.14.0](https://github.com/PrismJS/prism/releases/tag/v1.14.0)
+- [Prism v1.17.1](https://github.com/PrismJS/prism/releases/tag/v1.17.1)
 
 ## Smalltalk versions compatibility
 
 | Prism version 	| Compatible Pharo versions 	|
 |---------------	|---------------------------	|
-| v1.0.0	      	| Pharo 61                  	|
-| development      	| Pharo 61                  	|
+| v1.x.x	      	| Pharo 61, 70, 80             	|
+| development      	| Pharo 61, 70, 80             	|
 
 ## Contact
 
