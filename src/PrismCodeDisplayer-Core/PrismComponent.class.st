@@ -22,6 +22,9 @@ Class {
 		'lineCountCache',
 		'cacheSortedObjectWithIntervals'
 	],
+	#classInstVars : [
+		'development'
+	],
 	#category : #'PrismCodeDisplayer-Core-Component'
 }
 
@@ -164,12 +167,12 @@ PrismComponent >> defineScrollCallbackOn: aPreTag url: url menuCallBack: menuCb 
 				on: [ :intervalRequest | 
 					| interval |
 					interval := intervalRequest substrings: ':'.
-					self lastIndexLoad: (interval at:2).
+					self lastIndexLoad: (interval at: 2).
 					self requestContext
 						respond: [ :response | 
 							response
 								nextPutAll:
-									(NeoJSONWriter
+									(STONJSON
 										toString:
 											(self
 												displayComputedSourceCodeOnUrl: url asString
