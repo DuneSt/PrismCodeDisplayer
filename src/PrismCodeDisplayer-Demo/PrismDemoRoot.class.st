@@ -12,7 +12,7 @@ Class {
 
 { #category : #initialization }
 PrismDemoRoot class >> initialize [
-	WAAdmin applicationDefaults removeParent: WADevelopmentConfiguration instance.
+	self environment at: #WADevelopmentConfiguration ifPresent: [ :class | WAAdmin applicationDefaults removeParent: class instance ].
 	(WAAdmin register: self asApplicationAt: 'PrismDemo')
 		addLibrary: PrismLibrary;
 		addLibrary: JQDeploymentLibrary
