@@ -5,6 +5,11 @@ git log --pretty="* %s ([%h](https://github.com/DuneSt/PrismCodeDisplayer/commit
 'Content' copyWithRegex: 'Merge pull request #[0-9]+ from [^/]+/[0-9]*' matchesReplacedWith: '') copyReplaceAll: '-' with: ' '
 -->
 
+# [v1.1.1](https://github.com/DuneSt/PrismCodeDisplayer/compare/v1.1.0...v1.1.1) (2022-01-22)
+
+## Infrastructure
+
+* Migrate CI to Github actions + enable CI on Pharo 9 ([4b00ff6](https://github.com/DuneSt/PrismCodeDisplayer/commit/4b00ff6a7b33fad622c4079fdf561b9c9f68902a))
 
 # [v1.1.0](https://github.com/DuneSt/PrismCodeDisplayer/compare/v1.0.1...v1.1.0) (2019-10-11)
 

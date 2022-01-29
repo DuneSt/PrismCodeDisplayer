@@ -1,9 +1,5 @@
 # PrismCodeDisplayer for Seaside
 
-#### Linux/OSX builds
-
-Master:[![Build Status](https://travis-ci.org/DuneSt/PrismCodeDisplayer.svg?branch=master)](https://travis-ci.org/DuneSt/PrismCodeDisplayer) | Development: [![Build Status](https://travis-ci.org/DuneSt/PrismCodeDisplayer.svg?branch=development)](https://travis-ci.org/DuneSt/PrismCodeDisplayer)
-
 This project is an implementation of Prism.js in Seaside with a model associated.
 
 # Documentation
@@ -75,8 +71,8 @@ You can find a demo at: [https://demos.ferlicot.fr/PrismDemo](https://demos.ferl
 
 | Prism version 	| Compatible Pharo versions 	|
 |---------------	|---------------------------	|
-| v1.x.x	      	| Pharo 61, 70, 80             	|
-| development      	| Pharo 61, 70, 80             	|
+| v1.x.x	      	| Pharo 61, 70, 80, 90         	|
+| development      	| Pharo 61, 70, 80, 90         	|
 
 ## Contact
 
