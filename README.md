@@ -71,8 +71,8 @@ You can find a demo at: [https://demos.ferlicot.fr/PrismDemo](https://demos.ferl
 
 | Prism version 	| Compatible Pharo versions 	|
 |---------------	|---------------------------	|
-| v1.x.x	      	| Pharo 61, 70, 80, 90         	|
-| development      	| Pharo 61, 70, 80, 90         	|
+| v1.x.x	      	| Pharo 61, 70, 80, 90, 10         	|
+| development      	| Pharo 61, 70, 80, 90, 10         	|
 
 ## Contact
 
