@@ -1,20 +1,21 @@
 Class {
-	#name : #PrismCopyDemo,
-	#superclass : #PrismAbstractDemo,
-	#category : #'PrismCodeDisplayer-Demo'
+	#name : 'PrismCopyDemo',
+	#superclass : 'PrismAbstractDemo',
+	#category : 'PrismCodeDisplayer-Demo',
+	#package : 'PrismCodeDisplayer-Demo'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismCopyDemo class >> description [
 	^ 'Allow the user to copy the content of the file on a click.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismCopyDemo class >> title [
 	^ 'Copy on click'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismCopyDemo >> renderPrismComponentOn: html [
 	html
 		render:

@@ -1,6 +1,6 @@
 Class {
-	#name : #PrismMenu,
-	#superclass : #Object,
+	#name : 'PrismMenu',
+	#superclass : 'Object',
 	#instVars : [
 		'drawHTML',
 		'drawCallback',
@@ -8,20 +8,22 @@ Class {
 		'json',
 		'target'
 	],
-	#category : #'PrismCodeDisplayer-Core-Component'
+	#category : 'PrismCodeDisplayer-Core-Component',
+	#package : 'PrismCodeDisplayer-Core',
+	#tag : 'Component'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismMenu >> callback [
   ^callback
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismMenu >> callback: aJSStringOrABlock [
   callback:= aJSStringOrABlock
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PrismMenu >> chooseIfCallbackDraw: html [
 	^ self drawHTML
 		ifFalse: [ 
@@ -40,7 +42,7 @@ PrismMenu >> chooseIfCallbackDraw: html [
 						cull: r ] ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PrismMenu >> createAjaxCallbacks: html [
 	^ html jQuery ajax
 		callback: [ :jso | json := jso ] json: (JSStream on: 'Prism.pharo.getSpecialTextRange()');
@@ -50,48 +52,48 @@ PrismMenu >> createAjaxCallbacks: html [
 							self drawCallback , '$(".prismSelectionMenu").hide();refreshPrism($("#"+event.target.parentElement.id.substring(4))[0])')
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismMenu >> drawCallback [
   ^drawCallback
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismMenu >> drawCallback: aJSString [
   drawCallback:= aJSString
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismMenu >> drawHTML [
   ^drawHTML
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismMenu >> drawHTML: aBool [
   drawHTML:= aBool
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PrismMenu >> drawHTMLOn [
   ^target
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PrismMenu >> drawHTMLOn: anId [
 	target := anId.
 	self enableDraw
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PrismMenu >> enableDraw [
   self drawHTML: true
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PrismMenu >> enableDrawHTML [
   self drawHTML: true
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PrismMenu >> initialize [
 	super initialize.
 	drawHTML := false.

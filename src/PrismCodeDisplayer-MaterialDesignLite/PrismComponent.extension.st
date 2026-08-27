@@ -1,6 +1,6 @@
-Extension { #name : #PrismComponent }
+Extension { #name : 'PrismComponent' }
 
-{ #category : #'*PrismCodeDisplayer-MaterialDesignLite' }
+{ #category : '*PrismCodeDisplayer-MaterialDesignLite' }
 PrismComponent >> withMDLSearchBar [
 	| searchComponent |
 	searchComponent := PrismMDLSearchDecoration new.

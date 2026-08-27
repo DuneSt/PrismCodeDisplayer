@@ -1,33 +1,35 @@
 Class {
-	#name : #PrismComponentLinkStrategy,
-	#superclass : #PrismComponentStrategy,
+	#name : 'PrismComponentLinkStrategy',
+	#superclass : 'PrismComponentStrategy',
 	#instVars : [
 		'callback'
 	],
-	#category : #'PrismCodeDisplayer-Core-Component'
+	#category : 'PrismCodeDisplayer-Core-Component',
+	#package : 'PrismCodeDisplayer-Core',
+	#tag : 'Component'
 }
 
-{ #category : #display }
+{ #category : 'display' }
 PrismComponentLinkStrategy >> attributsForUrl: url index: index [
   ^ 'href="javascript:void(0)" onclick=''t={};t[$(this).closest(".prismComponent")[0].dataset.lclickcb]=',index asString,';post("',url asString, '",t)'''
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponentLinkStrategy >> callback [
 	^ callback
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponentLinkStrategy >> callback: anObject [
 	callback := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PrismComponentLinkStrategy >> executeCallbackFor: anObject [
 	self callback value: anObject
 ]
 
-{ #category : #display }
+{ #category : 'display' }
 PrismComponentLinkStrategy >> tagName [
   ^ #a
 ]

@@ -2,12 +2,13 @@
 I am a baseline of ChartJs for Seaside. Read more at: https://github.com/DuneSt/PrismCodeDisplayer
 "
 Class {
-	#name : #BaselineOfPrismCodeDisplayer,
-	#superclass : #BaselineOf,
-	#category : #BaselineOfPrismCodeDisplayer
+	#name : 'BaselineOfPrismCodeDisplayer',
+	#superclass : 'BaselineOf',
+	#category : 'BaselineOfPrismCodeDisplayer',
+	#package : 'BaselineOfPrismCodeDisplayer'
 }
 
-{ #category : #baseline }
+{ #category : 'baseline' }
 BaselineOfPrismCodeDisplayer >> baseline: spec [
 	<baseline>
 	spec
@@ -37,7 +38,7 @@ BaselineOfPrismCodeDisplayer >> baseline: spec [
 				group: 'tests' with: #('PrismCodeDisplayer-Core-Tests') ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPrismCodeDisplayer >> materialDesignLite: spec [
 	spec
 		baseline: 'MaterialDesignLite'
@@ -46,19 +47,19 @@ BaselineOfPrismCodeDisplayer >> materialDesignLite: spec [
 				repository: 'github://DuneSt/MaterialDesignLite:v2.x.x/src' ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPrismCodeDisplayer >> mocketry: spec [
 	spec baseline: 'Mocketry' with: [ spec repository: 'github://dionisiydk/Mocketry:v6.0.x' ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 BaselineOfPrismCodeDisplayer >> projectClass [
 	^ [ self class environment at: #MetacelloCypressBaselineProject ]
 		on: NotFound
 		do: [ super projectClass ]
 ]
 
-{ #category : #dependencies }
+{ #category : 'dependencies' }
 BaselineOfPrismCodeDisplayer >> seaside3: spec [
 	spec
 		baseline: 'Seaside3'

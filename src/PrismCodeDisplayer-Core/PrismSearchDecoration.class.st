@@ -1,35 +1,37 @@
 Class {
-	#name : #PrismSearchDecoration,
-	#superclass : #PrismAbstractDecoration,
+	#name : 'PrismSearchDecoration',
+	#superclass : 'PrismAbstractDecoration',
 	#instVars : [
 		'lastSearchResult',
 		'searchStrategy'
 	],
-	#category : #'PrismCodeDisplayer-Core-Component'
+	#category : 'PrismCodeDisplayer-Core-Component',
+	#package : 'PrismCodeDisplayer-Core',
+	#tag : 'Component'
 }
 
-{ #category : #hook }
+{ #category : 'hook' }
 PrismSearchDecoration >> hookClass [
 	^ ''
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PrismSearchDecoration >> initialize [
 	super initialize.
 	self searchStrategy: PrismInsensitiveRegexFilter
 ]
 
-{ #category : #javascript }
+{ #category : 'javascript' }
 PrismSearchDecoration >> jsOnClickNextElement [
 	^ 'Prism.searchBar.nextElement( event.target)'
 ]
 
-{ #category : #javascript }
+{ #category : 'javascript' }
 PrismSearchDecoration >> jsOnClickPreviousElement [
 	^ 'Prism.searchBar.prevElement( event.target)'
 ]
 
-{ #category : #javascript }
+{ #category : 'javascript' }
 PrismSearchDecoration >> jsOnTextChangeOn: html [
 	^ html jQuery getJson
 		callback: [ :aStringRegex | self searchWith: aStringRegex ] value: (JSStream on: 'event.target.value');
@@ -38,17 +40,17 @@ PrismSearchDecoration >> jsOnTextChangeOn: html [
 		dataType: 'jsonp'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismSearchDecoration >> lastSearchResult [
 	^ lastSearchResult ifNil: [ OrderedCollection new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismSearchDecoration >> lastSearchResult: anObject [
 	lastSearchResult := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismSearchDecoration >> linesMatcheTo: regexString [
 	self
 		lastSearchResult:
@@ -62,7 +64,7 @@ PrismSearchDecoration >> linesMatcheTo: regexString [
 	^ self lastSearchResult
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismSearchDecoration >> renderContentOn: html [
 	html div
 		class: 'prism-search-container';
@@ -88,14 +90,14 @@ PrismSearchDecoration >> renderContentOn: html [
 					super renderContentOn: html ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismSearchDecoration >> renderCounterOn: html [
 	html div
 		class: 'prism-search-counter';
 		with: '0/0'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismSearchDecoration >> renderSearchBarOn: html [
 	html textInput
 		placeholder: 'Prism\.?languages\.?javascript';
@@ -112,17 +114,17 @@ PrismSearchDecoration >> renderSearchBarOn: html [
 	self renderCounterOn: html
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismSearchDecoration >> searchStrategy [
 	^ searchStrategy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismSearchDecoration >> searchStrategy: anObject [
 	searchStrategy := anObject
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PrismSearchDecoration >> searchWith: aStringRegex [
 	self linesMatcheTo: aStringRegex.
 	self resetSortedObjectWithIntervals

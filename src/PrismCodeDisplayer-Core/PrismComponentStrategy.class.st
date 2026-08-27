@@ -1,6 +1,6 @@
 Class {
-	#name : #PrismComponentStrategy,
-	#superclass : #Object,
+	#name : 'PrismComponentStrategy',
+	#superclass : 'Object',
 	#instVars : [
 		'objects',
 		'positionFunction',
@@ -8,25 +8,27 @@ Class {
 		'miniMapColor',
 		'condition'
 	],
-	#category : #'PrismCodeDisplayer-Core-Component'
+	#category : 'PrismCodeDisplayer-Core-Component',
+	#package : 'PrismCodeDisplayer-Core',
+	#tag : 'Component'
 }
 
-{ #category : #display }
+{ #category : 'display' }
 PrismComponentStrategy >> attributsForUrl: url index: index [
  ^ ''
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponentStrategy >> condition [
 	^ condition ifNil: [ condition := [ true ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponentStrategy >> condition: anObject [
 	condition := anObject
 ]
 
-{ #category : #resolution }
+{ #category : 'resolution' }
 PrismComponentStrategy >> intervals [
 	^ self objects value
 		flatCollect: [ :anObject | 
@@ -39,72 +41,72 @@ PrismComponentStrategy >> intervals [
 						yourself ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponentStrategy >> miniMapColor [
 	^ miniMapColor
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponentStrategy >> miniMapColor: anObject [
 	miniMapColor := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponentStrategy >> objects [
 	^ objects
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponentStrategy >> objects: anObject [
 	objects := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponentStrategy >> positionFunction [
 	^ positionFunction
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponentStrategy >> positionFunction: anObject [
 	positionFunction := anObject
 ]
 
-{ #category : #minimpa }
+{ #category : 'minimpa' }
 PrismComponentStrategy >> shouldBeDisplayedInMinimap [
 	^ self miniMapColor notNil
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponentStrategy >> style [
 	^ style
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponentStrategy >> style: anObject [
 	style := anObject
 ]
 
-{ #category : #display }
+{ #category : 'display' }
 PrismComponentStrategy >> styleString [
  ^(self style value: self) ifNil: [ '' ]
 ]
 
-{ #category : #display }
+{ #category : 'display' }
 PrismComponentStrategy >> styleStringOn: interval [
 	^ (self style cull: interval cull: interval object) ifNil: [ '' ]
 ]
 
-{ #category : #display }
+{ #category : 'display' }
 PrismComponentStrategy >> tagForUrl: url index: index [
   ^ '<',self tagName,' ', (self attributsForUrl: url index: index), '', self styleString,'>'
 ]
 
-{ #category : #display }
+{ #category : 'display' }
 PrismComponentStrategy >> tagForUrl: url index: index  on: interval [
   ^ '<',self tagName,' ', (self attributsForUrl: url index: index), '', (self styleStringOn:interval),'>'
 ]
 
-{ #category : #display }
+{ #category : 'display' }
 PrismComponentStrategy >> tagName [
  ^ self subclassResponsibility 
 ]
