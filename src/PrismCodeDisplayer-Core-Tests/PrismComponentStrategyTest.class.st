@@ -2,22 +2,23 @@
 A PrismComponentStrategyTest is a test class for testing the behavior of PrismComponentStrategy
 "
 Class {
-	#name : #PrismComponentStrategyTest,
-	#superclass : #TestCase,
-	#category : #'PrismCodeDisplayer-Core-Tests'
+	#name : 'PrismComponentStrategyTest',
+	#superclass : 'TestCase',
+	#category : 'PrismCodeDisplayer-Core-Tests',
+	#package : 'PrismCodeDisplayer-Core-Tests'
 }
 
-{ #category : #testing }
+{ #category : 'testing' }
 PrismComponentStrategyTest class >> isAbstract [
 	^ self = PrismComponentStrategyTest
 ]
 
-{ #category : #helpers }
+{ #category : 'helpers' }
 PrismComponentStrategyTest >> actualClass [
 	^ self subclassResponsibility
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PrismComponentStrategyTest >> testIntervals [
 	| strat obj1 obj2 |
 	obj1 := Mock named: 'Test1'.

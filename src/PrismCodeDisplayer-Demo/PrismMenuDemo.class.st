@@ -1,20 +1,21 @@
 Class {
-	#name : #PrismMenuDemo,
-	#superclass : #PrismAbstractDemo,
-	#category : #'PrismCodeDisplayer-Demo'
+	#name : 'PrismMenuDemo',
+	#superclass : 'PrismAbstractDemo',
+	#category : 'PrismCodeDisplayer-Demo',
+	#package : 'PrismCodeDisplayer-Demo'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismMenuDemo class >> description [
 	^ 'This feature allow to interact with a portion of selected text form the user.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismMenuDemo class >> title [
 	^ 'Menu'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismMenuDemo >> renderMessageForInterval: selection on: html [
 	selection
 		ifNotNil: [ html text: 'Text selected from character ' , selection first asString , ' to ' , selection last asString.
@@ -22,7 +23,7 @@ PrismMenuDemo >> renderMessageForInterval: selection on: html [
 			html preformatted: (self sourceToDisplay copyFrom: selection first to: selection last) ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismMenuDemo >> renderPrismComponentOn: html [
 	| action selection |
 	action := [ :startPos :endPos :htm | 
@@ -50,12 +51,12 @@ PrismMenuDemo >> renderPrismComponentOn: html [
 	html div id: 'messageContainer'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismMenuDemo >> sourceToDisplay [
 	^ (PrismComponent >> #renderContentOn:) sourceCode
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismMenuDemo >> warningDescription [
 	^ 'NOTE: In order to position the menu close to the mouse, the prism component needs to be contained in a div with a `position: relative` style. Else the menu might appear far from the mouse.'
 ]

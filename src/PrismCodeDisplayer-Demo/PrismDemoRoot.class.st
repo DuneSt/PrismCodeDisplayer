@@ -2,15 +2,16 @@
 I am a litte demo for PrismComponent
 "
 Class {
-	#name : #PrismDemoRoot,
-	#superclass : #WAComponent,
+	#name : 'PrismDemoRoot',
+	#superclass : 'WAComponent',
 	#instVars : [
 		'currentDemo'
 	],
-	#category : #'PrismCodeDisplayer-Demo'
+	#category : 'PrismCodeDisplayer-Demo',
+	#package : 'PrismCodeDisplayer-Demo'
 }
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PrismDemoRoot class >> initialize [
 	self environment at: #WADevelopmentConfiguration ifPresent: [ :class | WAAdmin applicationDefaults removeParent: class instance ].
 	(WAAdmin register: self asApplicationAt: 'PrismDemo')
@@ -18,7 +19,7 @@ PrismDemoRoot class >> initialize [
 		addLibrary: JQDeploymentLibrary
 ]
 
-{ #category : #resources }
+{ #category : 'resources' }
 PrismDemoRoot class >> longJsDemoCode [
   ^'
 //this is a element decorated by a PrismComponentStyleStrategy
@@ -808,28 +809,28 @@ Prism.languages.js = Prism.languages.javascript;
 '
 ]
 
-{ #category : #versions }
+{ #category : 'versions' }
 PrismDemoRoot class >> version [
 	^ 'v1.0.0'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismDemoRoot >> currentDemo [
 	^ currentDemo
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismDemoRoot >> currentDemo: anObject [
 	currentDemo := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PrismDemoRoot >> initialize [
 	super initialize.
 	self currentDemo: PrismSimpleDemo new
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismDemoRoot >> renderContentOn: html [
 	html div
 		class: 'prism-demo';
@@ -840,14 +841,14 @@ PrismDemoRoot >> renderContentOn: html [
 						with: [ html render: self currentDemo ] ] ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismDemoRoot >> renderDemoListOn: html [
 	html div
 		class: 'prism-demo-list';
 		with: [ html unorderedList: [ PrismAbstractDemo allSubclasses do: [ :aDemoClass | self renderDemosListItemFor: aDemoClass on: html ] ] ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismDemoRoot >> renderDemosListItemFor: aDemoClass on: html [
 	html listItem
 		class: 'prism-demo-list-item_active' if: aDemoClass = self currentDemo class;
@@ -856,7 +857,7 @@ PrismDemoRoot >> renderDemosListItemFor: aDemoClass on: html [
 				with: [ html span: aDemoClass title ] ]
 ]
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 PrismDemoRoot >> style [
 	^ 'body, html{
 	margin: 0;
@@ -995,7 +996,7 @@ PrismDemoRoot >> style [
 
 ]
 
-{ #category : #updating }
+{ #category : 'updating' }
 PrismDemoRoot >> updateRoot: anHtmlRoot [
 	super updateRoot: anHtmlRoot.
 	anHtmlRoot link

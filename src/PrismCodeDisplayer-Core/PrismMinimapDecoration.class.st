@@ -2,17 +2,19 @@
 I can decorate a PrismComponent to attach a vertical bar with markers.
 "
 Class {
-	#name : #PrismMinimapDecoration,
-	#superclass : #PrismAbstractDecoration,
-	#category : #'PrismCodeDisplayer-Core-Minimap'
+	#name : 'PrismMinimapDecoration',
+	#superclass : 'PrismAbstractDecoration',
+	#category : 'PrismCodeDisplayer-Core-Minimap',
+	#package : 'PrismCodeDisplayer-Core',
+	#tag : 'Minimap'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismMinimapDecoration >> intervalsToBeDisplayedInMinimap [
 	^ self decoratedComponent intervals ifNil: [ {} ] ifNotNil: [ :intervs | intervs select: #shouldBeDisplayedInMinimap ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismMinimapDecoration >> loadCallbackOn: tag [ 
 
 	^ tag storeCallback: (WAValueCallback on: [ :request | 
@@ -20,7 +22,7 @@ PrismMinimapDecoration >> loadCallbackOn: tag [
 			response nextPutAll: (WAHtmlCanvas builder render: [ :html | self renderBarWithMarkersOn: html ]) ]])
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismMinimapDecoration >> minimapTextIntervals [
 	"Answer all PrismComponent's intervals that have minimapColor"
 	
@@ -28,7 +30,7 @@ PrismMinimapDecoration >> minimapTextIntervals [
 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismMinimapDecoration >> renderBarOn: html [
 			
 	(self renderEmptyBarOn: html) with: [ 
@@ -37,14 +39,14 @@ PrismMinimapDecoration >> renderBarOn: html [
 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismMinimapDecoration >> renderBarWithLoaderOn: html [
 
 	(self renderEmptyBarOn: html)
 		with: [ html div class: 'minimap-loading' ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismMinimapDecoration >> renderBarWithMarkersOn: html [
 
 	(self renderEmptyBarOn: html) with: [ 
@@ -53,7 +55,7 @@ PrismMinimapDecoration >> renderBarWithMarkersOn: html [
 
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismMinimapDecoration >> renderCodeOn: html [
 
 	html div
@@ -61,7 +63,7 @@ PrismMinimapDecoration >> renderCodeOn: html [
 		with: [ super renderContentOn: html ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismMinimapDecoration >> renderContentOn: html [
 	| container |
 	(container := html div)
@@ -73,7 +75,7 @@ PrismMinimapDecoration >> renderContentOn: html [
 					self renderBarWithLoaderOn: html ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismMinimapDecoration >> renderEmptyBarOn: html [
 
 	^ html div class: 'minimap-bar'; onClick: 'target=$(event.target).closest("div.minimap-bar")[0];
@@ -81,7 +83,7 @@ height=(event.clientY - target.getBoundingClientRect().y) * 100 / target.clientH
 goToLine((Math.floor(height * pre.dataset.totallines / 100)),pre )'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismMinimapDecoration >> renderMarker: textInterval on: html [
 	| intervalOfCharacters firstLine endLine ratio style top height |
 	intervalOfCharacters := textInterval interval.
@@ -100,14 +102,14 @@ PrismMinimapDecoration >> renderMarker: textInterval on: html [
 		style: style
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismMinimapDecoration >> renderScrollMarkerOn: html [
 
 	html div class: 'minimap-scroll-marker minimap-bar-element'
 
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismMinimapDecoration >> startCountNumber [
 	^ self decoratedComponent startCountNumber
 ]

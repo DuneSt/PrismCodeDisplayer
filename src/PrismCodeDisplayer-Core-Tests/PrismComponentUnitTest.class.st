@@ -1,10 +1,11 @@
 Class {
-	#name : #PrismComponentUnitTest,
-	#superclass : #TestCase,
-	#category : #'PrismCodeDisplayer-Core-Tests'
+	#name : 'PrismComponentUnitTest',
+	#superclass : 'TestCase',
+	#category : 'PrismCodeDisplayer-Core-Tests',
+	#package : 'PrismCodeDisplayer-Core-Tests'
 }
 
-{ #category : #resources }
+{ #category : 'resources' }
 PrismComponentUnitTest >> codeDemoPrism [
   ^'
 //this is a element decorated by a PrismComponentStyleStrategy
@@ -794,7 +795,7 @@ Prism.languages.js = Prism.languages.javascript;
 '
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PrismComponentUnitTest >> testHtmlResponse [
 	| method component res |
 	method := 'this a
@@ -817,7 +818,7 @@ testing'.
 	self assert: (res at: #start) equals: 2	"postion of line"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PrismComponentUnitTest >> testHtmlResponseWithProtectedCode [
 	| component res method |
 	method := '< this a
@@ -840,7 +841,7 @@ testing'.
 	self assert: (res at: #start) equals: 2	"postion of line"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PrismComponentUnitTest >> testPrismIntervalOfLine [
 	| string |
 	string := '123
@@ -851,7 +852,7 @@ PrismComponentUnitTest >> testPrismIntervalOfLine [
 	self assert: (string prismIntervalOfLine: 3) equals: (8 to: 9)
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PrismComponentUnitTest >> testProtectCode [
 	"test to try to solve testHtmlResponseWithProtectedCode fail"
 
@@ -868,7 +869,7 @@ string for
 testing'	"postion of line"
 ]
 
-{ #category : #tests }
+{ #category : 'tests' }
 PrismComponentUnitTest >> testSearchCode [
 	"test to try to solve testHtmlResponseWithProtectedCode fail"
 

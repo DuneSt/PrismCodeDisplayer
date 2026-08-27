@@ -1,6 +1,6 @@
-Extension { #name : #String }
+Extension { #name : 'String' }
 
-{ #category : #'*PrismCodeDisplayer-Core' }
+{ #category : '*PrismCodeDisplayer-Core' }
 String >> prismIntervalOfLine: aLineNumber [
 	"Answer an interval spanning between the first and the last character of the line from aLineNumber.
 	

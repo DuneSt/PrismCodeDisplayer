@@ -4,8 +4,8 @@ Tell me what language you are using and I will display it.
 Give me a block to get your text so I will transmit it to the browser with ajax to speed up the displaying.
 "
 Class {
-	#name : #PrismComponent,
-	#superclass : #WAComponent,
+	#name : 'PrismComponent',
+	#superclass : 'WAComponent',
 	#instVars : [
 		'id',
 		'sourceCode',
@@ -25,27 +25,29 @@ Class {
 	#classInstVars : [
 		'development'
 	],
-	#category : #'PrismCodeDisplayer-Core-Component'
+	#category : 'PrismCodeDisplayer-Core-Component',
+	#package : 'PrismCodeDisplayer-Core',
+	#tag : 'Component'
 }
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PrismComponent class >> beDeployment [
 	<script>
 	development:= false
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PrismComponent class >> beDevelopment [
 	<script>
 	development:= true.
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PrismComponent class >> isDevelopment [
 	^ development ifNil: [ development := false ]
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PrismComponent class >> sourceCode: aSourceText linkObjects: aCollectionOfObject linkPositionFunction: aFunctionReturningInterval callBack: aBlockToExecture linkStyle: aStyleCssClass language: aCodeLanguage [
 	^ self new
 		sourceCode: aSourceText;
@@ -59,50 +61,50 @@ PrismComponent class >> sourceCode: aSourceText linkObjects: aCollectionOfObject
 		yourself
 ]
 
-{ #category : #menu }
+{ #category : 'menu' }
 PrismComponent >> addMenu: aString action: aBlockClosure [ 
 	self menusWithAction add: aString -> aBlockClosure 
 ]
 
-{ #category : #menu }
+{ #category : 'menu' }
 PrismComponent >> addMenu: aString action: aBlockClosure if: aBlockOrBool [
 	aBlockOrBool value
 		ifTrue: [ self addMenu: aString action: aBlockClosure ]
 ]
 
-{ #category : #strategies }
+{ #category : 'strategies' }
 PrismComponent >> addStrategy: aPrismComponentStrategy [ 
 	self strategies addLast: aPrismComponentStrategy 
 ]
 
-{ #category : #callback }
+{ #category : 'callback' }
 PrismComponent >> at: anInteger ifPresent: aBlockClosure [ 
 	aBlockClosure value: (self intervals at: anInteger)
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> codeClassFor: aLanguage [
 	aLanguage ifNil: [ ^ '' ].
 	self flag: 'See if language entities should store that'.
 	^ 'language-' , aLanguage
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismComponent >> computeSortedObjectWithIntervals [
 	^ cacheSortedObjectWithIntervals := ((self strategies select: [ :strat | strat condition value ]) flatCollect: #intervals) sorted: [ :a :b | a first < b first ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> copyOnClick [
 	^ copyOnClick
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> copyOnClick: anObject [
 	copyOnClick := anObject
 ]
 
-{ #category : #menu }
+{ #category : 'menu' }
 PrismComponent >> defineAjaxMenuFor: component onSelection: html [
 	self menusWithAction
 		ifNotEmpty: [ 
@@ -120,7 +122,7 @@ PrismComponent >> defineAjaxMenuFor: component onSelection: html [
 										with: aMenuWithAction key ] ] ]
 ]
 
-{ #category : #menu }
+{ #category : 'menu' }
 PrismComponent >> defineMenuFor: component onSelection: html [
 	self menusWithAction
 		ifNotEmpty: [ 
@@ -159,7 +161,7 @@ PrismComponent >> defineMenuFor: component onSelection: html [
 												with: aMenuWithAction key ] ] ] ]
 ]
 
-{ #category : #callback }
+{ #category : 'callback' }
 PrismComponent >> defineScrollCallbackOn: aPreTag url: url menuCallBack: menuCb [
 	^ aPreTag
 		storeCallback:
@@ -181,7 +183,7 @@ PrismComponent >> defineScrollCallbackOn: aPreTag url: url menuCallBack: menuCb 
 												endLine: (interval last asNumber max: 400))) ] ])
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismComponent >> displayComputedSourceCodeOnUrl: url callBack: aCallBack startLine: start endLine: end [
 	| string endCopy offset |
 	string := self sourceCode.
@@ -204,27 +206,27 @@ PrismComponent >> displayComputedSourceCodeOnUrl: url callBack: aCallBack startL
 				ifFalse: [ {(#html -> 'Sorry but an error occured')} ] ]) asDictionary
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> enableCopyOnClick [
 	self copyOnClick: true
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> ensureIdFrom: html [
 	self id ifNil: [ self id: html nextId ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> id [
 	^ id
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> id: anObject [
 	id := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PrismComponent >> initialize [
 	super initialize.
 	self startCountNumber: 1.
@@ -232,77 +234,77 @@ PrismComponent >> initialize [
 	self copyOnClick: false
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> intervals [
 	^ intervals
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> intervals: anObject [
 	intervals := anObject
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PrismComponent >> isDevelopment [
 	^ self class isDevelopment
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> jsOnChangeHook [
 	^ jsOnChangeHook
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> jsOnChangeHook: anObject [
 	jsOnChangeHook := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> jsOnLoadHook [
 	^ jsOnLoadHook
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> jsOnLoadHook: anObject [
 	jsOnLoadHook := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> language [
 	^ language
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> language: anObject [
 	language := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> lastIndexLoad [
 	^ lastIndexLoad ifNil: [ lastIndexLoad := 400 asString ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> lastIndexLoad: anObject [
 	lastIndexLoad := anObject
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> lineCount [
 	^ lineCountCache ifNil: [ lineCountCache := self sourceCode lineCount ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> menusWithAction [
 	^ menusWithAction ifNil: [ menusWithAction := OrderedCollection new ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> menusWithAction: anObject [
 	menusWithAction := anObject
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismComponent >> obtainSortedJsInfoWithIntervalsForUrl: url between: min and: max [
 	| res |
 	res := OrderedCollection new.
@@ -323,22 +325,22 @@ PrismComponent >> obtainSortedJsInfoWithIntervalsForUrl: url between: min and: m
 	^ res asArray
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismComponent >> obtainSortedObjectWithIntervals [
 	^ cacheSortedObjectWithIntervals ifNil: [ self computeSortedObjectWithIntervals ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> prismComponent [
 	^ self
 ]
 
-{ #category : #'html-specific' }
+{ #category : 'html-specific' }
 PrismComponent >> protectCode: code [
 	^ code copyReplaceAll: '<' with: '&lt;'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismComponent >> renderContentOn: html [
 	| cb component |
 	self resetCache.
@@ -365,7 +367,7 @@ PrismComponent >> renderContentOn: html [
 	self defineAjaxMenuFor: component onSelection: html
 ]
 
-{ #category : #initialization }
+{ #category : 'initialization' }
 PrismComponent >> resetCache [
 	| oldLineCount|
 	sourceCodeCache := nil.
@@ -376,7 +378,7 @@ PrismComponent >> resetCache [
 	self lineCount ~= oldLineCount ifTrue: [ lastIndexLoad := nil ]
 ]
 
-{ #category : #callback }
+{ #category : 'callback' }
 PrismComponent >> setDataForCallBack: div html: html scrollCb: scrollCb clickCb: clickCb [
 	self flag: #TODO.	"Remove hard coded values"
 	div
@@ -393,48 +395,48 @@ PrismComponent >> setDataForCallBack: div html: html scrollCb: scrollCb clickCb:
 		attributeAt: #'data-onchangehook' put: (self jsOnChangeHook ifNil: [ '' ])	
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> sourceCode [
 	^ sourceCodeCache ifNil: [ sourceCodeCache := sourceCode value ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> sourceCode: anObject [
 	sourceCode := anObject.
 	self resetCache
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> startCountNumber [
 	^startCountNumber
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> startCountNumber: aLineNumber [
 	startCountNumber := aLineNumber 
 ]
 
-{ #category : #hooks }
+{ #category : 'hooks' }
 PrismComponent >> states [
 	^ Array with: self
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> strategies [
 	^ strategies
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismComponent >> strategies: anObject [
 	strategies := anObject
 ]
 
-{ #category : #minimap }
+{ #category : 'minimap' }
 PrismComponent >> withMinimap [
 	self addDecoration: PrismMinimapDecoration new
 ]
 
-{ #category : #strategies }
+{ #category : 'strategies' }
 PrismComponent >> withSearchBar [
 	| searchComponent |
 	searchComponent := PrismSearchDecoration new.

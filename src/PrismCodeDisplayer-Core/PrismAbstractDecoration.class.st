@@ -1,20 +1,22 @@
 Class {
-	#name : #PrismAbstractDecoration,
-	#superclass : #WADecoration,
-	#category : #'PrismCodeDisplayer-Core-Component'
+	#name : 'PrismAbstractDecoration',
+	#superclass : 'WADecoration',
+	#category : 'PrismCodeDisplayer-Core-Component',
+	#package : 'PrismCodeDisplayer-Core',
+	#tag : 'Component'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismAbstractDecoration >> lineCount [
 	^ self decoratedComponent lineCount
 ]
 
-{ #category : #action }
+{ #category : 'action' }
 PrismAbstractDecoration >> resetSortedObjectWithIntervals [
 	self decoratedComponent computeSortedObjectWithIntervals
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismAbstractDecoration >> sourceCode [
 	^ self decoratedComponent sourceCode 
 ]

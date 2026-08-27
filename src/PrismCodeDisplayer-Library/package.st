@@ -1,1 +1,1 @@
-Package { #name : #'PrismCodeDisplayer-Library' }
+Package { #name : 'PrismCodeDisplayer-Library' }

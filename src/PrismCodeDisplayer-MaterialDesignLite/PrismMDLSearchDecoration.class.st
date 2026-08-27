@@ -6,17 +6,18 @@ You can use me by calling #withMDLSearchBar on a PrismCodeDisplayerComponent.
 Do not forget to add the MDL library and css file to your application for me to have a nice style.
 "
 Class {
-	#name : #PrismMDLSearchDecoration,
-	#superclass : #PrismSearchDecoration,
-	#category : #'PrismCodeDisplayer-MaterialDesignLite'
+	#name : 'PrismMDLSearchDecoration',
+	#superclass : 'PrismSearchDecoration',
+	#category : 'PrismCodeDisplayer-MaterialDesignLite',
+	#package : 'PrismCodeDisplayer-MaterialDesignLite'
 }
 
-{ #category : #hook }
+{ #category : 'hook' }
 PrismMDLSearchDecoration >> hookClass [
 	^ 'mdl-shadow--2dp'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismMDLSearchDecoration >> renderSearchBarOn: html [
 	html mdlTextFieldContainer
 		style: 'padding: 0;';

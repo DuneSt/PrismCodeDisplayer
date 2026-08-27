@@ -1,20 +1,21 @@
 Class {
-	#name : #PrismDynamicLoadingDemo,
-	#superclass : #PrismAbstractDemo,
-	#category : #'PrismCodeDisplayer-Demo'
+	#name : 'PrismDynamicLoadingDemo',
+	#superclass : 'PrismAbstractDemo',
+	#category : 'PrismCodeDisplayer-Demo',
+	#package : 'PrismCodeDisplayer-Demo'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismDynamicLoadingDemo class >> description [
 	^ 'When the code to display is too long, the page might suffer performance wise. PrismJs for Seaside comes with a dynamic loading feature for such cases.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismDynamicLoadingDemo class >> title [
 	^ 'Dynamic loading'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismDynamicLoadingDemo >> renderPrismComponentOn: html [
 	html
 		render:

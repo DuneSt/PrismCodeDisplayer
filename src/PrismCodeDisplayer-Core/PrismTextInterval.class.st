@@ -1,87 +1,89 @@
 Class {
-	#name : #PrismTextInterval,
-	#superclass : #Object,
+	#name : 'PrismTextInterval',
+	#superclass : 'Object',
 	#instVars : [
 		'strategy',
 		'object',
 		'interval'
 	],
-	#category : #'PrismCodeDisplayer-Core-Component'
+	#category : 'PrismCodeDisplayer-Core-Component',
+	#package : 'PrismCodeDisplayer-Core',
+	#tag : 'Component'
 }
 
-{ #category : #callback }
+{ #category : 'callback' }
 PrismTextInterval >> executeCallback [
 	self strategy executeCallbackFor: self object.
 ]
 
-{ #category : #position }
+{ #category : 'position' }
 PrismTextInterval >> extent [
 	^ self interval extent
 ]
 
-{ #category : #position }
+{ #category : 'position' }
 PrismTextInterval >> first [
 	^ self interval first
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismTextInterval >> interval [
 	^ interval
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismTextInterval >> interval: anObject [
 	interval := anObject
 ]
 
-{ #category : #position }
+{ #category : 'position' }
 PrismTextInterval >> last [
 	^ self interval last
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismTextInterval >> miniMapColor [
 	^ self strategy miniMapColor 
 		ifNil: [ nil ]
 		ifNotNil: [ :block | block cull: self cull: self object ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismTextInterval >> object [
 	^ object
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismTextInterval >> object: anObject [
 	object := anObject
 ]
 
-{ #category : #minimap }
+{ #category : 'minimap' }
 PrismTextInterval >> shouldBeDisplayedInMinimap [
 	^ self strategy shouldBeDisplayedInMinimap
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismTextInterval >> strategy [
 	^ strategy
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismTextInterval >> strategy: anObject [
 	strategy := anObject
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PrismTextInterval >> tag [
 	^ self strategy tag
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PrismTextInterval >> tagForUrl: url [
 	^ self strategy tagForUrl: url
 ]
 
-{ #category : #'as yet unclassified' }
+{ #category : 'as yet unclassified' }
 PrismTextInterval >> tagForUrl: url index: index [ 
 	^ self strategy tagForUrl: url index: index on:self
 ]
