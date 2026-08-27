@@ -1,1 +1,1 @@
-Package { #name : #BaselineOfPrismCodeDisplayer }
+Package { #name : 'BaselineOfPrismCodeDisplayer' }

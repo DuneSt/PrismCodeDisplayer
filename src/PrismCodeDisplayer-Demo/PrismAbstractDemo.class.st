@@ -1,30 +1,31 @@
 Class {
-	#name : #PrismAbstractDemo,
-	#superclass : #WAComponent,
-	#category : #'PrismCodeDisplayer-Demo'
+	#name : 'PrismAbstractDemo',
+	#superclass : 'WAComponent',
+	#category : 'PrismCodeDisplayer-Demo',
+	#package : 'PrismCodeDisplayer-Demo'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismAbstractDemo class >> description [
 	^ self subclassResponsibility
 ]
 
-{ #category : #testing }
+{ #category : 'testing' }
 PrismAbstractDemo class >> isAbstract [
 	^ self = PrismAbstractDemo
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismAbstractDemo class >> title [
 	^ self subclassResponsibility
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismAbstractDemo >> description [
 	^ self class description
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismAbstractDemo >> renderCodeOfDemoOn: html [
 	html heading
 		level3;
@@ -40,7 +41,7 @@ PrismAbstractDemo >> renderCodeOfDemoOn: html [
 						yourself) ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismAbstractDemo >> renderContentOn: html [
 	self renderTitleOn: html.
 	html div
@@ -49,19 +50,19 @@ PrismAbstractDemo >> renderContentOn: html [
 			self renderCodeOfDemoOn: html ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismAbstractDemo >> renderDemoOn: html [
 	html div
 		class: 'prism-demo-snippet-demo';
 		with: [ self renderPrismComponentOn: html ]
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismAbstractDemo >> renderPrismComponentOn: html [
 	^ self subclassResponsibility
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismAbstractDemo >> renderTitleOn: html [
 	html div
 		class: 'prism-demo-page-title';
@@ -72,12 +73,12 @@ PrismAbstractDemo >> renderTitleOn: html [
 			self warningDescription ifNotNil: [ :desc | html strong: desc ] ]
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismAbstractDemo >> title [
 	^ self class title
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismAbstractDemo >> warningDescription [
 	"If a demo needs a warning, override this method."
 

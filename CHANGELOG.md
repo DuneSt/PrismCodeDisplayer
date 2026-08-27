@@ -5,6 +5,8 @@ git log --pretty="* %s ([%h](https://github.com/DuneSt/PrismCodeDisplayer/commit
 'Content' copyWithRegex: 'Merge pull request #[0-9]+ from [^/]+/[0-9]*' matchesReplacedWith: '') copyReplaceAll: '-' with: ' '
 -->
 
+> More recent releases have the changelog in the release
+
 # [v1.1.1](https://github.com/DuneSt/PrismCodeDisplayer/compare/v1.1.0...v1.1.1) (2022-01-22)
 
 ## Infrastructure

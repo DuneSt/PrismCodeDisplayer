@@ -1,23 +1,24 @@
 Class {
-	#name : #PrismStyleStrategyDemo,
-	#superclass : #PrismAbstractDemo,
+	#name : 'PrismStyleStrategyDemo',
+	#superclass : 'PrismAbstractDemo',
 	#instVars : [
 		'method'
 	],
-	#category : #'PrismCodeDisplayer-Demo'
+	#category : 'PrismCodeDisplayer-Demo',
+	#package : 'PrismCodeDisplayer-Demo'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismStyleStrategyDemo class >> description [
 	^ 'PrismJs implement a conveniant way to customize portion of the displayed source text via the Style strategies.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismStyleStrategyDemo class >> title [
 	^ 'Style strategy'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismStyleStrategyDemo >> renderPrismComponentOn: html [
 	| colorMap |
 	colorMap := Dictionary new.

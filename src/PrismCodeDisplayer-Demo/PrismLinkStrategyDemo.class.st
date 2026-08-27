@@ -1,23 +1,24 @@
 Class {
-	#name : #PrismLinkStrategyDemo,
-	#superclass : #PrismAbstractDemo,
+	#name : 'PrismLinkStrategyDemo',
+	#superclass : 'PrismAbstractDemo',
 	#instVars : [
 		'method'
 	],
-	#category : #'PrismCodeDisplayer-Demo'
+	#category : 'PrismCodeDisplayer-Demo',
+	#package : 'PrismCodeDisplayer-Demo'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismLinkStrategyDemo class >> description [
 	^ 'It might be conveniant to add links to portions of the code. Prism allow this via a Link Strategy.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismLinkStrategyDemo class >> title [
 	^ 'Link strategy'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismLinkStrategyDemo >> renderPrismComponentOn: html [
 	| colorMap |
 	colorMap := Dictionary new.

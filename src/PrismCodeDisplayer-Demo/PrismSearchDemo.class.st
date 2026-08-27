@@ -1,20 +1,21 @@
 Class {
-	#name : #PrismSearchDemo,
-	#superclass : #PrismAbstractDemo,
-	#category : #'PrismCodeDisplayer-Demo'
+	#name : 'PrismSearchDemo',
+	#superclass : 'PrismAbstractDemo',
+	#category : 'PrismCodeDisplayer-Demo',
+	#package : 'PrismCodeDisplayer-Demo'
 }
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismSearchDemo class >> description [
 	^ 'I am a demo to show the use of PrismJs for Seaside Search function. This function can be used via shortcut. Open the search with "Ctrl + Shift + f" and naviguate in the results with the up and down arrows.'
 ]
 
-{ #category : #accessing }
+{ #category : 'accessing' }
 PrismSearchDemo class >> title [
 	^ 'Search'
 ]
 
-{ #category : #rendering }
+{ #category : 'rendering' }
 PrismSearchDemo >> renderPrismComponentOn: html [
 	html
 		render:
